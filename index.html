@@ -90,6 +90,17 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
   clip: rect(0,0,0,0); border: 0;
 }
 
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ===== HEADER ===== */
 .header {
   position: sticky;
@@ -148,7 +159,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 
 .header-phone:hover { color: var(--gold); }
-
 .header-phone svg { flex-shrink: 0; }
 
 .btn-gold {
@@ -168,27 +178,40 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
 .btn-gold:active { transform: translateY(0); }
 
-.btn-outline {
+/* Fix 9: Call Now button - solid white for visibility */
+.btn-call-solid {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 24px;
-  background: transparent;
-  color: var(--white);
+  padding: 14px 32px;
+  background: var(--white);
+  color: var(--dark);
   font-weight: 600;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 2px solid rgba(255,255,255,0.4);
-  transition: border-color 0.2s, background 0.2s;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  transition: background 0.2s, transform 0.15s;
   white-space: nowrap;
 }
+.btn-call-solid:hover { background: #f0f0f0; transform: translateY(-1px); }
+.btn-call-solid:active { transform: translateY(0); }
 
-.btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+/* ===== URGENCY BANNER (Fix 4) ===== */
+.urgency-banner {
+  background: var(--dark-2);
+  padding: 10px 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+.urgency-banner span { color: rgba(255,255,255,0.65); }
 
-/* ===== HERO ===== */
+/* ===== HERO (Fix 1: hero image on right) ===== */
 .hero {
   background: linear-gradient(170deg, #1a1a1a 0%, #222 50%, #2a2a2a 100%);
-  padding: 80px 0 60px;
   position: relative;
   overflow: hidden;
 }
@@ -199,25 +222,21 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
   top: 0; left: 0; right: 0;
   height: 3px;
   background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+  z-index: 2;
 }
 
-/* Subtle gold geometric accent */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 400px;
-  height: 400px;
-  border: 1px solid rgba(197, 150, 26, 0.08);
-  border-radius: 50%;
-  pointer-events: none;
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 520px;
+  align-items: center;
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 750px;
+  padding: 80px 0 60px;
+  padding-right: 48px;
 }
 
 .hero h1 {
@@ -254,15 +273,10 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
   border-radius: 10px;
 }
 
-.hero-btns .btn-outline {
-  padding: 14px 32px;
-  font-size: 16px;
-  border-radius: 10px;
-}
-
+/* Fix 10: Trust bar - 4 items in single row on desktop */
 .trust-bar {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
   gap: 20px;
   padding-top: 32px;
   border-top: 1px solid rgba(255,255,255,0.08);
@@ -275,6 +289,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
   font-size: 14px;
   color: rgba(255,255,255,0.6);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .trust-bar-item svg { flex-shrink: 0; }
@@ -282,6 +297,29 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 .trust-bar-stars {
   color: var(--gold);
   font-weight: 600;
+}
+
+/* Hero image area */
+.hero-image-wrap {
+  position: relative;
+  height: 100%;
+  min-height: 520px;
+  overflow: hidden;
+}
+.hero-image-wrap img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-image-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 80px;
+  background: linear-gradient(90deg, #1a1a1a, transparent);
 }
 
 /* ===== SECTION STYLES ===== */
@@ -315,6 +353,41 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 
 .section--dark .section-subtitle { color: rgba(255,255,255,0.6); }
+
+/* ===== MID-SECTION CTAs (Fix 6) ===== */
+.section-cta {
+  text-align: center;
+  padding: 40px 0 0;
+}
+.section-cta p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+.section-cta .btn-gold {
+  padding: 12px 28px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+.section--dark .section-cta p { color: rgba(255,255,255,0.6); }
+.section--alt .section-cta p { color: var(--text-secondary); }
+
+/* Full-width CTA strip variation */
+.cta-strip {
+  background: var(--dark);
+  padding: 28px 24px;
+  text-align: center;
+}
+.cta-strip p {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+.cta-strip .btn-gold {
+  padding: 12px 28px;
+  font-size: 15px;
+  border-radius: 10px;
+}
 
 /* ===== WHAT WE BUY ===== */
 .buy-grid {
@@ -418,7 +491,27 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
   margin: 0 auto;
 }
 
-/* ===== REVIEWS ===== */
+/* ===== WHAT TO BRING ===== */
+.bring-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.bring-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--light-3);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.bring-item svg { flex-shrink: 0; margin-top: 2px; color: var(--gold); }
+.bring-item p { font-size: 15px; color: var(--text-primary); line-height: 1.5; }
+
+/* ===== REVIEWS (Fix 5: Google logo + dates) ===== */
 .reviews-header {
   text-align: center;
   margin-bottom: 48px;
@@ -454,6 +547,25 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
   padding: 28px;
 }
 
+.review-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.google-g {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.review-card-header span {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
 .review-stars {
   display: flex;
   gap: 2px;
@@ -470,9 +582,20 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 
 .review-author {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-author-name {
   font-size: 14px;
   font-weight: 600;
   color: var(--text-secondary);
+}
+
+.review-date {
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
 .reviews-link {
@@ -520,10 +643,46 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
   line-height: 1.6;
 }
 
-/* ===== FORM ===== */
+/* ===== FORM (Fix 8: social proof near form) ===== */
 .form-section {
   padding: 80px 0;
   background: var(--light);
+}
+
+.form-layout {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.form-testimonial {
+  background: var(--light-2);
+  border: 1px solid var(--light-3);
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.form-testimonial blockquote {
+  font-size: 15px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.form-testimonial cite {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: normal;
+  font-weight: 600;
+}
+.form-testimonial .review-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--gold-dark);
+  font-weight: 600;
 }
 
 .form-wrapper {
@@ -532,7 +691,6 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 
 .form-wrapper .section-title { margin-bottom: 8px; }
-
 .form-wrapper .section-subtitle { margin-bottom: 36px; }
 
 .form-group {
@@ -628,7 +786,20 @@ textarea.form-control {
   color: var(--text-muted);
 }
 
-/* ===== LOCATIONS ===== */
+.form-review-badge {
+  text-align: center;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.form-review-badge svg { width: 14px; height: 14px; }
+
+/* ===== LOCATIONS (Fix 11: Google Maps) ===== */
 .locations-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -639,6 +810,10 @@ textarea.form-control {
   background: var(--white);
   border: 1px solid var(--light-3);
   border-radius: 14px;
+  overflow: hidden;
+}
+
+.location-card-body {
   padding: 36px 32px;
 }
 
@@ -671,6 +846,14 @@ textarea.form-control {
 
 .location-detail a:hover { color: var(--gold); }
 
+.location-schedule-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-left: 28px;
+  margin-top: -8px;
+  margin-bottom: 14px;
+}
+
 .btn-directions {
   display: inline-flex;
   align-items: center;
@@ -686,6 +869,17 @@ textarea.form-control {
 }
 
 .btn-directions:hover { background: var(--dark-3); }
+
+.location-map {
+  width: 100%;
+  height: 220px;
+  border-top: 1px solid var(--light-3);
+}
+.location-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 /* ===== FAQ ===== */
 .faq-list {
@@ -723,7 +917,9 @@ textarea.form-control {
 .faq-question svg {
   flex-shrink: 0;
   transition: transform 0.3s ease;
-  color: var(--text-muted);
+  color: var(--gold);
+  width: 22px;
+  height: 22px;
 }
 
 .faq-item.active .faq-question svg { transform: rotate(180deg); }
@@ -809,7 +1005,21 @@ textarea.form-control {
 .footer-bottom a { transition: color 0.2s; }
 .footer-bottom a:hover { color: var(--gold); }
 
-/* ===== MOBILE BOTTOM BAR ===== */
+/* Fix 12: Subtle attribution */
+.footer-attribution {
+  display: block;
+  text-align: center;
+  padding: 8px 0 4px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+}
+.footer-attribution a {
+  color: rgba(255,255,255,0.2);
+  transition: color 0.2s;
+}
+.footer-attribution a:hover { color: rgba(255,255,255,0.4); }
+
+/* ===== MOBILE BOTTOM BAR (Fix 7) ===== */
 .mobile-bar {
   display: none;
   position: fixed;
@@ -846,7 +1056,7 @@ textarea.form-control {
   color: var(--dark);
 }
 
-.mobile-bar .bar-directions {
+.mobile-bar .bar-quote {
   background: rgba(255,255,255,0.1);
   color: var(--white);
   border: 1px solid rgba(255,255,255,0.15);
@@ -856,32 +1066,70 @@ textarea.form-control {
 @media (max-width: 1024px) {
   .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .steps-grid::before { display: none; }
+  .trust-bar { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
   :root { --header-height: 64px; }
 
-  .header-phone { display: none; }
-  .header .btn-gold { padding: 8px 16px; font-size: 13px; }
-  .logo { font-size: 16px; }
+  /* Fix 7: Show phone on mobile header — icon only to prevent wrapping */
+  .header-phone-mobile {
+    display: flex;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0;
+    align-items: center;
+    gap: 0;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+  }
+  .header-phone-mobile svg { width: 20px; height: 20px; }
+  .header-phone-desktop { display: none; }
+  .header .btn-gold { padding: 8px 16px; font-size: 13px; white-space: nowrap; }
+  .logo { font-size: 15px; }
+  .logo span.logo-text-long { display: none; }
+  .logo span.logo-text-short { display: inline; }
 
-  .hero { padding: 48px 0 40px; }
+  /* Hero: stack on mobile — SHOW the image */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-content { padding: 40px 0 32px; padding-right: 0; }
+  .hero-image-wrap {
+    min-height: 200px;
+    height: 220px;
+    display: block;
+  }
+  .hero-image-wrap img {
+    object-position: center 40%;
+  }
+  .hero-image-wrap::after {
+    width: 100%;
+    height: 50px;
+    bottom: auto;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, #1a1a1a 0%, transparent 100%);
+  }
+
   .hero-btns .btn-gold,
-  .hero-btns .btn-outline { padding: 12px 24px; font-size: 15px; }
+  .hero-btns .btn-call-solid { padding: 12px 24px; font-size: 15px; }
+
+  .trust-bar { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .trust-bar-item { font-size: 13px; white-space: normal; }
 
   .section { padding: 60px 0; }
-
   .buy-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .buy-card { padding: 24px 18px; }
-
   .steps-grid { grid-template-columns: 1fr; gap: 32px; }
-
+  .bring-grid { grid-template-columns: 1fr; }
   .reviews-grid { grid-template-columns: 1fr; gap: 16px; }
-
   .pillars-grid { grid-template-columns: 1fr; gap: 28px; }
-
   .locations-grid { grid-template-columns: 1fr; gap: 16px; }
-
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 
   .mobile-bar { display: block; }
@@ -891,16 +1139,27 @@ textarea.form-control {
     flex-direction: column;
     text-align: center;
   }
+
+  .urgency-banner { font-size: 12px; padding: 8px 16px; }
+
+  /* Mobile bottom bar: fix button text wrapping */
+  .mobile-bar a { font-size: 14px; white-space: nowrap; }
+}
+
+@media (min-width: 769px) {
+  .header-phone-mobile { display: none; }
+  .header-phone-desktop { display: flex; }
+  .logo span.logo-text-long { display: inline; }
+  .logo span.logo-text-short { display: none; }
 }
 
 @media (max-width: 480px) {
   .buy-grid { grid-template-columns: 1fr; }
   .hero-btns { flex-direction: column; }
   .hero-btns .btn-gold,
-  .hero-btns .btn-outline { width: 100%; text-align: center; }
+  .hero-btns .btn-call-solid { width: 100%; text-align: center; justify-content: center; }
   .radio-group { flex-direction: column; gap: 12px; }
-  .trust-bar { gap: 14px; }
-  .trust-bar-item { font-size: 13px; }
+  .trust-bar { grid-template-columns: 1fr 1fr; gap: 10px; }
 }
 </style>
 
@@ -988,10 +1247,16 @@ textarea.form-control {
         <path d="M14 26L3 10H25L14 26Z" fill="#C5961A" opacity="0.7"/>
         <path d="M14 2L7 10L14 26L21 10L14 2Z" fill="#C5961A" opacity="0.9"/>
       </svg>
-      Georgia Gold Buyers
+      <span class="logo-text-long">Georgia Gold Buyers</span>
+      <span class="logo-text-short">GGB</span>
     </a>
     <div class="header-actions">
-      <a href="tel:+16789199265" class="header-phone" aria-label="Call us at 678-919-9265">
+      <!-- Fix 7: Phone visible on mobile too -->
+      <a href="tel:+16789199265" class="header-phone header-phone-mobile" aria-label="Call us">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (678) 919-9265
+      </a>
+      <a href="tel:+16789199265" class="header-phone header-phone-desktop" aria-label="Call us at 678-919-9265">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         (678) 919-9265
       </a>
@@ -1000,36 +1265,46 @@ textarea.form-control {
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- ===== URGENCY BANNER (Fix 4) ===== -->
+<div class="urgency-banner">
+  🔥 Gold prices are near record highs — <span>now is the best time to sell. Get your free appraisal today.</span>
+</div>
+
+<!-- ===== HERO (Fix 1 + Fix 3 + Fix 9 + Fix 10) ===== -->
 <section class="hero" id="hero">
   <div class="container">
-    <div class="hero-content">
-      <h1>Sell Your Gold, Silver &amp; Jewelry for <span>Top Dollar</span> — Get Paid Today</h1>
-      <p class="hero-sub">Georgia's trusted gold buyers since 2012. Walk in or book an appointment. Free appraisal, instant cash.</p>
-      <div class="hero-btns">
-        <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
-        <a href="tel:+16789199265" class="btn-outline">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Call Now
-        </a>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <h1>Sell Your Gold, Silver &amp; Jewelry for <span>Top Dollar</span> — Get Paid Today</h1>
+        <p class="hero-sub">Georgia's trusted gold buyers since 2012. Book your free appraisal today — same-day cash payment.</p>
+        <div class="hero-btns">
+          <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
+          <a href="tel:+16789199265" class="btn-call-solid">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call Now
+          </a>
+        </div>
+        <div class="trust-bar">
+          <div class="trust-bar-item">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+            <span class="trust-bar-stars">5.0 · 84+ Reviews</span>
+          </div>
+          <div class="trust-bar-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Family Owned Since 2012
+          </div>
+          <div class="trust-bar-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            Certified Appraisals
+          </div>
+          <div class="trust-bar-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Same-Day Cash Payment
+          </div>
+        </div>
       </div>
-      <div class="trust-bar">
-        <div class="trust-bar-item">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <span class="trust-bar-stars">5.0 Rating · 84+ Google Reviews</span>
-        </div>
-        <div class="trust-bar-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Family Owned Since 2012
-        </div>
-        <div class="trust-bar-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-          Certified Appraisals
-        </div>
-        <div class="trust-bar-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-          Same-Day Cash Payment
-        </div>
+      <div class="hero-image-wrap">
+        <img src="hero-gold.jpg" alt="Gold jewelry, chains, rings, coins, and cash displayed on dark velvet" loading="lazy" width="636" height="520">
       </div>
     </div>
   </div>
@@ -1038,12 +1313,11 @@ textarea.form-control {
 <!-- ===== WHAT WE BUY ===== -->
 <section class="section" id="what-we-buy">
   <div class="container">
-    <h2 class="section-title">What We Buy</h2>
-    <p class="section-subtitle">We buy a wide range of precious metals, jewelry, and collectibles. If it has value, we want to see it.</p>
+    <h2 class="section-title reveal">What We Buy</h2>
+    <p class="section-subtitle reveal">We buy a wide range of precious metals, jewelry, and collectibles. If it has value, we want to see it.</p>
     <div class="buy-grid">
 
-      <!-- Gold Jewelry -->
-      <div class="buy-card">
+      <div class="buy-card reveal">
         <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="24" cy="24" r="14" stroke="#C5961A" stroke-width="2.5"/>
           <circle cx="24" cy="24" r="8" stroke="#C5961A" stroke-width="2"/>
@@ -1054,8 +1328,7 @@ textarea.form-control {
         <p>Rings, necklaces, bracelets, watches, pendants</p>
       </div>
 
-      <!-- Silver Items -->
-      <div class="buy-card">
+      <div class="buy-card reveal">
         <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="6" y="14" width="16" height="22" rx="2" stroke="#C5961A" stroke-width="2.5"/>
           <rect x="26" y="12" width="16" height="22" rx="2" stroke="#C5961A" stroke-width="2.5"/>
@@ -1068,8 +1341,7 @@ textarea.form-control {
         <p>Sterling silver, flatware, coins, tea sets</p>
       </div>
 
-      <!-- Coins & Bullion -->
-      <div class="buy-card">
+      <div class="buy-card reveal">
         <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="20" cy="30" rx="12" ry="4" stroke="#C5961A" stroke-width="2.5"/>
           <ellipse cx="20" cy="26" rx="12" ry="4" stroke="#C5961A" stroke-width="2.5"/>
@@ -1084,8 +1356,7 @@ textarea.form-control {
         <p>Gold eagles, Krugerrands, silver coins, bars</p>
       </div>
 
-      <!-- Diamonds & Gems -->
-      <div class="buy-card">
+      <div class="buy-card reveal">
         <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 6L38 18L24 42L10 18L24 6Z" stroke="#C5961A" stroke-width="2.5" stroke-linejoin="round"/>
           <path d="M10 18H38" stroke="#C5961A" stroke-width="2"/>
@@ -1095,8 +1366,7 @@ textarea.form-control {
         <p>Loose diamonds, diamond rings, estate pieces</p>
       </div>
 
-      <!-- Platinum & Palladium -->
-      <div class="buy-card">
+      <div class="buy-card reveal">
         <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="24" cy="24" r="10" stroke="#C5961A" stroke-width="2.5"/>
           <circle cx="24" cy="24" r="3" fill="#C5961A" opacity="0.4"/>
@@ -1113,8 +1383,7 @@ textarea.form-control {
         <p>Platinum rings, palladium jewelry</p>
       </div>
 
-      <!-- Broken & Unwanted -->
-      <div class="buy-card">
+      <div class="buy-card reveal">
         <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 18C10 18 14 14 18 14" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round"/>
           <path d="M18 14L22 22L16 26L22 34" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1129,40 +1398,78 @@ textarea.form-control {
       </div>
 
     </div>
-    <p class="buy-bottom-text">Not sure if we buy your item? Bring it in — we'll appraise it for free.</p>
+    <p class="buy-bottom-text reveal">Not sure if we buy your item? Bring it in — we'll appraise it for free.</p>
+
+    <!-- Fix 6: CTA after What We Buy -->
+    <div class="section-cta reveal">
+      <p>Have items to sell?</p>
+      <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
+    </div>
   </div>
 </section>
 
 <!-- ===== HOW IT WORKS ===== -->
 <section class="section section--alt" id="how-it-works">
   <div class="container">
-    <h2 class="section-title">How It Works — 3 Simple Steps</h2>
-    <p class="section-subtitle">Selling your valuables shouldn't be complicated. Here's what to expect.</p>
+    <h2 class="section-title reveal">How It Works — 3 Simple Steps</h2>
+    <p class="section-subtitle reveal">Selling your valuables shouldn't be complicated. Here's what to expect.</p>
     <div class="steps-grid">
-      <div class="step">
+      <div class="step reveal">
         <div class="step-number">1</div>
-        <h3>Bring It In</h3>
-        <p>Walk in during business hours or book an appointment. No minimum amount.</p>
+        <h3>Book Your Appointment</h3>
+        <p>Call or fill out our form to schedule your free appraisal. We're available 7 days a week. No minimum amount.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <div class="step-number">2</div>
         <h3>Free Expert Appraisal</h3>
         <p>Our certified team tests and weighs your items right in front of you. Transparent, no obligation.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <div class="step-number">3</div>
         <h3>Get Paid Instantly</h3>
         <p>Accept our offer and leave with cash in hand. Same visit, same day.</p>
       </div>
     </div>
+
+    <!-- Fix 6: CTA after How It Works -->
+    <div class="section-cta reveal">
+      <p>Ready to get started?</p>
+      <a href="#quote-form" class="btn-gold">Book Your Appraisal</a>
+    </div>
   </div>
 </section>
 
-<!-- ===== REVIEWS ===== -->
-<section class="section" id="reviews">
+<!-- ===== WHAT TO BRING ===== -->
+<section class="section" id="what-to-bring">
   <div class="container">
-    <h2 class="section-title">What Our Customers Say</h2>
-    <div class="reviews-header">
+    <h2 class="section-title reveal">What to Bring to Your Appointment</h2>
+    <p class="section-subtitle reveal">A quick checklist so you're ready for a smooth visit.</p>
+    <div class="bring-grid">
+      <div class="bring-item reveal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <p>Your gold, silver, jewelry, or coin items</p>
+      </div>
+      <div class="bring-item reveal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <p>A valid government-issued photo ID</p>
+      </div>
+      <div class="bring-item reveal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <p>Any original receipts or certificates of authenticity (if available)</p>
+      </div>
+      <div class="bring-item reveal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <p>Any competitor offers you'd like us to beat</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS (Fix 2 + Fix 5) ===== -->
+<section class="section section--alt" id="reviews">
+  <div class="container">
+    <h2 class="section-title reveal">What Our Customers Say</h2>
+    <div class="reviews-header reveal">
       <div class="reviews-stars">
         <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
@@ -1174,7 +1481,11 @@ textarea.form-control {
     </div>
     <div class="reviews-grid">
 
-      <div class="review-card">
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
         <div class="review-stars">
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
@@ -1183,10 +1494,17 @@ textarea.form-control {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
         <p class="review-text">"I had the best experience selling my old jewelry. The process was super smooth and I felt really comfortable the whole time. Gadson and Glenn were so honest and gave me a fantastic price for my pieces. Definitely recommend them if you're looking to sell any gold, silver or jewelry."</p>
-        <p class="review-author">Samantha Y.</p>
+        <div class="review-author">
+          <span class="review-author-name">Samantha Y.</span>
+          <span class="review-date">3 weeks ago</span>
+        </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
         <div class="review-stars">
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
@@ -1195,10 +1513,17 @@ textarea.form-control {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
         <p class="review-text">"Wonderful experience! Easy transaction and highest payout for gold in the area. We drove over an hour and it was absolutely worth it. Highly recommend!"</p>
-        <p class="review-author">M Pratt</p>
+        <div class="review-author">
+          <span class="review-author-name">M Pratt</span>
+          <span class="review-date">6 months ago</span>
+        </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
         <div class="review-stars">
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
@@ -1207,10 +1532,17 @@ textarea.form-control {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
         <p class="review-text">"The nicest guys! All testing and calculations are done right in front of you and they help explain each step. Highly recommend!"</p>
-        <p class="review-author">Brandi B.</p>
+        <div class="review-author">
+          <span class="review-author-name">Brandi B.</span>
+          <span class="review-date">6 months ago</span>
+        </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
         <div class="review-stars">
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
@@ -1219,10 +1551,17 @@ textarea.form-control {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
         <p class="review-text">"Excellent place to sell your silver and gold! I've been to all the other places and this place always beats them."</p>
-        <p class="review-author">Mitchell Ray II</p>
+        <div class="review-author">
+          <span class="review-author-name">Mitchell Ray II</span>
+          <span class="review-date">6 months ago</span>
+        </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
         <div class="review-stars">
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
@@ -1231,10 +1570,17 @@ textarea.form-control {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
         <p class="review-text">"Great experience and great owner! He was very knowledgeable and gave me a great price. I'll be going back again with more."</p>
-        <p class="review-author">Katie H.</p>
+        <div class="review-author">
+          <span class="review-author-name">Katie H.</span>
+          <span class="review-date">1 month ago</span>
+        </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
         <div class="review-stars">
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
@@ -1243,12 +1589,21 @@ textarea.form-control {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
         <p class="review-text">"Went other places didn't come close to what they offered. Thank you guys!"</p>
-        <p class="review-author">WILLIAM S.</p>
+        <div class="review-author">
+          <span class="review-author-name">WILLIAM S.</span>
+          <span class="review-date">2 weeks ago</span>
+        </div>
       </div>
 
     </div>
-    <div class="reviews-link">
-      <a href="#">Read all 84 reviews on Google &rarr;</a>
+    <div class="reviews-link reveal">
+      <a href="https://www.google.com/maps/place/Georgia+Gold+%26+Silver+Buyers/@30.8967673,-83.3243801,17z/data=!3m1!4b1!4m6!3m5!1s0x88ee67f7cc33c6d3:0x4939bd0c4c7f6e62!8m2!3d30.8967673!4d-83.3218052!16s%2Fg%2F11v3q7md2v" target="_blank" rel="noopener noreferrer">Read all 84 reviews on Google &rarr;</a>
+    </div>
+
+    <!-- Fix 6: CTA after Reviews -->
+    <div class="section-cta reveal">
+      <p>Join 84+ satisfied customers</p>
+      <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
     </div>
   </div>
 </section>
@@ -1256,11 +1611,11 @@ textarea.form-control {
 <!-- ===== WHY CHOOSE US ===== -->
 <section class="section section--dark" id="why-us">
   <div class="container">
-    <h2 class="section-title">Why Choose Georgia Gold Buyers</h2>
-    <p class="section-subtitle">There are plenty of places to sell gold. Here's why thousands of customers choose us.</p>
+    <h2 class="section-title reveal">Why Choose Georgia Gold Buyers</h2>
+    <p class="section-subtitle reveal">There are plenty of places to sell gold. Here's why thousands of customers choose us.</p>
     <div class="pillars-grid">
 
-      <div class="pillar">
+      <div class="pillar reveal">
         <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 4L28 16H40L30 24L34 36L24 28L14 36L18 24L8 16H20L24 4Z" stroke="#C5961A" stroke-width="2.5" stroke-linejoin="round"/>
           <path d="M24 12L26 18H32L27 22L29 28L24 24L19 28L21 22L16 18H22L24 12Z" fill="#C5961A" opacity="0.3"/>
@@ -1269,7 +1624,7 @@ textarea.form-control {
         <p>We consistently beat competitor offers. Bring any quote and we'll try to match or beat it.</p>
       </div>
 
-      <div class="pillar">
+      <div class="pillar reveal">
         <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M24 4V44" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round"/>
           <path d="M12 16L24 4L36 16" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1280,7 +1635,7 @@ textarea.form-control {
         <p>All testing done in front of you. We explain every step so you understand exactly how we value your items.</p>
       </div>
 
-      <div class="pillar">
+      <div class="pillar reveal">
         <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8 24C8 24 14 12 24 12C34 12 40 24 40 24C40 24 34 36 24 36C14 36 8 24 8 24Z" stroke="#C5961A" stroke-width="2.5" stroke-linejoin="round"/>
           <circle cx="24" cy="24" r="6" stroke="#C5961A" stroke-width="2.5"/>
@@ -1292,7 +1647,7 @@ textarea.form-control {
         <p>Get your free appraisal with zero obligation. No pushy sales tactics. Take your time.</p>
       </div>
 
-      <div class="pillar">
+      <div class="pillar reveal">
         <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="16" cy="16" r="5" stroke="#C5961A" stroke-width="2.5"/>
           <circle cx="32" cy="16" r="5" stroke="#C5961A" stroke-width="2.5"/>
@@ -1306,109 +1661,146 @@ textarea.form-control {
       </div>
 
     </div>
-  </div>
-</section>
 
-<!-- ===== LEAD CAPTURE FORM ===== -->
-<section class="form-section" id="quote-form">
-  <div class="container">
-    <div class="form-wrapper">
-      <h2 class="section-title">Get Your Free Quote</h2>
-      <p class="section-subtitle">Fill out the form below and a specialist will contact you within minutes.</p>
-      <form action="#" method="POST" id="lead-form" novalidate>
-        <div class="form-group">
-          <label for="full-name">Full Name</label>
-          <input type="text" id="full-name" name="full_name" class="form-control" placeholder="Your full name" required autocomplete="name">
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" class="form-control" placeholder="(555) 123-4567" required autocomplete="tel">
-        </div>
-        <div class="form-group">
-          <label for="email">Email <span class="optional">(optional)</span></label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="you@email.com" autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label for="item-type">What are you looking to sell?</label>
-          <select id="item-type" name="item_type" class="form-control" required>
-            <option value="" disabled selected>Select an option</option>
-            <option value="Gold Jewelry">Gold Jewelry</option>
-            <option value="Silver Items">Silver Items</option>
-            <option value="Coins & Bullion">Coins &amp; Bullion</option>
-            <option value="Diamonds & Gems">Diamonds &amp; Gems</option>
-            <option value="Platinum/Palladium">Platinum / Palladium</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Preferred Location</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="location" value="McDonough, GA" required>
-              McDonough, GA
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="location" value="Valdosta, GA">
-              Valdosta, GA
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="details">Additional Details <span class="optional">(optional)</span></label>
-          <textarea id="details" name="details" class="form-control" placeholder="Describe what you'd like to sell, quantity, condition, etc."></textarea>
-        </div>
-        <button type="submit" class="btn-submit">Get My Free Quote</button>
-      </form>
-      <p class="form-security">&#128274; Your information is secure and will never be shared.</p>
+    <!-- Fix 6: CTA after Why Choose Us -->
+    <div class="section-cta reveal">
+      <p>See for yourself</p>
+      <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
     </div>
   </div>
 </section>
 
-<!-- ===== LOCATIONS ===== -->
-<section class="section section--alt" id="locations">
+<!-- ===== LEAD CAPTURE FORM (Fix 8) ===== -->
+<section class="form-section" id="quote-form">
   <div class="container">
-    <h2 class="section-title">Our Locations</h2>
-    <p class="section-subtitle">Two convenient locations to serve you across Georgia.</p>
-    <div class="locations-grid">
+    <div class="form-layout">
 
-      <div class="location-card">
-        <h3>McDonough Location</h3>
-        <div class="location-detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <a href="https://www.google.com/maps/search/?api=1&query=120+S+Point+Blvd+McDonough+GA+30253" target="_blank" rel="noopener noreferrer">120 S Point Blvd, McDonough, GA 30253</a>
+      <!-- Fix 8: Social proof testimonial near form -->
+      <div class="form-testimonial reveal">
+        <blockquote>"Wonderful experience! Easy transaction and highest payout for gold in the area. We drove over an hour and it was absolutely worth it."</blockquote>
+        <cite>— M Pratt ★★★★★</cite>
+        <div class="review-badge">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          5.0 · 84+ Google Reviews
         </div>
-        <div class="location-detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          <a href="tel:+16789199265">(678) 919-9265</a>
-        </div>
-        <div class="location-detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>By Appointment — Mon–Sun</span>
-        </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=120+S+Point+Blvd+McDonough+GA+30253" target="_blank" rel="noopener noreferrer" class="btn-directions">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          Get Directions
-        </a>
       </div>
 
-      <div class="location-card">
-        <h3>Valdosta Location</h3>
-        <div class="location-detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <a href="https://www.google.com/maps/search/?api=1&query=3996+N+Valdosta+Rd+Valdosta+GA+31602" target="_blank" rel="noopener noreferrer">3996 N Valdosta Rd, Valdosta, GA 31602</a>
+      <div class="form-wrapper">
+        <h2 class="section-title reveal">Get Your Free Quote</h2>
+        <p class="section-subtitle reveal">Fill out the form below and a specialist will contact you within minutes.</p>
+        <form action="#" method="POST" id="lead-form" novalidate>
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full_name" class="form-control" placeholder="Your full name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="(555) 123-4567" required autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="optional">(optional)</span></label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="item-type">What would you like to sell?</label>
+            <select id="item-type" name="item_type" class="form-control" required>
+              <option value="" disabled selected>What would you like to sell?</option>
+              <option value="Gold Jewelry">Gold Jewelry</option>
+              <option value="Silver Items">Silver Items</option>
+              <option value="Coins & Bullion">Coins &amp; Bullion</option>
+              <option value="Diamonds & Gems">Diamonds &amp; Gems</option>
+              <option value="Platinum/Palladium">Platinum / Palladium</option>
+              <option value="Multiple Items">Multiple Items</option>
+              <option value="Other">Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Location</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="location" value="McDonough, GA" required>
+                McDonough, GA
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="location" value="Valdosta, GA">
+                Valdosta, GA
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="details">Additional Details <span class="optional">(optional)</span></label>
+            <textarea id="details" name="details" class="form-control" placeholder="Describe what you'd like to sell, quantity, condition, etc."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Get My Free Quote</button>
+        </form>
+        <p class="form-security">&#128274; Your information is secure and will never be shared.</p>
+        <!-- Fix 8: Badge near submit -->
+        <div class="form-review-badge">
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          5.0 ★ · 84+ Google Reviews
         </div>
-        <div class="location-detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          <a href="tel:+12293750015">(229) 375-0015</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATIONS (Fix 3 + Fix 11) ===== -->
+<section class="section section--alt" id="locations">
+  <div class="container">
+    <h2 class="section-title reveal">Our Locations</h2>
+    <p class="section-subtitle reveal">Two convenient locations to serve you across Georgia.</p>
+    <div class="locations-grid">
+
+      <div class="location-card reveal">
+        <div class="location-card-body">
+          <h3>McDonough Location</h3>
+          <div class="location-detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432,16z/data=!3m1!4b1!4m6!3m5!1s0x88f45941acca0667:0xb450892beb15f6c8!8m2!3d33.423772!4d-84.1883683!16s%2Fg%2F11wwbv8cvh" target="_blank" rel="noopener noreferrer">120 S Point Blvd, McDonough, GA 30253</a>
+          </div>
+          <div class="location-detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+16789199265">(678) 919-9265</a>
+          </div>
+          <p class="location-schedule-note">Call to Schedule</p>
+          <div class="location-detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Open by Appointment · 7 Days a Week</span>
+          </div>
+          <a href="https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432,16z/data=!3m1!4b1!4m6!3m5!1s0x88f45941acca0667:0xb450892beb15f6c8!8m2!3d33.423772!4d-84.1883683!16s%2Fg%2F11wwbv8cvh" target="_blank" rel="noopener noreferrer" class="btn-directions">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Get Directions
+          </a>
         </div>
-        <div class="location-detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>By Appointment — Mon–Sun</span>
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d-84.1883683!3d33.423772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f45941acca0667%3A0xb450892beb15f6c8!2sGeorgia%20Gold%20Buyers!5e0!3m2!1sen!2sus!4v1" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Georgia Gold Buyers McDonough location map"></iframe>
         </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=3996+N+Valdosta+Rd+Valdosta+GA+31602" target="_blank" rel="noopener noreferrer" class="btn-directions">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          Get Directions
-        </a>
+      </div>
+
+      <div class="location-card reveal">
+        <div class="location-card-body">
+          <h3>Valdosta Location</h3>
+          <div class="location-detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="https://www.google.com/maps/place/Georgia+Gold+%26+Silver+Buyers/@30.8967673,-83.3243801,17z/data=!3m1!4b1!4m6!3m5!1s0x88ee67f7cc33c6d3:0x4939bd0c4c7f6e62!8m2!3d30.8967673!4d-83.3218052!16s%2Fg%2F11v3q7md2v" target="_blank" rel="noopener noreferrer">3996 N Valdosta Rd, Valdosta, GA 31602</a>
+          </div>
+          <div class="location-detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+12293750015">(229) 375-0015</a>
+          </div>
+          <p class="location-schedule-note">Call to Schedule</p>
+          <div class="location-detail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Open by Appointment · 7 Days a Week</span>
+          </div>
+          <a href="https://www.google.com/maps/place/Georgia+Gold+%26+Silver+Buyers/@30.8967673,-83.3243801,17z/data=!3m1!4b1!4m6!3m5!1s0x88ee67f7cc33c6d3:0x4939bd0c4c7f6e62!8m2!3d30.8967673!4d-83.3218052!16s%2Fg%2F11v3q7md2v" target="_blank" rel="noopener noreferrer" class="btn-directions">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Get Directions
+          </a>
+        </div>
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d-83.3218052!3d30.8967673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88ee67f7cc33c6d3%3A0x4939bd0c4c7f6e62!2sGeorgia%20Gold%20%26%20Silver%20Buyers!5e0!3m2!1sen!2sus!4v1" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Georgia Gold Buyers Valdosta location map"></iframe>
+        </div>
       </div>
 
     </div>
@@ -1418,11 +1810,11 @@ textarea.form-control {
 <!-- ===== FAQ ===== -->
 <section class="section" id="faq">
   <div class="container">
-    <h2 class="section-title">Frequently Asked Questions</h2>
-    <p class="section-subtitle">Everything you need to know before selling your gold, silver, or jewelry.</p>
+    <h2 class="section-title reveal">Frequently Asked Questions</h2>
+    <p class="section-subtitle reveal">Everything you need to know before selling your gold, silver, or jewelry.</p>
     <div class="faq-list">
 
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-question" aria-expanded="false">
           How do you determine the value of my gold?
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1432,7 +1824,7 @@ textarea.form-control {
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-question" aria-expanded="false">
           What forms of payment do you offer?
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1442,17 +1834,17 @@ textarea.form-control {
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-question" aria-expanded="false">
           Do I need an appointment?
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">We accept both walk-ins and appointments. If you want to guarantee no wait time, we recommend calling ahead to schedule. But you're always welcome to stop by during business hours.</div>
+          <div class="faq-answer-inner">Yes, we operate by appointment to ensure you get our full attention. We're available 7 days a week — just call ahead or fill out our online form to schedule a time that works for you.</div>
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-question" aria-expanded="false">
           What if I don't know what karat my gold is?
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1462,7 +1854,7 @@ textarea.form-control {
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-question" aria-expanded="false">
           Is there a minimum amount you'll buy?
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1472,7 +1864,7 @@ textarea.form-control {
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-question" aria-expanded="false">
           How do your prices compare to pawn shops?
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1482,6 +1874,12 @@ textarea.form-control {
         </div>
       </div>
 
+    </div>
+
+    <!-- Fix 6: CTA after FAQ -->
+    <div class="section-cta reveal" style="padding-top: 48px;">
+      <p>Still have questions? Call us at <a href="tel:+16789199265" style="color: var(--gold-dark); font-weight: 600;">(678) 919-9265</a> or</p>
+      <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
     </div>
   </div>
 </section>
@@ -1514,30 +1912,33 @@ textarea.form-control {
       <div class="footer-contact">
         <h4>Contact Us</h4>
         <p><strong>McDonough</strong><br>
-        <a href="https://www.google.com/maps/search/?api=1&query=120+S+Point+Blvd+McDonough+GA+30253" target="_blank" rel="noopener noreferrer">120 S Point Blvd, McDonough, GA 30253</a><br>
+        <a href="https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432,16z" target="_blank" rel="noopener noreferrer">120 S Point Blvd, McDonough, GA 30253</a><br>
         <a href="tel:+16789199265">(678) 919-9265</a></p>
         <p><strong>Valdosta</strong><br>
-        <a href="https://www.google.com/maps/search/?api=1&query=3996+N+Valdosta+Rd+Valdosta+GA+31602" target="_blank" rel="noopener noreferrer">3996 N Valdosta Rd, Valdosta, GA 31602</a><br>
+        <a href="https://www.google.com/maps/place/Georgia+Gold+%26+Silver+Buyers/@30.8967673,-83.3243801,17z" target="_blank" rel="noopener noreferrer">3996 N Valdosta Rd, Valdosta, GA 31602</a><br>
         <a href="tel:+12293750015">(229) 375-0015</a></p>
       </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 Georgia Gold Buyers. All rights reserved.</span>
+    </div>
+    <!-- Fix 12: Subtle Perplexity attribution -->
+    <div class="footer-attribution">
       <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
     </div>
   </div>
 </footer>
 
-<!-- ===== MOBILE BOTTOM BAR ===== -->
+<!-- ===== MOBILE BOTTOM BAR (Fix 7) ===== -->
 <div class="mobile-bar" id="mobile-bar">
   <div class="mobile-bar-inner">
     <a href="tel:+16789199265" class="bar-call">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       Call Now
     </a>
-    <a href="https://www.google.com/maps/search/?api=1&query=120+S+Point+Blvd+McDonough+GA+30253" target="_blank" rel="noopener noreferrer" class="bar-directions">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-      Get Directions
+    <a href="#quote-form" class="bar-quote">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Get Free Quote
     </a>
   </div>
 </div>
@@ -1651,6 +2052,22 @@ phoneInput.addEventListener('input', function() {
     this.value = '(' + val;
   }
 });
+
+// Scroll reveal animation (CSS-driven with IntersectionObserver)
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
 </script>
 
 </body>
