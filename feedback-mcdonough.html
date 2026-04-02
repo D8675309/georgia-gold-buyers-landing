@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<!-- Connect to GHL webhook: replace action="#" with your GoHighLevel form webhook URL -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Your Feedback | Georgia Gold Buyers — McDonough</title>
+<meta name="description" content="Share your feedback with Georgia Gold Buyers McDonough. Your concerns go directly to our management team.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2L28 12L16 30L4 12Z' fill='%23C5961A'/></svg>" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C5961A;
+    --gold-hover: #b3870f;
+    --dark: #1a1a1a;
+    --bg: #fafaf7;
+    --text: #2a2a2a;
+    --muted: #8a8a8a;
+    --border: #e0ddd6;
+    --input-bg: #fff;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .logo svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  .heading {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .subtext {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Form */
+  .feedback-form {
+    text-align: left;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .form-group label .optional {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .form-group label .helper {
+    display: block;
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: var(--input-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(197, 150, 26, 0.12);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #bbb;
+  }
+
+  .form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 28px;
+    background: var(--gold);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover {
+    background: var(--gold-hover);
+    transform: translateY(-1px);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Thank you state */
+  .thank-you {
+    display: none;
+    animation: fadeIn 0.4s ease;
+    padding: 20px 0;
+  }
+
+  .thank-you.visible {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .thank-you-icon {
+    width: 64px;
+    height: 64px;
+    background: #e8f5e9;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .thank-you-icon svg {
+    width: 32px;
+    height: 32px;
+    color: #4CAF50;
+  }
+
+  .thank-you h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  .thank-you p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .thank-you .signature {
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* Footer */
+  .page-footer {
+    margin-top: 40px;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .page-footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .page-footer a:hover {
+    color: var(--gold);
+  }
+
+  .page-footer .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--gold);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* Form section wrapper */
+  .form-section {
+    transition: opacity 0.3s ease;
+  }
+
+  .form-section.hidden {
+    display: none;
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    body {
+      padding: 32px 16px;
+    }
+
+    .heading {
+      font-size: 20px;
+    }
+
+    .subtext {
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+
+    .logo svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .brand-name {
+      font-size: 19px;
+      margin-bottom: 24px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      font-size: 16px; /* Prevent iOS zoom */
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Logo -->
+  <div class="logo">
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M14 2L7 10H21L14 2Z" fill="#C5961A"/>
+      <path d="M14 26L3 10H25L14 26Z" fill="#C5961A" opacity="0.7"/>
+      <path d="M14 2L7 10L14 26L21 10L14 2Z" fill="#C5961A" opacity="0.9"/>
+    </svg>
+  </div>
+  <div class="brand-name">Georgia Gold Buyers</div>
+
+  <!-- Form Section -->
+  <div class="form-section" id="formSection">
+    <h1 class="heading">We're sorry your experience wasn't perfect.</h1>
+    <p class="subtext">Your feedback goes directly to our management team — not to a public review. We take every concern seriously and will personally follow up with you.</p>
+
+    <!-- Connect to GHL webhook: replace action="#" with your GoHighLevel form webhook URL -->
+    <form class="feedback-form" id="feedbackForm" action="#" method="POST">
+      <input type="hidden" name="location" value="McDonough">
+
+      <div class="form-group">
+        <label for="name">Your Name <span class="optional">(optional)</span></label>
+        <input type="text" id="name" name="name" placeholder="First and last name" autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">
+          Phone Number
+          <span class="helper">So we can follow up with you</span>
+        </label>
+        <input type="tel" id="phone" name="phone" placeholder="(___) ___-____" autocomplete="tel" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email <span class="optional">(optional)</span></label>
+        <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="feedback">What happened?</label>
+        <textarea id="feedback" name="feedback" placeholder="Please tell us about your experience and how we can make it right..." required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Submit Feedback</button>
+    </form>
+  </div>
+
+  <!-- Thank You State -->
+  <div class="thank-you" id="thankYou">
+    <div class="thank-you-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h2>Thank you for sharing your feedback.</h2>
+    <p>Our team has been notified and someone will reach out to you within 24 hours.</p>
+    <p>We appreciate you giving us the chance to make this right.</p>
+    <p class="signature">— The Georgia Gold Buyers Team</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    Need immediate help? Call us: <a href="tel:+16789199265">(678) 919-9265</a>
+    <br>
+    <a href="index.html" class="back-link">← Return to Georgia Gold Buyers</a>
+  </div>
+</div>
+
+<script>
+  var form = document.getElementById('feedbackForm');
+  var submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Collect form data
+    var formData = new FormData(form);
+    var data = {};
+    formData.forEach(function(value, key) {
+      data[key] = value;
+    });
+
+    // Log to console for testing
+    console.log('Feedback submitted:', data);
+    console.log('Location: McDonough');
+    console.log('Timestamp:', new Date().toISOString());
+
+    // Disable button
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    // Simulate submission delay, then show thank you
+    setTimeout(function() {
+      document.getElementById('formSection').classList.add('hidden');
+      document.getElementById('thankYou').classList.add('visible');
+    }, 600);
+
+    /* 
+     * TO CONNECT TO GOHIGHLEVEL:
+     * Replace the setTimeout above with a fetch() call to your GHL webhook URL:
+     *
+     * fetch('YOUR_GHL_WEBHOOK_URL', {
+     *   method: 'POST',
+     *   headers: { 'Content-Type': 'application/json' },
+     *   body: JSON.stringify(data)
+     * }).then(function() {
+     *   document.getElementById('formSection').classList.add('hidden');
+     *   document.getElementById('thankYou').classList.add('visible');
+     * }).catch(function() {
+     *   alert('Something went wrong. Please call us at (678) 919-9265.');
+     *   submitBtn.disabled = false;
+     *   submitBtn.textContent = 'Submit Feedback';
+     * });
+     */
+  });
+
+  // Phone number formatting
+  var phoneInput = document.getElementById('phone');
+  phoneInput.addEventListener('input', function(e) {
+    var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+    var formatted = '';
+    if (x.length > 0) formatted = '(' + x.substring(0, 3);
+    if (x.length >= 3) formatted += ') ' + x.substring(3, 6);
+    if (x.length >= 6) formatted += '-' + x.substring(6, 10);
+    e.target.value = formatted;
+  });
+</script>
+
+</body>
+</html>

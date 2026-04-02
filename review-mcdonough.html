@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate Your Experience | Georgia Gold Buyers — McDonough</title>
+<meta name="description" content="Tell us about your experience at Georgia Gold Buyers in McDonough, GA.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2L28 12L16 30L4 12Z' fill='%23C5961A'/></svg>" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C5961A;
+    --dark: #1a1a1a;
+    --bg: #fafaf7;
+    --text: #2a2a2a;
+    --muted: #8a8a8a;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .logo svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  .heading {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .subtext {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .prompt {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 24px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Emoji Grid */
+  .emoji-grid {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .emoji-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .emoji-item:hover {
+    transform: scale(1.15);
+  }
+
+  .emoji-item:hover .emoji-circle {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .emoji-item:active {
+    transform: scale(0.95);
+  }
+
+  .emoji-circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .emoji-circle svg {
+    width: 72px;
+    height: 72px;
+  }
+
+  .emoji-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .emoji-item:hover .emoji-label {
+    color: var(--text);
+  }
+
+  /* Pulse animation */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .emoji-item.clicked {
+    animation: pulse 0.3s ease;
+    pointer-events: none;
+  }
+
+  /* Thank you state */
+  .thank-you {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .thank-you.visible {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .thank-you-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .thank-you h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  .thank-you p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .thank-you .google-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .thank-you .google-btn:hover {
+    background: #b3870f;
+    transform: translateY(-1px);
+  }
+
+  /* Rating section */
+  .rating-section {
+    transition: opacity 0.3s ease;
+  }
+
+  .rating-section.hidden {
+    display: none;
+  }
+
+  /* Footer */
+  .page-footer {
+    margin-top: 48px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .page-footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .page-footer a:hover {
+    color: var(--gold);
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    body {
+      padding: 32px 16px;
+    }
+
+    .heading {
+      font-size: 20px;
+    }
+
+    .subtext {
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    .emoji-grid {
+      gap: 10px;
+    }
+
+    .emoji-circle {
+      width: 56px;
+      height: 56px;
+    }
+
+    .emoji-circle svg {
+      width: 56px;
+      height: 56px;
+    }
+
+    .emoji-label {
+      font-size: 11px;
+    }
+
+    .logo svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .brand-name {
+      font-size: 19px;
+      margin-bottom: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Logo -->
+  <div class="logo">
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M14 2L7 10H21L14 2Z" fill="#C5961A"/>
+      <path d="M14 26L3 10H25L14 26Z" fill="#C5961A" opacity="0.7"/>
+      <path d="M14 2L7 10L14 26L21 10L14 2Z" fill="#C5961A" opacity="0.9"/>
+    </svg>
+  </div>
+  <div class="brand-name">Georgia Gold Buyers</div>
+
+  <!-- Rating Section -->
+  <div class="rating-section" id="ratingSection">
+    <h1 class="heading">Thank you for visiting our McDonough location!</h1>
+    <p class="subtext">We'd love to hear about your experience. Your feedback helps us serve you better.</p>
+    <p class="prompt">Please rate your experience:</p>
+
+    <div class="emoji-grid">
+      <!-- Excellent -->
+      <div class="emoji-item" data-rating="excellent" onclick="handleRating('excellent', this)" role="button" tabindex="0" aria-label="Excellent">
+        <div class="emoji-circle">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="36" fill="#4CAF50"/>
+            <circle cx="25" cy="29" r="4" fill="#fff"/>
+            <circle cx="47" cy="29" r="4" fill="#fff"/>
+            <path d="M22 42 C22 42, 29 52, 36 52 C43 52, 50 42, 50 42" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M26 42 C26 42, 31 48, 36 48 C41 48, 46 42, 46 42" fill="#fff" opacity="0.6"/>
+          </svg>
+        </div>
+        <span class="emoji-label">Excellent</span>
+      </div>
+
+      <!-- Happy -->
+      <div class="emoji-item" data-rating="happy" onclick="handleRating('happy', this)" role="button" tabindex="0" aria-label="Happy">
+        <div class="emoji-circle">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="36" fill="#8BC34A"/>
+            <circle cx="25" cy="30" r="3.5" fill="#fff"/>
+            <circle cx="47" cy="30" r="3.5" fill="#fff"/>
+            <path d="M24 43 C24 43, 30 49, 36 49 C42 49, 48 43, 48 43" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <span class="emoji-label">Happy</span>
+      </div>
+
+      <!-- Average -->
+      <div class="emoji-item" data-rating="average" onclick="handleRating('average', this)" role="button" tabindex="0" aria-label="Average">
+        <div class="emoji-circle">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="36" fill="#FFC107"/>
+            <circle cx="25" cy="30" r="3.5" fill="#fff"/>
+            <circle cx="47" cy="30" r="3.5" fill="#fff"/>
+            <line x1="24" y1="45" x2="48" y2="45" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="emoji-label">Average</span>
+      </div>
+
+      <!-- Fair -->
+      <div class="emoji-item" data-rating="fair" onclick="handleRating('fair', this)" role="button" tabindex="0" aria-label="Fair">
+        <div class="emoji-circle">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="36" fill="#FF9800"/>
+            <circle cx="25" cy="30" r="3.5" fill="#fff"/>
+            <circle cx="47" cy="30" r="3.5" fill="#fff"/>
+            <path d="M24 47 C24 47, 30 43, 36 43 C42 43, 48 47, 48 47" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <line x1="20" y1="24" x2="28" y2="26" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="52" y1="24" x2="44" y2="26" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="emoji-label">Fair</span>
+      </div>
+
+      <!-- Poor -->
+      <div class="emoji-item" data-rating="poor" onclick="handleRating('poor', this)" role="button" tabindex="0" aria-label="Poor">
+        <div class="emoji-circle">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="36" cy="36" r="36" fill="#F44336"/>
+            <circle cx="25" cy="30" r="3.5" fill="#fff"/>
+            <circle cx="47" cy="30" r="3.5" fill="#fff"/>
+            <path d="M24 49 C24 49, 30 42, 36 42 C42 42, 48 49, 48 49" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <line x1="19" y1="22" x2="30" y2="26" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="53" y1="22" x2="42" y2="26" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="emoji-label">Poor</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thank You State -->
+  <div class="thank-you" id="thankYou">
+    <div class="thank-you-icon">🎉</div>
+    <h2>Thank you for your feedback!</h2>
+    <p>A new tab has opened where you can leave us a Google review.</p>
+    <p>Your support means the world to our family business.</p>
+    <a href="https://search.google.com/local/writereview?placeid=ChIJZwbKrEFZ9IgRyPYV6yuJULQ" target="_blank" rel="noopener" class="google-btn">Leave Google Review →</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    McDonough Location · <a href="tel:+16789199265">(678) 919-9265</a>
+  </div>
+</div>
+
+<script>
+  const GOOGLE_REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJZwbKrEFZ9IgRyPYV6yuJULQ';
+  const FEEDBACK_URL = 'feedback-mcdonough.html';
+
+  function handleRating(rating, element) {
+    element.classList.add('clicked');
+
+    if (rating === 'excellent' || rating === 'happy') {
+      // Open Google review in new tab
+      window.open(GOOGLE_REVIEW_URL, '_blank');
+
+      // Show thank you state
+      setTimeout(function() {
+        document.getElementById('ratingSection').classList.add('hidden');
+        var thankYou = document.getElementById('thankYou');
+        thankYou.classList.add('visible');
+      }, 300);
+    } else {
+      // Redirect to private feedback form
+      setTimeout(function() {
+        window.location.href = FEEDBACK_URL;
+      }, 300);
+    }
+  }
+
+  // Keyboard accessibility
+  document.querySelectorAll('.emoji-item').forEach(function(item) {
+    item.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
