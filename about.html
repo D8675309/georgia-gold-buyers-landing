@@ -917,6 +917,57 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   .page-hero .btn-gold { width: 100%; }
 }
 
+
+/* ===== LOCATIONS DROPDOWN ===== */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-dropdown > a::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  margin-top: 1px;
+}
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  min-width: 140px;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu {
+  display: block;
+}
+.nav-dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7) !important;
+  white-space: nowrap;
+}
+.nav-dropdown-menu a:hover {
+  color: var(--gold) !important;
+  background: rgba(255,255,255,0.05);
+}
+
 </style>
 </head>
 <body>
@@ -954,9 +1005,13 @@ textarea.form-control { resize: vertical; min-height: 100px; }
       <span class="header-nav-sep">|</span>
       <a href="about.html" class="active">About</a>
       <span class="header-nav-sep">|</span>
-      <a href="mcdonough.html">McDonough</a>
-      <span class="header-nav-sep">|</span>
-      <a href="valdosta.html">Valdosta</a>
+      <span class="nav-dropdown">
+        <a href="#">Locations</a>
+        <div class="nav-dropdown-menu">
+          <a href="mcdonough.html">McDonough, GA</a>
+          <a href="valdosta.html">Valdosta, GA</a>
+        </div>
+      </span>
       <span class="header-nav-sep">|</span>
       <a href="#quote-form">Get a Quote</a>
     </div>
@@ -1256,11 +1311,11 @@ textarea.form-control { resize: vertical; min-height: 100px; }
       </div>
       <div>
         <h4>Quick Links</h4>
-        <ul class="footer-links">
+                <ul class="footer-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About Us</a></li>
           <li><a href="estate-sales.html">Estate Sales</a></li>
+          <li><a href="about.html">About Us</a></li>
           <li><a href="mcdonough.html">McDonough</a></li>
           <li><a href="valdosta.html">Valdosta</a></li>
           <li><a href="#quote-form">Get a Quote</a></li>
