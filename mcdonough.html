@@ -1351,6 +1351,121 @@ textarea.form-control {
   .call-modal-option { flex-direction: column; align-items: flex-start; gap: 8px; }
   .call-modal-phone { align-self: flex-end; }
 }
+
+/* ===== ENHANCED SERVICE CARDS ===== */
+.buy-card-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.buy-card-items {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+}
+.buy-card-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-dark);
+  transition: color 0.2s;
+  display: inline-block;
+}
+.buy-card-link:hover { color: var(--gold); }
+
+/* ===== MEET OUR TEAM ===== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.team-card {
+  text-align: center;
+}
+.team-photo-wrap {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--gold);
+  box-shadow: 0 4px 16px rgba(197, 150, 26, 0.12);
+}
+.team-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.team-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.team-title {
+  font-size: 14px;
+  color: var(--gold-dark);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.team-bio {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ===== FOOTER SOCIAL LINKS ===== */
+.footer-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+.footer-social a {
+  color: rgba(255,255,255,0.5);
+  transition: color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-social a:hover {
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+.footer-social svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ===== RESPONSIVE: TEAM + SERVICES ENHANCEMENTS ===== */
+@media (max-width: 1024px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+}
+
+@media (max-width: 768px) {
+  .team-grid { grid-template-columns: 1fr; gap: 28px; }
+  .team-photo-wrap {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 14px;
+  }
+  .team-name { font-size: 16px; }
+  .team-title { font-size: 13px; }
+  .team-bio { font-size: 13px; }
+  .buy-card-desc { font-size: 13px; }
+  .buy-card-items { font-size: 11px; }
+  .buy-card-link { font-size: 12px; }
+}
+
+@media (max-width: 480px) {
+  .buy-card-desc { font-size: 12px; margin-bottom: 6px; }
+  .buy-card-items { font-size: 10px; margin-bottom: 8px; }
+  .buy-card-link { font-size: 11px; }
+}
+
 </style>
 
 <!-- JSON-LD Structured Data -->
@@ -1519,11 +1634,11 @@ textarea.form-control {
   </div>
 </section>
 
-<!-- ===== WHAT WE BUY ===== -->
+<!-- ===== OUR SERVICES ===== -->
 <section class="section section--alt" id="what-we-buy">
   <div class="container">
-    <h2 class="section-title reveal">What We Buy</h2>
-    <p class="section-subtitle reveal">We buy a wide range of precious metals, jewelry, and collectibles. If it has value, we want to see it.</p>
+    <h2 class="section-title reveal">Our Services</h2>
+    <p class="section-subtitle reveal">We buy a wide range of precious metals, luxury items, and designer goods. If it has value, we want to see it.</p>
     <div class="buy-grid">
 
       <div class="buy-card reveal">
@@ -1533,8 +1648,10 @@ textarea.form-control {
           <path d="M24 10V6M24 42v-4" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
           <circle cx="24" cy="20" r="3" fill="#C5961A" opacity="0.3"/>
         </svg>
-        <h3>Gold Jewelry</h3>
-        <p>Rings, necklaces, bracelets, watches, pendants</p>
+        <h3>Cash for Gold</h3>
+        <p class="buy-card-desc">Sell gold jewelry, coins, bullion, and scrap gold for instant cash. We buy everything from 10K to 24K &mdash; even broken or tangled pieces.</p>
+        <p class="buy-card-items">Rings &middot; Chains &middot; Bracelets &middot; Coins &middot; Bullion &middot; Dental Gold</p>
+        <a href="#quote-form" class="buy-card-link">Learn More &rarr;</a>
       </div>
 
       <div class="buy-card reveal">
@@ -1546,33 +1663,10 @@ textarea.form-control {
           <line x1="30" y1="18" x2="38" y2="18" stroke="#C5961A" stroke-width="1.5"/>
           <line x1="30" y1="23" x2="38" y2="23" stroke="#C5961A" stroke-width="1.5"/>
         </svg>
-        <h3>Silver Items</h3>
-        <p>Sterling silver, flatware, coins, tea sets</p>
-      </div>
-
-      <div class="buy-card reveal">
-        <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="20" cy="30" rx="12" ry="4" stroke="#C5961A" stroke-width="2.5"/>
-          <ellipse cx="20" cy="26" rx="12" ry="4" stroke="#C5961A" stroke-width="2.5"/>
-          <path d="M8 26v4" stroke="#C5961A" stroke-width="2.5"/>
-          <path d="M32 26v4" stroke="#C5961A" stroke-width="2.5"/>
-          <ellipse cx="28" cy="20" rx="12" ry="4" stroke="#C5961A" stroke-width="2.5"/>
-          <ellipse cx="28" cy="16" rx="12" ry="4" stroke="#C5961A" stroke-width="2.5"/>
-          <path d="M16 16v4" stroke="#C5961A" stroke-width="2.5"/>
-          <path d="M40 16v4" stroke="#C5961A" stroke-width="2.5"/>
-        </svg>
-        <h3>Coins &amp; Bullion</h3>
-        <p>Gold eagles, Krugerrands, silver coins, bars</p>
-      </div>
-
-      <div class="buy-card reveal">
-        <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 6L38 18L24 42L10 18L24 6Z" stroke="#C5961A" stroke-width="2.5" stroke-linejoin="round"/>
-          <path d="M10 18H38" stroke="#C5961A" stroke-width="2"/>
-          <path d="M17 6L14 18L24 42L34 18L31 6" stroke="#C5961A" stroke-width="2" stroke-linejoin="round"/>
-        </svg>
-        <h3>Diamonds &amp; Gems</h3>
-        <p>Loose diamonds, diamond rings, estate pieces</p>
+        <h3>Cash for Silver</h3>
+        <p class="buy-card-desc">Turn your sterling silver into cash. We buy silver jewelry, flatware, tea sets, coins, and bullion at competitive market rates.</p>
+        <p class="buy-card-items">Sterling Silver &middot; Flatware &middot; Coins &middot; Bullion &middot; Tea Sets</p>
+        <a href="#quote-form" class="buy-card-link">Learn More &rarr;</a>
       </div>
 
       <div class="buy-card reveal">
@@ -1588,26 +1682,58 @@ textarea.form-control {
           <line x1="38.14" y1="9.86" x2="31.07" y2="16.93" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
           <line x1="16.93" y1="31.07" x2="9.86" y2="38.14" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <h3>Platinum &amp; Palladium</h3>
-        <p>Platinum rings, palladium jewelry</p>
+        <h3>Cash for Platinum</h3>
+        <p class="buy-card-desc">One of the few buyers in the region that actively purchases platinum. Bring in your platinum rings, necklaces, or bullion.</p>
+        <p class="buy-card-items">Platinum Rings &middot; Chains &middot; Bullion &middot; Dental Platinum</p>
+        <a href="#quote-form" class="buy-card-link">Learn More &rarr;</a>
       </div>
 
       <div class="buy-card reveal">
         <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 18C10 18 14 14 18 14" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M18 14L22 22L16 26L22 34" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M38 18C38 18 34 14 30 14" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M30 14L26 22L32 26L26 34" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="20" cy="40" r="2" fill="#C5961A" opacity="0.4"/>
-          <circle cx="28" cy="38" r="1.5" fill="#C5961A" opacity="0.4"/>
-          <circle cx="24" cy="8" r="2" fill="#C5961A" opacity="0.3"/>
+          <circle cx="24" cy="24" r="12" stroke="#C5961A" stroke-width="2.5"/>
+          <circle cx="24" cy="24" r="16" stroke="#C5961A" stroke-width="1.5" opacity="0.4"/>
+          <path d="M24 14V24L30 28" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 6H30" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 42H30" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M20 6V8" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M28 6V8" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M20 40V42" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M28 40V42" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <h3>Broken &amp; Unwanted</h3>
-        <p>Broken chains, mismatched earrings, old pieces</p>
+        <h3>Luxury Watches</h3>
+        <p class="buy-card-desc">We buy Rolex, Omega, Cartier, Breitling and more &mdash; gold, silver, and stainless steel. Get top dollar for your luxury timepieces.</p>
+        <p class="buy-card-items">Rolex &middot; Omega &middot; Cartier &middot; Breitling &middot; TAG Heuer</p>
+        <a href="#quote-form" class="buy-card-link">Learn More &rarr;</a>
+      </div>
+
+      <div class="buy-card reveal">
+        <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="20" width="32" height="22" rx="3" stroke="#C5961A" stroke-width="2.5"/>
+          <path d="M16 20V14C16 9.58 19.58 6 24 6C28.42 6 32 9.58 32 14V20" stroke="#C5961A" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="24" cy="31" r="3" stroke="#C5961A" stroke-width="2"/>
+          <path d="M24 34V37" stroke="#C5961A" stroke-width="2" stroke-linecap="round"/>
+          <line x1="8" y1="26" x2="40" y2="26" stroke="#C5961A" stroke-width="1.5" opacity="0.4"/>
+        </svg>
+        <h3>Designer Handbags &amp; Accessories</h3>
+        <p class="buy-card-desc">Sell your Chanel, Louis Vuitton, Gucci, Versace bags, shoes, and sunglasses for instant cash.</p>
+        <p class="buy-card-items">Chanel &middot; Louis Vuitton &middot; Gucci &middot; Versace &middot; Herm&egrave;s</p>
+        <a href="#quote-form" class="buy-card-link">Learn More &rarr;</a>
+      </div>
+
+      <div class="buy-card reveal">
+        <svg class="buy-card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 6L38 18L24 42L10 18L24 6Z" stroke="#C5961A" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M10 18H38" stroke="#C5961A" stroke-width="2"/>
+          <path d="M17 6L14 18L24 42L34 18L31 6" stroke="#C5961A" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <h3>Designer Jewelry</h3>
+        <p class="buy-card-desc">We buy designer jewelry from David Yurman, Tiffany &amp; Co., Cartier, and more. Gold, silver, and platinum pieces.</p>
+        <p class="buy-card-items">David Yurman &middot; Tiffany &amp; Co. &middot; Cartier &middot; Bvlgari</p>
+        <a href="#quote-form" class="buy-card-link">Learn More &rarr;</a>
       </div>
 
     </div>
-    <p class="buy-bottom-text reveal">Not sure if we buy your item? Bring it in — we'll appraise it for free.</p>
+    <p class="buy-bottom-text reveal">Not sure if we buy your item? Bring it in &mdash; we'll appraise it for free.</p>
 
     <div class="section-cta reveal">
       <p>Have items to sell?</p>
@@ -1615,6 +1741,7 @@ textarea.form-control {
     </div>
   </div>
 </section>
+
 
 <!-- ===== HOW IT WORKS ===== -->
 <section class="section" id="how-it-works">
@@ -1743,6 +1870,53 @@ textarea.form-control {
     <div class="section-cta reveal">
       <p>Join our satisfied customers in McDonough</p>
       <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEET OUR TEAM ===== -->
+<section class="section" id="meet-team">
+  <div class="container">
+    <h2 class="section-title reveal">Meet the Team Behind Georgia Gold Buyers</h2>
+    <p class="section-subtitle reveal">We're a family-owned business since 2012. Every team member is committed to honesty, transparency, and making sure you get the best value for your items.</p>
+    <div class="team-grid">
+
+      <div class="team-card reveal">
+        <div class="team-photo-wrap">
+          <img src="team-gadson.jpg" alt="Gadson Woodall, Owner of Georgia Gold Buyers" loading="lazy" width="140" height="140">
+        </div>
+        <h3 class="team-name">Gadson Woodall</h3>
+        <p class="team-title">Owner &amp; Precious Metals Specialist</p>
+        <p class="team-bio">Founder of Georgia Gold Buyers with over a decade of experience in precious metals. Gadson built this business to serve as a trustworthy option for anyone looking to get the most value for their gold, silver, and jewelry.</p>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-photo-wrap">
+          <img src="team-gad.jpg" alt="Gad Woodall, Owner of Georgia Gold Buyers McDonough" loading="lazy" width="140" height="140">
+        </div>
+        <h3 class="team-name">Gad Woodall</h3>
+        <p class="team-title">Owner &amp; Precious Metals Specialist</p>
+        <p class="team-bio">Owner and trusted expert at our McDonough location. Known for integrity, fair pricing, and deep knowledge of the gold market. Gad ensures every customer leaves confident.</p>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-photo-wrap">
+          <img src="team-glenn.jpg" alt="Glenn Paschal, General Manager at Georgia Gold Buyers" loading="lazy" width="140" height="140">
+        </div>
+        <h3 class="team-name">Glenn Paschal</h3>
+        <p class="team-title">General Manager</p>
+        <p class="team-bio">A key part of the Georgia Gold Buyers team since 2012. Glenn brings over a decade of experience in operations and customer service, leading by example with professionalism and integrity.</p>
+      </div>
+
+      <div class="team-card reveal">
+        <div class="team-photo-wrap">
+          <img src="team-jessica.jpg" alt="Jessica Woodall, Designer Jewelry Specialist at Georgia Gold Buyers" loading="lazy" width="140" height="140">
+        </div>
+        <h3 class="team-name">Jessica Woodall</h3>
+        <p class="team-title">Designer Jewelry &amp; Luxury Handbag Specialist</p>
+        <p class="team-bio">Our in-house expert on designer jewelry and luxury handbags. Jessica specializes in appraising David Yurman, Tiffany &amp; Co., Chanel, Louis Vuitton, and more with a keen eye for fashion.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1942,6 +2116,18 @@ textarea.form-control {
           Georgia Gold Buyers
         </div>
         <p class="footer-desc">Georgia's trusted gold, silver, and jewelry buyers since 2012. Two locations serving McDonough and Valdosta. Free appraisals, instant cash payment.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/profile.php?id=61576541493879" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UCHZ5I4F7IfOZWofu5eBmUZQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/georgiagoldbuyers/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+
       </div>
       <div>
         <h4>Quick Links</h4>
