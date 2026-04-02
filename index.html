@@ -1161,6 +1161,103 @@ textarea.form-control {
   .radio-group { flex-direction: column; gap: 12px; }
   .trust-bar { grid-template-columns: 1fr 1fr; gap: 10px; }
 }
+
+/* ===== CALL LOCATION PICKER MODAL ===== */
+.call-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  padding: 20px;
+}
+.call-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.call-modal {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  transform: translateY(16px);
+  transition: transform 0.25s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.call-modal-overlay.active .call-modal {
+  transform: translateY(0);
+}
+.call-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+.call-modal-close:hover { color: var(--text-primary); }
+.call-modal h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  padding-right: 32px;
+}
+.call-modal-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border: 2px solid var(--light-3);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: border-color 0.2s, background 0.2s;
+}
+.call-modal-option:last-child { margin-bottom: 0; }
+.call-modal-option:hover {
+  border-color: var(--gold);
+  background: #faf8f2;
+}
+.call-modal-location {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.call-modal-location strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+}
+.call-modal-location span {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.call-modal-phone {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .call-modal { padding: 24px; }
+  .call-modal-option { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .call-modal-phone { align-self: flex-end; }
+}
 </style>
 
 <!-- JSON-LD Structured Data -->
@@ -1252,14 +1349,14 @@ textarea.form-control {
     </a>
     <div class="header-actions">
       <!-- Fix 7: Phone visible on mobile too -->
-      <a href="tel:+16789199265" class="header-phone header-phone-mobile" aria-label="Call us">
+      <button class="header-phone header-phone-mobile call-trigger" aria-label="Call us">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         (678) 919-9265
-      </a>
-      <a href="tel:+16789199265" class="header-phone header-phone-desktop" aria-label="Call us at 678-919-9265">
+      </button>
+      <button class="header-phone header-phone-desktop call-trigger" aria-label="Call us">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        (678) 919-9265
-      </a>
+        Call Us
+      </button>
       <a href="#quote-form" class="btn-gold">Get Free Quote</a>
     </div>
   </div>
@@ -1279,10 +1376,10 @@ textarea.form-control {
         <p class="hero-sub">Georgia's trusted gold buyers since 2012. Book your free appraisal today — same-day cash payment.</p>
         <div class="hero-btns">
           <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
-          <a href="tel:+16789199265" class="btn-call-solid">
+          <button class="btn-call-solid call-trigger">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             Call Now
-          </a>
+          </button>
         </div>
         <div class="trust-bar">
           <div class="trust-bar-item">
@@ -1878,7 +1975,7 @@ textarea.form-control {
 
     <!-- Fix 6: CTA after FAQ -->
     <div class="section-cta reveal" style="padding-top: 48px;">
-      <p>Still have questions? Call us at <a href="tel:+16789199265" style="color: var(--gold-dark); font-weight: 600;">(678) 919-9265</a> or</p>
+      <p>Still have questions? <button class="call-trigger" style="color: var(--gold-dark); font-weight: 600; background:none; border:none; font-family:inherit; font-size:inherit; cursor:pointer; text-decoration:underline;">Call us</button> or</p>
       <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
     </div>
   </div>
@@ -1929,13 +2026,41 @@ textarea.form-control {
   </div>
 </footer>
 
+<!-- ===== CALL LOCATION PICKER MODAL ===== -->
+<div class="call-modal-overlay" id="call-modal" aria-hidden="true">
+  <div class="call-modal">
+    <button class="call-modal-close" aria-label="Close">&times;</button>
+    <h3>Which location would you like to call?</h3>
+    <a href="tel:+16789199265" class="call-modal-option">
+      <div class="call-modal-location">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <strong>McDonough</strong>
+          <span>120 S Point Blvd, McDonough, GA</span>
+        </div>
+      </div>
+      <span class="call-modal-phone">(678) 919-9265</span>
+    </a>
+    <a href="tel:+12293750015" class="call-modal-option">
+      <div class="call-modal-location">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <strong>Valdosta</strong>
+          <span>3996 N Valdosta Rd, Valdosta, GA</span>
+        </div>
+      </div>
+      <span class="call-modal-phone">(229) 375-0015</span>
+    </a>
+  </div>
+</div>
+
 <!-- ===== MOBILE BOTTOM BAR (Fix 7) ===== -->
 <div class="mobile-bar" id="mobile-bar">
   <div class="mobile-bar-inner">
-    <a href="tel:+16789199265" class="bar-call">
+    <button class="bar-call call-trigger">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       Call Now
-    </a>
+    </button>
     <a href="#quote-form" class="bar-quote">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       Get Free Quote
@@ -1945,6 +2070,43 @@ textarea.form-control {
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
+// ===== CALL LOCATION PICKER MODAL =====
+const callModal = document.getElementById('call-modal');
+const callModalClose = callModal.querySelector('.call-modal-close');
+
+function openCallModal(e) {
+  e.preventDefault();
+  callModal.classList.add('active');
+  callModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeCallModal() {
+  callModal.classList.remove('active');
+  callModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// Wire up all call triggers
+document.querySelectorAll('.call-trigger').forEach(btn => {
+  btn.addEventListener('click', openCallModal);
+});
+
+// Close modal
+callModalClose.addEventListener('click', closeCallModal);
+callModal.addEventListener('click', (e) => {
+  if (e.target === callModal) closeCallModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && callModal.classList.contains('active')) closeCallModal();
+});
+
+// Close modal after user picks a location (the tel: link will fire)
+callModal.querySelectorAll('.call-modal-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    setTimeout(closeCallModal, 300);
+  });
+});
+
 // Sticky header shadow on scroll
 const header = document.getElementById('header');
 let lastScroll = 0;
