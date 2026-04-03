@@ -1654,10 +1654,10 @@ if (form) {
       const formData = new FormData(form);
       formData.append('_subject', 'New Lead — Georgia Gold Buyers');
       
-      fetch('https://formspree.io/gadsonw@gmail.com', {
+      fetch('https://formsubmit.co/ajax/gadsonw@gmail.com', {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(Object.fromEntries(formData)),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
       }).then(function() {
         btn.textContent = "Thank You! We'll Call You Shortly.";
         btn.style.background = '#2d8a4e';

@@ -398,10 +398,10 @@
     formData.append('_subject', 'NEGATIVE FEEDBACK — Georgia Gold Buyers Valdosta');
     formData.append('_replyto', data.email || '');
     
-    fetch('https://formspree.io/gadsonw@gmail.com', {
+    fetch('https://formsubmit.co/ajax/gadsonw@gmail.com', {
       method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
+      body: JSON.stringify(Object.fromEntries(formData)),
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
     }).then(function() {
       document.getElementById('formSection').classList.add('hidden');
       document.getElementById('thankYou').classList.add('visible');
