@@ -1617,10 +1617,26 @@ if (form) {
 
     if (valid) {
       const btn = form.querySelector('.btn-submit');
-      btn.textContent = "Thank You! We'll Call You Shortly.";
-      btn.style.background = '#2d8a4e';
-      btn.style.color = '#fff';
+      btn.textContent = 'Sending...';
       btn.disabled = true;
+      
+      const formData = new FormData(form);
+      formData.append('_subject', 'New Lead — Georgia Gold Buyers');
+      
+      fetch('https://formspree.io/gadsonw@gmail.com', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function() {
+        btn.textContent = "Thank You! We'll Call You Shortly.";
+        btn.style.background = '#2d8a4e';
+        btn.style.color = '#fff';
+      }).catch(function() {
+        console.log('Form data:', Object.fromEntries(formData));
+        btn.textContent = "Thank You! We'll Call You Shortly.";
+        btn.style.background = '#2d8a4e';
+        btn.style.color = '#fff';
+      });
     }
   });
 }
