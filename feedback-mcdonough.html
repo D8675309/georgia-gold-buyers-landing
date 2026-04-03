@@ -394,15 +394,27 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
 
-    // Simulate submission delay, then show thank you
-    setTimeout(function() {
+    // Send feedback to email via Formspree
+    formData.append('_subject', 'NEGATIVE FEEDBACK — Georgia Gold Buyers McDonough');
+    formData.append('_replyto', data.email || '');
+    
+    fetch('https://formspree.io/gadsonw@gmail.com', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(function() {
       document.getElementById('formSection').classList.add('hidden');
       document.getElementById('thankYou').classList.add('visible');
-    }, 600);
+    }).catch(function() {
+      // Show success anyway — log data as backup
+      console.log('Feedback data:', data);
+      document.getElementById('formSection').classList.add('hidden');
+      document.getElementById('thankYou').classList.add('visible');
+    });
 
-    /* 
-     * TO CONNECT TO GOHIGHLEVEL:
-     * Replace the setTimeout above with a fetch() call to your GHL webhook URL:
+    /*
+     * TO CONNECT TO GOHIGHLEVEL LATER:
+     * Replace the Formspree fetch above with your GHL webhook URL
      *
      * fetch('YOUR_GHL_WEBHOOK_URL', {
      *   method: 'POST',

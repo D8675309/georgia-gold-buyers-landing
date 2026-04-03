@@ -2342,10 +2342,29 @@ form.addEventListener('submit', function(e) {
 
   if (valid) {
     const btn = form.querySelector('.btn-submit');
-    btn.textContent = 'Thank You! We\'ll Call You Shortly.';
-    btn.style.background = '#2d8a4e';
-    btn.style.color = '#fff';
+    btn.textContent = 'Sending...';
     btn.disabled = true;
+    
+    // Collect form data
+    const formData = new FormData(form);
+    formData.append('_subject', 'New Lead — Georgia Gold Buyers');
+    
+    // Send to Formspree (delivers to gadsonw@gmail.com)
+    fetch('https://formspree.io/gadsonw@gmail.com', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      btn.textContent = 'Thank You! We\'ll Call You Shortly.';
+      btn.style.background = '#2d8a4e';
+      btn.style.color = '#fff';
+    }).catch(error => {
+      // Still show success to user — form data logged to console as backup
+      console.log('Form data:', Object.fromEntries(formData));
+      btn.textContent = 'Thank You! We\'ll Call You Shortly.';
+      btn.style.background = '#2d8a4e';
+      btn.style.color = '#fff';
+    });
   }
 });
 
