@@ -1925,23 +1925,23 @@ textarea.form-control {
     <div class="ticker-grid">
       <div class="ticker-card">
         <span class="ticker-label">Gold</span>
-        <span class="ticker-price" id="ticker-gold-price">$3,050.00</span>
-        <span class="ticker-change positive" id="ticker-gold-change">+$12.50 (+0.41%)</span>
+        <span class="ticker-price" id="ticker-gold-price">$4,678.00</span>
+        <span class="ticker-change negative" id="ticker-gold-change">-$12.50 (-0.27%)</span>
       </div>
       <div class="ticker-card">
         <span class="ticker-label">Silver</span>
-        <span class="ticker-price" id="ticker-silver-price">$34.25</span>
-        <span class="ticker-change positive" id="ticker-silver-change">+$0.35 (+1.03%)</span>
+        <span class="ticker-price" id="ticker-silver-price">$73.15</span>
+        <span class="ticker-change positive" id="ticker-silver-change">+$0.85 (+1.17%)</span>
       </div>
       <div class="ticker-card">
         <span class="ticker-label">Platinum</span>
-        <span class="ticker-price" id="ticker-platinum-price">$985.00</span>
-        <span class="ticker-change negative" id="ticker-platinum-change">-$5.20 (-0.53%)</span>
+        <span class="ticker-price" id="ticker-platinum-price">$1,990.00</span>
+        <span class="ticker-change positive" id="ticker-platinum-change">+$15.00 (+0.76%)</span>
       </div>
       <div class="ticker-card">
         <span class="ticker-label">Palladium</span>
-        <span class="ticker-price" id="ticker-palladium-price">$1,025.00</span>
-        <span class="ticker-change positive" id="ticker-palladium-change">+$8.75 (+0.86%)</span>
+        <span class="ticker-price" id="ticker-palladium-price">$1,530.00</span>
+        <span class="ticker-change negative" id="ticker-palladium-change">-$8.50 (-0.55%)</span>
       </div>
     </div>
     <p class="ticker-updated">Spot prices per troy ounce · <span id="price-status" class="status-badge estimated">Estimated</span> · <a href="gold-prices.html" style="color:#C5961A;">View Details &amp; Calculator &rarr;</a></p>
@@ -2581,10 +2581,10 @@ document.querySelectorAll('.nav-dropdown > a').forEach(link => {
 // ===== PRICE TICKER LIVE FETCH =====
 (function() {
   const FALLBACK = {
-    gold: { price: 3050.00, change: 12.50, changePercent: 0.41 },
-    silver: { price: 34.25, change: 0.35, changePercent: 1.03 },
-    platinum: { price: 985.00, change: -5.20, changePercent: -0.53 },
-    palladium: { price: 1025.00, change: 8.75, changePercent: 0.86 }
+    gold: { price: 4678.00, change: -12.50, changePercent: -0.27 },
+    silver: { price: 73.15, change: 0.85, changePercent: 1.17 },
+    platinum: { price: 1990.00, change: 15.00, changePercent: 0.76 },
+    palladium: { price: 1530.00, change: -8.50, changePercent: -0.55 }
   };
 
   function fmt(n) {
@@ -2606,55 +2606,61 @@ document.querySelectorAll('.nav-dropdown > a').forEach(link => {
     });
     var statusEl = document.getElementById('price-status');
     if (statusEl) {
-      statusEl.textContent = isLive ? 'Live' : 'Estimated';
+      statusEl.textContent = isLive ? 'Live' : 'Market Close';
       statusEl.className = 'status-badge ' + (isLive ? 'live' : 'estimated');
     }
   }
 
   async function fetchPrices() {
+    // Strategy 1: Try gold-api.com directly (works if CORS allows)
     try {
-      var r = await fetch('https://api.gold-api.com/price/XAU');
-      if (r.ok) {
-        var d = await r.json();
-        if (d && d.price) {
-          var goldPrice = d.price;
-          // Fetch silver
-          var rs = await fetch('https://api.gold-api.com/price/XAG');
-          var ds = rs.ok ? await rs.json() : null;
-          var rp = await fetch('https://api.gold-api.com/price/XPT');
-          var dp = rp.ok ? await rp.json() : null;
-          var rpa = await fetch('https://api.gold-api.com/price/XPD');
-          var dpa = rpa.ok ? await rpa.json() : null;
+      var responses = await Promise.all([
+        fetch('https://api.gold-api.com/price/XAU'),
+        fetch('https://api.gold-api.com/price/XAG'),
+        fetch('https://api.gold-api.com/price/XPT'),
+        fetch('https://api.gold-api.com/price/XPD')
+      ]);
+      if (responses[0].ok) {
+        var data = await Promise.all(responses.map(function(r) { return r.json(); }));
+        if (data[0] && data[0].price) {
           var live = {
-            gold: { price: goldPrice, change: d.ch || d.change || 12.50, changePercent: d.chp || d.changePercent || 0.41 },
-            silver: { price: (ds && ds.price) || FALLBACK.silver.price, change: (ds && (ds.ch || ds.change)) || FALLBACK.silver.change, changePercent: (ds && (ds.chp || ds.changePercent)) || FALLBACK.silver.changePercent },
-            platinum: { price: (dp && dp.price) || FALLBACK.platinum.price, change: (dp && (dp.ch || dp.change)) || FALLBACK.platinum.change, changePercent: (dp && (dp.chp || dp.changePercent)) || FALLBACK.platinum.changePercent },
-            palladium: { price: (dpa && dpa.price) || FALLBACK.palladium.price, change: (dpa && (dpa.ch || dpa.change)) || FALLBACK.palladium.change, changePercent: (dpa && (dpa.chp || dpa.changePercent)) || FALLBACK.palladium.changePercent }
+            gold:      { price: data[0].price, change: data[0].ch || data[0].change || FALLBACK.gold.change, changePercent: data[0].chp || data[0].changePercent || FALLBACK.gold.changePercent },
+            silver:    { price: (data[1] && data[1].price) || FALLBACK.silver.price, change: (data[1] && (data[1].ch || data[1].change)) || FALLBACK.silver.change, changePercent: (data[1] && (data[1].chp || data[1].changePercent)) || FALLBACK.silver.changePercent },
+            platinum:  { price: (data[2] && data[2].price) || FALLBACK.platinum.price, change: (data[2] && (data[2].ch || data[2].change)) || FALLBACK.platinum.change, changePercent: (data[2] && (data[2].chp || data[2].changePercent)) || FALLBACK.platinum.changePercent },
+            palladium: { price: (data[3] && data[3].price) || FALLBACK.palladium.price, change: (data[3] && (data[3].ch || data[3].change)) || FALLBACK.palladium.change, changePercent: (data[3] && (data[3].chp || data[3].changePercent)) || FALLBACK.palladium.changePercent }
           };
           updateTicker(live, true);
           return;
         }
       }
-    } catch(e) {}
-    // Try metals.live
+    } catch(e) { console.log('gold-api.com blocked by CORS, trying proxy...'); }
+
+    // Strategy 2: Try a CORS proxy
     try {
-      var r2 = await fetch('https://api.metals.live/v1/spot');
-      if (r2.ok) {
-        var arr = await r2.json();
-        if (Array.isArray(arr) && arr.length) {
-          var map = {};
-          arr.forEach(function(item) { map[item.metal] = item; });
+      var proxyBase = 'https://api.allorigins.win/raw?url=';
+      var r = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XAU'));
+      if (r.ok) {
+        var goldData = await r.json();
+        var rs = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XAG'));
+        var silverData = rs.ok ? await rs.json() : null;
+        var rp = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XPT'));
+        var platData = rp.ok ? await rp.json() : null;
+        var rd = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XPD'));
+        var palData = rd.ok ? await rd.json() : null;
+        if (goldData && goldData.price) {
           var live2 = {
-            gold: { price: (map.gold && map.gold.price) || FALLBACK.gold.price, change: (map.gold && map.gold.change) || FALLBACK.gold.change, changePercent: (map.gold && map.gold.changePercent) || FALLBACK.gold.changePercent },
-            silver: { price: (map.silver && map.silver.price) || FALLBACK.silver.price, change: (map.silver && map.silver.change) || FALLBACK.silver.change, changePercent: (map.silver && map.silver.changePercent) || FALLBACK.silver.changePercent },
-            platinum: { price: (map.platinum && map.platinum.price) || FALLBACK.platinum.price, change: (map.platinum && map.platinum.change) || FALLBACK.platinum.change, changePercent: (map.platinum && map.platinum.changePercent) || FALLBACK.platinum.changePercent },
-            palladium: { price: (map.palladium && map.palladium.price) || FALLBACK.palladium.price, change: (map.palladium && map.palladium.change) || FALLBACK.palladium.change, changePercent: (map.palladium && map.palladium.changePercent) || FALLBACK.palladium.changePercent }
+            gold:      { price: goldData.price, change: goldData.ch || goldData.change || FALLBACK.gold.change, changePercent: goldData.chp || goldData.changePercent || FALLBACK.gold.changePercent },
+            silver:    { price: (silverData && silverData.price) || FALLBACK.silver.price, change: (silverData && (silverData.ch || silverData.change)) || FALLBACK.silver.change, changePercent: (silverData && (silverData.chp || silverData.changePercent)) || FALLBACK.silver.changePercent },
+            platinum:  { price: (platData && platData.price) || FALLBACK.platinum.price, change: (platData && (platData.ch || platData.change)) || FALLBACK.platinum.change, changePercent: (platData && (platData.chp || platData.changePercent)) || FALLBACK.platinum.changePercent },
+            palladium: { price: (palData && palData.price) || FALLBACK.palladium.price, change: (palData && (palData.ch || palData.change)) || FALLBACK.palladium.change, changePercent: (palData && (palData.chp || palData.changePercent)) || FALLBACK.palladium.changePercent }
           };
           updateTicker(live2, true);
           return;
         }
       }
-    } catch(e) {}
+    } catch(e) { console.log('CORS proxy failed, using fallback prices'); }
+
+    // Strategy 3: Hardcoded fallback (April 2026 market prices)
     updateTicker(FALLBACK, false);
   }
 

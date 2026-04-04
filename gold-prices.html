@@ -136,7 +136,10 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 
 .header-nav--hidden {
   transform: translateY(-100%);
+  height: 0;
   opacity: 0;
+  overflow: hidden;
+  border-top: none;
   pointer-events: none;
 }
 
@@ -932,7 +935,20 @@ textarea.form-control { height: 100px; padding: 12px 14px; resize: vertical; }
 }
 @media (max-width: 768px) {
   .header-phone-desktop { display: none; }
-  .header-phone-mobile { display: flex; }
+  .header-phone-mobile {
+    display: flex;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0;
+    align-items: center;
+    gap: 0;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+  }
+  .header-phone-mobile svg { width: 20px; height: 20px; }
   .logo-text-long { display: none; }
   .logo-text-short { display: inline; }
   .page-hero h1 { font-size: 28px; }
@@ -1010,6 +1026,38 @@ textarea.form-control { height: 100px; padding: 12px 14px; resize: vertical; }
           "@type": "Answer",
           "text": "The spot price of gold is determined by global markets and is the same worldwide at any given moment. However, the amount a dealer pays for your gold varies. Factors include the dealer's payout percentage, overhead costs, and location. Georgia Gold Buyers offers competitive payouts — visit us for a free, no-obligation appraisal."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Who pays the most per gram for 14K gold in Georgia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dedicated gold buyers like Georgia Gold Buyers typically pay significantly more per gram for 14K gold than pawn shops, mail-in services, or general jewelers. Because gold buying is our primary business — not a sideline — our overhead is lower and we maintain direct refinery relationships, allowing us to offer higher payouts. We serve customers throughout Georgia from our McDonough and Valdosta locations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is 14K gold worth per gram today?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "14K gold is 58.3% pure gold. Its value per gram is calculated by multiplying the current spot price of gold (per troy ounce) by 0.583, then dividing by 31.1035 (grams per troy ounce). With gold near record highs in 2026, 14K gold is worth substantially more per gram than in prior years. Visit our live gold prices page or come into Georgia Gold Buyers for a free, same-day appraisal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do the numbers stamped on gold jewelry mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stamps on gold jewelry indicate purity. Common stamps and their meanings: 999 or 24K = 99.9% pure gold; 917 or 22K = 91.7% pure; 750 or 18K = 75% pure; 585 or 14K = 58.3% pure; 417 or 10K = 41.7% pure. European jewelry uses the numeric system (585, 750, etc.) while American jewelry commonly uses the karat system (14K, 18K). If you cannot find a stamp, Georgia Gold Buyers will test your item for free using professional acid and XRF testing equipment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Georgia Gold Buyers buy platinum and palladium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Georgia Gold Buyers is one of the few dealers in Georgia equipped to test and purchase platinum and palladium jewelry, rings, and bullion. Platinum jewelry is typically 95% pure (marked 950 or Pt950). Palladium is a rare metal often used in modern jewelry as a lighter alternative to platinum. Both are valuable — bring your items to our McDonough or Valdosta location for a free appraisal."
+        }
       }
     ]
   }
@@ -1046,7 +1094,6 @@ textarea.form-control { height: 100px; padding: 12px 14px; resize: vertical; }
     <div class="header-actions">
       <button class="header-phone header-phone-mobile call-trigger" aria-label="Call us">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        (678) 919-9265
       </button>
       <button class="header-phone header-phone-desktop call-trigger" aria-label="Call us">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -1101,70 +1148,101 @@ textarea.form-control { height: 100px; padding: 12px 14px; resize: vertical; }
     <div class="price-cards-grid">
       <div class="price-card">
         <div class="price-card-name">Gold</div>
-        <div class="price-card-price" id="gold-price">$3,050.00</div>
+        <div class="price-card-price" id="gold-price">$4,678.00</div>
         <div class="price-card-unit">per troy ounce</div>
-        <div class="price-card-change positive" id="gold-change">&#9650; +$12.50 (+0.41%)</div>
+        <div class="price-card-change negative" id="gold-change">&#9660; -$12.50 (-0.27%)</div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
-            <span class="price-card-sub-value" id="gold-gram">$98.07</span>
+            <span class="price-card-sub-value" id="gold-gram">$150.40</span>
           </div>
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per DWT</span>
-            <span class="price-card-sub-value" id="gold-dwt">$152.50</span>
+            <span class="price-card-sub-value" id="gold-dwt">$233.90</span>
           </div>
         </div>
       </div>
       <div class="price-card">
         <div class="price-card-name">Silver</div>
-        <div class="price-card-price" id="silver-price">$34.25</div>
+        <div class="price-card-price" id="silver-price">$73.15</div>
         <div class="price-card-unit">per troy ounce</div>
-        <div class="price-card-change positive" id="silver-change">&#9650; +$0.35 (+1.03%)</div>
+        <div class="price-card-change positive" id="silver-change">&#9650; +$0.85 (+1.17%)</div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
-            <span class="price-card-sub-value" id="silver-gram">$1.10</span>
+            <span class="price-card-sub-value" id="silver-gram">$2.35</span>
           </div>
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per DWT</span>
-            <span class="price-card-sub-value" id="silver-dwt">$1.71</span>
+            <span class="price-card-sub-value" id="silver-dwt">$3.66</span>
           </div>
         </div>
       </div>
       <div class="price-card">
         <div class="price-card-name">Platinum</div>
-        <div class="price-card-price" id="platinum-price">$985.00</div>
+        <div class="price-card-price" id="platinum-price">$1,990.00</div>
         <div class="price-card-unit">per troy ounce</div>
-        <div class="price-card-change negative" id="platinum-change">&#9660; -$5.20 (-0.53%)</div>
+        <div class="price-card-change positive" id="platinum-change">&#9650; +$15.00 (+0.76%)</div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
-            <span class="price-card-sub-value" id="platinum-gram">$31.67</span>
+            <span class="price-card-sub-value" id="platinum-gram">$63.98</span>
           </div>
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per DWT</span>
-            <span class="price-card-sub-value" id="platinum-dwt">$49.25</span>
+            <span class="price-card-sub-value" id="platinum-dwt">$99.50</span>
           </div>
         </div>
       </div>
       <div class="price-card">
         <div class="price-card-name">Palladium</div>
-        <div class="price-card-price" id="palladium-price">$1,025.00</div>
+        <div class="price-card-price" id="palladium-price">$1,530.00</div>
         <div class="price-card-unit">per troy ounce</div>
-        <div class="price-card-change positive" id="palladium-change">&#9650; +$8.75 (+0.86%)</div>
+        <div class="price-card-change negative" id="palladium-change">&#9660; -$8.50 (-0.55%)</div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
-            <span class="price-card-sub-value" id="palladium-gram">$32.96</span>
+            <span class="price-card-sub-value" id="palladium-gram">$49.18</span>
           </div>
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per DWT</span>
-            <span class="price-card-sub-value" id="palladium-dwt">$51.25</span>
+            <span class="price-card-sub-value" id="palladium-dwt">$76.50</span>
           </div>
         </div>
       </div>
     </div>
     <p class="prices-status">Spot prices per troy ounce &middot; <span id="price-status" class="status-badge estimated">Estimated</span> &middot; Prices update during market hours. Actual offer may vary.</p>
+  </div>
+</section>
+
+<!-- ===== SEO: GOLD PURITY & VALUE SECTION ===== -->
+<section class="section" style="padding: 48px 0;">
+  <div class="container" style="max-width: 800px;">
+    <h2 class="section-title reveal">Understanding Gold Purity &amp; Value</h2>
+
+    <div class="reveal" style="font-size: 15px; line-height: 1.8; color: #555;">
+      <h3 style="font-size: 18px; color: #1a1a1a; margin: 24px 0 8px;">What Determines the Value of Your Gold?</h3>
+      <p>The value of gold items depends on three factors: <strong>purity (karat)</strong>, <strong>weight</strong>, and the <strong>current spot price</strong>. Higher karat gold contains more pure gold and is worth more per gram. A 24K item is nearly 100% pure gold, while a 10K item is about 41.7% gold &mdash; the rest is alloy metals that add durability.</p>
+
+      <h3 style="font-size: 18px; color: #1a1a1a; margin: 24px 0 8px;">Common Gold Karats Explained</h3>
+      <p><strong>24K (99.9% pure)</strong> &mdash; The highest purity available. Common in bullion bars, coins, and some Asian jewelry. Too soft for everyday wear.</p>
+      <p><strong>22K (91.7% pure)</strong> &mdash; Common in gold coins like American Eagles and Krugerrands. Also used in high-end jewelry in some cultures.</p>
+      <p><strong>18K (75% pure)</strong> &mdash; The standard for fine jewelry worldwide. Marked &ldquo;750&rdquo; on European pieces. Balances purity with durability.</p>
+      <p><strong>14K (58.3% pure)</strong> &mdash; The most common karat in American jewelry. Marked &ldquo;585.&rdquo; Offers excellent durability for everyday rings, chains, and bracelets.</p>
+      <p><strong>10K (41.7% pure)</strong> &mdash; The minimum karat that can legally be sold as &ldquo;gold&rdquo; in the United States. Marked &ldquo;417.&rdquo; Very durable and affordable.</p>
+
+      <h3 style="font-size: 18px; color: #1a1a1a; margin: 24px 0 8px;">How to Identify Your Gold&rsquo;s Karat</h3>
+      <p>Most gold jewelry has a small stamp indicating its purity. Look for markings like <strong>10K, 14K, 18K, 22K, 24K</strong> or the numeric equivalents <strong>417, 585, 750, 917, 999</strong>. The stamp is typically found inside ring bands, on necklace clasps, or on earring posts. If you can&rsquo;t find a stamp, that doesn&rsquo;t mean the item isn&rsquo;t gold &mdash; bring it to Georgia Gold Buyers and we&rsquo;ll test it for free.</p>
+
+      <h3 style="font-size: 18px; color: #1a1a1a; margin: 24px 0 8px;">Who Pays the Most for Gold in Georgia?</h3>
+      <p>Dedicated gold buyers like Georgia Gold Buyers typically pay significantly more than pawn shops, mail-in services, or general jewelers. Why? Gold buying is our primary business &mdash; not a sideline. Our overhead is lower, our testing equipment is specialized, and we can offer higher payouts because of our direct relationships with refineries. We encourage you to get multiple quotes and compare &mdash; we&rsquo;re confident in our pricing.</p>
+
+      <h3 style="font-size: 18px; color: #1a1a1a; margin: 24px 0 8px;">Silver Purity Guide</h3>
+      <p><strong>Fine Silver (99.9%)</strong> &mdash; Pure silver bullion and some coins. <strong>Sterling Silver (92.5%)</strong> &mdash; The standard for silver jewelry and flatware, marked &ldquo;925.&rdquo; <strong>Coin Silver (90%)</strong> &mdash; Found in pre-1964 U.S. dimes, quarters, and half dollars. All of these have real value &mdash; bring your silver items to Georgia Gold Buyers for a free appraisal.</p>
+
+      <h3 style="font-size: 18px; color: #1a1a1a; margin: 24px 0 8px;">Platinum &amp; Palladium</h3>
+      <p>Platinum is rarer than gold and is commonly found in engagement rings, wedding bands, and some luxury watches. Most platinum jewelry is 95% pure (marked &ldquo;950&rdquo; or &ldquo;Pt&rdquo;). Palladium is increasingly used in jewelry as a lighter alternative to platinum. Both metals have significant value &mdash; Georgia Gold Buyers is one of the few dealers in Georgia equipped to test and buy platinum and palladium.</p>
+    </div>
   </div>
 </section>
 
@@ -1680,10 +1758,10 @@ document.querySelectorAll('.nav-dropdown > a').forEach(link => {
   var TROY_OZ_TO_DWT = 20;
 
   var FALLBACK = {
-    gold: { price: 3050.00, change: 12.50, changePercent: 0.41 },
-    silver: { price: 34.25, change: 0.35, changePercent: 1.03 },
-    platinum: { price: 985.00, change: -5.20, changePercent: -0.53 },
-    palladium: { price: 1025.00, change: 8.75, changePercent: 0.86 }
+    gold: { price: 4678.00, change: -12.50, changePercent: -0.27 },
+    silver: { price: 73.15, change: 0.85, changePercent: 1.17 },
+    platinum: { price: 1990.00, change: 15.00, changePercent: 0.76 },
+    palladium: { price: 1530.00, change: -8.50, changePercent: -0.55 }
   };
 
   var currentPrices = JSON.parse(JSON.stringify(FALLBACK));
@@ -1770,7 +1848,7 @@ document.querySelectorAll('.nav-dropdown > a').forEach(link => {
     // Status badge
     var statusEl = document.getElementById('price-status');
     if (statusEl) {
-      statusEl.textContent = isLive ? 'Live' : 'Estimated';
+      statusEl.textContent = isLive ? 'Live' : 'Market Close';
       statusEl.className = 'status-badge ' + (isLive ? 'live' : 'estimated');
     }
 
@@ -1863,48 +1941,55 @@ document.querySelectorAll('.nav-dropdown > a').forEach(link => {
 
   // ===== FETCH LIVE PRICES =====
   async function fetchPrices() {
+    // Strategy 1: Try gold-api.com directly (works if CORS allows)
     try {
-      var r = await fetch('https://api.gold-api.com/price/XAU');
-      if (r.ok) {
-        var d = await r.json();
-        if (d && d.price) {
-          var goldPrice = d.price;
-          var rs = await fetch('https://api.gold-api.com/price/XAG');
-          var ds = rs.ok ? await rs.json() : null;
-          var rp = await fetch('https://api.gold-api.com/price/XPT');
-          var dp = rp.ok ? await rp.json() : null;
-          var rpa = await fetch('https://api.gold-api.com/price/XPD');
-          var dpa = rpa.ok ? await rpa.json() : null;
+      var responses = await Promise.all([
+        fetch('https://api.gold-api.com/price/XAU'),
+        fetch('https://api.gold-api.com/price/XAG'),
+        fetch('https://api.gold-api.com/price/XPT'),
+        fetch('https://api.gold-api.com/price/XPD')
+      ]);
+      if (responses[0].ok) {
+        var data = await Promise.all(responses.map(function(r) { return r.json(); }));
+        if (data[0] && data[0].price) {
           var live = {
-            gold: { price: goldPrice, change: d.ch || d.change || FALLBACK.gold.change, changePercent: d.chp || d.changePercent || FALLBACK.gold.changePercent },
-            silver: { price: (ds && ds.price) || FALLBACK.silver.price, change: (ds && (ds.ch || ds.change)) || FALLBACK.silver.change, changePercent: (ds && (ds.chp || ds.changePercent)) || FALLBACK.silver.changePercent },
-            platinum: { price: (dp && dp.price) || FALLBACK.platinum.price, change: (dp && (dp.ch || dp.change)) || FALLBACK.platinum.change, changePercent: (dp && (dp.chp || dp.changePercent)) || FALLBACK.platinum.changePercent },
-            palladium: { price: (dpa && dpa.price) || FALLBACK.palladium.price, change: (dpa && (dpa.ch || dpa.change)) || FALLBACK.palladium.change, changePercent: (dpa && (dpa.chp || dpa.changePercent)) || FALLBACK.palladium.changePercent }
+            gold:      { price: data[0].price, change: data[0].ch || data[0].change || FALLBACK.gold.change, changePercent: data[0].chp || data[0].changePercent || FALLBACK.gold.changePercent },
+            silver:    { price: (data[1] && data[1].price) || FALLBACK.silver.price, change: (data[1] && (data[1].ch || data[1].change)) || FALLBACK.silver.change, changePercent: (data[1] && (data[1].chp || data[1].changePercent)) || FALLBACK.silver.changePercent },
+            platinum:  { price: (data[2] && data[2].price) || FALLBACK.platinum.price, change: (data[2] && (data[2].ch || data[2].change)) || FALLBACK.platinum.change, changePercent: (data[2] && (data[2].chp || data[2].changePercent)) || FALLBACK.platinum.changePercent },
+            palladium: { price: (data[3] && data[3].price) || FALLBACK.palladium.price, change: (data[3] && (data[3].ch || data[3].change)) || FALLBACK.palladium.change, changePercent: (data[3] && (data[3].chp || data[3].changePercent)) || FALLBACK.palladium.changePercent }
           };
           updateAllPrices(live, true);
           return;
         }
       }
-    } catch(e) {}
-    // Try metals.live
+    } catch(e) { console.log('gold-api.com blocked by CORS, trying proxy...'); }
+
+    // Strategy 2: Try a CORS proxy
     try {
-      var r2 = await fetch('https://api.metals.live/v1/spot');
-      if (r2.ok) {
-        var arr = await r2.json();
-        if (Array.isArray(arr) && arr.length) {
-          var map = {};
-          arr.forEach(function(item) { map[item.metal] = item; });
+      var proxyBase = 'https://api.allorigins.win/raw?url=';
+      var r = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XAU'));
+      if (r.ok) {
+        var goldData = await r.json();
+        var rs = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XAG'));
+        var silverData = rs.ok ? await rs.json() : null;
+        var rp = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XPT'));
+        var platData = rp.ok ? await rp.json() : null;
+        var rd = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XPD'));
+        var palData = rd.ok ? await rd.json() : null;
+        if (goldData && goldData.price) {
           var live2 = {
-            gold: { price: (map.gold && map.gold.price) || FALLBACK.gold.price, change: (map.gold && map.gold.change) || FALLBACK.gold.change, changePercent: (map.gold && map.gold.changePercent) || FALLBACK.gold.changePercent },
-            silver: { price: (map.silver && map.silver.price) || FALLBACK.silver.price, change: (map.silver && map.silver.change) || FALLBACK.silver.change, changePercent: (map.silver && map.silver.changePercent) || FALLBACK.silver.changePercent },
-            platinum: { price: (map.platinum && map.platinum.price) || FALLBACK.platinum.price, change: (map.platinum && map.platinum.change) || FALLBACK.platinum.change, changePercent: (map.platinum && map.platinum.changePercent) || FALLBACK.platinum.changePercent },
-            palladium: { price: (map.palladium && map.palladium.price) || FALLBACK.palladium.price, change: (map.palladium && map.palladium.change) || FALLBACK.palladium.change, changePercent: (map.palladium && map.palladium.changePercent) || FALLBACK.palladium.changePercent }
+            gold:      { price: goldData.price, change: goldData.ch || goldData.change || FALLBACK.gold.change, changePercent: goldData.chp || goldData.changePercent || FALLBACK.gold.changePercent },
+            silver:    { price: (silverData && silverData.price) || FALLBACK.silver.price, change: (silverData && (silverData.ch || silverData.change)) || FALLBACK.silver.change, changePercent: (silverData && (silverData.chp || silverData.changePercent)) || FALLBACK.silver.changePercent },
+            platinum:  { price: (platData && platData.price) || FALLBACK.platinum.price, change: (platData && (platData.ch || platData.change)) || FALLBACK.platinum.change, changePercent: (platData && (platData.chp || platData.changePercent)) || FALLBACK.platinum.changePercent },
+            palladium: { price: (palData && palData.price) || FALLBACK.palladium.price, change: (palData && (palData.ch || palData.change)) || FALLBACK.palladium.change, changePercent: (palData && (palData.chp || palData.changePercent)) || FALLBACK.palladium.changePercent }
           };
           updateAllPrices(live2, true);
           return;
         }
       }
-    } catch(e) {}
+    } catch(e) { console.log('CORS proxy failed, using fallback prices'); }
+
+    // Strategy 3: Hardcoded fallback (April 2026 market prices)
     updateAllPrices(FALLBACK, false);
   }
 
