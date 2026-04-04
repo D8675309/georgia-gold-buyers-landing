@@ -86,6 +86,80 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 
 /* ===== WIDGET ===== */
 .widget-section { padding: 0 24px; margin-top: -24px; position: relative; z-index: 10; }
+
+/* Widget header and progress bar */
+.widget-headline {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.widget-subline {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.widget-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 28px;
+  padding: 0 8px;
+}
+.widget-progress-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #bbb;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.widget-progress-step span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e8e6e0;
+  color: #999;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.3s, color 0.3s;
+}
+.widget-progress-step.active { color: #1a1a1a; }
+.widget-progress-step.active span { background: #C5961A; color: #fff; }
+.widget-progress-step.completed span { background: #4CAF50; color: #fff; }
+.widget-progress-step.completed { color: #4CAF50; }
+.widget-progress-line {
+  flex: 1;
+  height: 3px;
+  background: #e8e6e0;
+  margin: 0 8px;
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 20px;
+}
+.widget-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #C5961A;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.widget-header { margin-bottom: 8px; }
+
+@media (max-width: 480px) {
+  .widget-headline { font-size: 20px; }
+  .widget-progress-step { font-size: 11px; }
+  .widget-progress-step span { width: 22px; height: 22px; font-size: 11px; }
+}
+
 .widget-card {
   max-width: 540px; margin: 0 auto; background: var(--white);
   border-radius: 24px; box-shadow: 0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
@@ -335,7 +409,81 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 @media (max-width: 768px) {
   .lp-mobile-bar { display: block; }
   body { padding-bottom: 72px; }
-  .widget-card { padding: 28px 20px; border-radius: 20px; }
+  
+/* Widget header and progress bar */
+.widget-headline {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.widget-subline {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.widget-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 28px;
+  padding: 0 8px;
+}
+.widget-progress-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #bbb;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.widget-progress-step span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e8e6e0;
+  color: #999;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.3s, color 0.3s;
+}
+.widget-progress-step.active { color: #1a1a1a; }
+.widget-progress-step.active span { background: #C5961A; color: #fff; }
+.widget-progress-step.completed span { background: #4CAF50; color: #fff; }
+.widget-progress-step.completed { color: #4CAF50; }
+.widget-progress-line {
+  flex: 1;
+  height: 3px;
+  background: #e8e6e0;
+  margin: 0 8px;
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 20px;
+}
+.widget-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #C5961A;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.widget-header { margin-bottom: 8px; }
+
+@media (max-width: 480px) {
+  .widget-headline { font-size: 20px; }
+  .widget-progress-step { font-size: 11px; }
+  .widget-progress-step span { width: 22px; height: 22px; font-size: 11px; }
+}
+
+.widget-card { padding: 28px 20px; border-radius: 20px; }
   .lp-hero { padding: 40px 20px 36px; }
   .lp-hero h1 { font-size: 26px; }
   .lp-logo { font-size: 15px; }
@@ -381,6 +529,19 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 <!-- Widget -->
 <div class="widget-section">
   <div class="widget-card" id="widget">
+
+    <!-- Widget Header -->
+    <div class="widget-header">
+      <h2 class="widget-headline">Get Your Custom Quote Now</h2>
+      <p class="widget-subline">3 quick steps. No obligation. Instant response.</p>
+      <div class="widget-progress">
+        <div class="widget-progress-step active" data-step="1"><span>1</span> Items</div>
+        <div class="widget-progress-line"><div class="widget-progress-fill" id="progress-fill"></div></div>
+        <div class="widget-progress-step" data-step="2"><span>2</span> Location</div>
+        <div class="widget-progress-line"><div class="widget-progress-fill" id="progress-fill-2"></div></div>
+        <div class="widget-progress-step" data-step="3"><span>3</span> Contact</div>
+      </div>
+    </div>
 
     <!-- Step 1: What are you selling? -->
     <div class="widget-step active" id="step-1">
@@ -593,6 +754,42 @@ function showStep(stepId) {
   document.querySelectorAll(".widget-step").forEach(function(s) { s.classList.remove("active"); });
   var el = document.getElementById(stepId);
   if (el) el.classList.add("active");
+  updateProgress(stepId);
+}
+
+function updateProgress(stepId) {
+  var steps = document.querySelectorAll(".widget-progress-step");
+  var fill1 = document.getElementById("progress-fill");
+  var fill2 = document.getElementById("progress-fill-2");
+  
+  if (stepId === "step-1") {
+    steps[0].className = "widget-progress-step active";
+    steps[1].className = "widget-progress-step";
+    steps[2].className = "widget-progress-step";
+    if (fill1) fill1.style.width = "0%";
+    if (fill2) fill2.style.width = "0%";
+  } else if (stepId === "step-2") {
+    steps[0].className = "widget-progress-step completed";
+    steps[1].className = "widget-progress-step active";
+    steps[2].className = "widget-progress-step";
+    if (fill1) fill1.style.width = "100%";
+    if (fill2) fill2.style.width = "0%";
+  } else if (stepId === "step-3") {
+    steps[0].className = "widget-progress-step completed";
+    steps[1].className = "widget-progress-step completed";
+    steps[2].className = "widget-progress-step active";
+    if (fill1) fill1.style.width = "100%";
+    if (fill2) fill2.style.width = "100%";
+  } else if (stepId === "step-confirm") {
+    steps[0].className = "widget-progress-step completed";
+    steps[1].className = "widget-progress-step completed";
+    steps[2].className = "widget-progress-step completed";
+    if (fill1) fill1.style.width = "100%";
+    if (fill2) fill2.style.width = "100%";
+    // Hide progress on confirmation
+    var header = document.querySelector(".widget-header");
+    if (header) header.style.display = "none";
+  }
 }
 
 // Step 1: Category selection - auto-advance
