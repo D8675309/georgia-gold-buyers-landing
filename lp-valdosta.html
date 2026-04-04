@@ -542,85 +542,174 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 </footer>
 
 <script>
-(function() {
-  var selectedItems = [];
-  var connectionPref = '';
-
-  // Step 1: Option selection
-  var options = document.querySelectorAll('.widget-option');
-  var nextBtn = document.getElementById('to-step-2');
-
-  options.forEach(function(opt) {
-    opt.addEventListener('click', function() {
-      var val = this.getAttribute('data-value');
-      var idx = selectedItems.indexOf(val);
-      if (idx > -1) {
-        selectedItems.splice(idx, 1);
-        this.classList.remove('selected');
-      } else {
-        selectedItems.push(val);
-        this.classList.add('selected');
-      }
-      nextBtn.disabled = selectedItems.length === 0;
-    });
+// ===== URGENCY BANNER DISMISS =====
+var dismissBtn = document.querySelector('.urgency-dismiss');
+if (dismissBtn) {
+  if (window.__urgencyDismissed) {
+    var banner = document.querySelector('.urgency-banner');
+    if (banner) banner.style.display = 'none';
+  }
+  dismissBtn.addEventListener('click', function() {
+    var banner = document.querySelector('.urgency-banner');
+    if (banner) banner.style.display = 'none';
+    window.__urgencyDismissed = true;
   });
+}
 
-  // Step navigation
-  function showStep(id) {
-    document.querySelectorAll('.widget-step').forEach(function(s) { s.classList.remove('active'); });
-    document.getElementById(id).classList.add('active');
+// ===== CALL LOCATION PICKER MODAL =====
+var callModal = document.getElementById('call-modal');
+if (callModal) {
+  var callModalClose = callModal.querySelector('.call-modal-close');
+  
+  function openCallModal(e) {
+    e.preventDefault();
+    callModal.classList.add('active');
+    callModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
   }
-
-  nextBtn.addEventListener('click', function() { if (selectedItems.length > 0) showStep('step-2'); });
-  document.getElementById('opt-call').addEventListener('click', function() { connectionPref = 'Call Me'; showStep('step-call'); });
-  document.getElementById('opt-visit').addEventListener('click', function() { connectionPref = 'Visit'; showStep('step-visit'); });
-
-  // Phone formatting
-  function formatPhone(input) {
-    input.addEventListener('input', function() {
-      var val = this.value.replace(/\D/g, '');
-      if (val.length > 10) val = val.substring(0, 10);
-      if (val.length >= 6) this.value = '(' + val.substring(0,3) + ') ' + val.substring(3,6) + '-' + val.substring(6);
-      else if (val.length >= 3) this.value = '(' + val.substring(0,3) + ') ' + val.substring(3);
-      else if (val.length > 0) this.value = '(' + val;
-    });
+  function closeCallModal() {
+    callModal.classList.remove('active');
+    callModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
-  formatPhone(document.getElementById('w-phone'));
-  formatPhone(document.getElementById('w-phone-2'));
+  
+  document.querySelectorAll('.call-trigger').forEach(function(btn) {
+    btn.addEventListener('click', openCallModal);
+  });
+  
+  if (callModalClose) callModalClose.addEventListener('click', closeCallModal);
+  callModal.addEventListener('click', function(e) {
+    if (e.target === callModal) closeCallModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && callModal.classList.contains('active')) closeCallModal();
+  });
+  callModal.querySelectorAll('.call-modal-option').forEach(function(opt) {
+    opt.addEventListener('click', function() { setTimeout(closeCallModal, 300); });
+  });
+}
 
-  // Submit handlers
-  function submitForm(nameId, phoneId, dayId) {
-    var name = document.getElementById(nameId).value.trim();
-    var phone = document.getElementById(phoneId).value.trim();
-    var day = dayId ? document.getElementById(dayId).value : '';
+// ===== WIDGET LOGIC =====
+var widgetData = { item: "", location: "", phone: "", email: "", details: "" };
 
-    if (!name || !phone) {
-      if (!name) document.getElementById(nameId).style.borderColor = '#e53e3e';
-      if (!phone) document.getElementById(phoneId).style.borderColor = '#e53e3e';
+function showStep(stepId) {
+  document.querySelectorAll(".widget-step").forEach(function(s) { s.classList.remove("active"); });
+  var el = document.getElementById(stepId);
+  if (el) el.classList.add("active");
+}
+
+// Step 1: Category selection - auto-advance
+document.querySelectorAll("#step-1 .widget-option").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    widgetData.item = this.getAttribute("data-value");
+    document.querySelectorAll("#step-1 .widget-option").forEach(function(b) { b.classList.remove("selected"); });
+    this.classList.add("selected");
+    setTimeout(function() { showStep("step-2"); }, 250);
+  });
+});
+
+// Step 2: Location selection - auto-advance
+document.querySelectorAll(".widget-location-btn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    widgetData.location = this.getAttribute("data-value");
+    this.style.borderColor = "#C5961A";
+    this.style.background = "#fdfbf5";
+    setTimeout(function() { showStep("step-3"); }, 250);
+  });
+});
+
+// Phone formatting
+var wPhone = document.getElementById("w-phone");
+if (wPhone) {
+  wPhone.addEventListener("input", function() {
+    var val = this.value.replace(/\D/g, "");
+    if (val.length > 10) val = val.substring(0, 10);
+    if (val.length >= 7) {
+      this.value = "(" + val.substring(0,3) + ") " + val.substring(3,6) + "-" + val.substring(6);
+    } else if (val.length >= 4) {
+      this.value = "(" + val.substring(0,3) + ") " + val.substring(3);
+    } else if (val.length > 0) {
+      this.value = "(" + val;
+    }
+  });
+}
+
+// Step 3: Submit
+var wSubmit = document.getElementById("w-submit");
+if (wSubmit) {
+  wSubmit.addEventListener("click", function(e) {
+    e.preventDefault();
+    var phone = document.getElementById("w-phone") ? document.getElementById("w-phone").value.trim() : "";
+    var email = document.getElementById("w-email") ? document.getElementById("w-email").value.trim() : "";
+    
+    if (!phone || phone.replace(/\D/g, "").length < 10) {
+      if (document.getElementById("w-phone")) {
+        document.getElementById("w-phone").style.borderColor = "#e53935";
+        document.getElementById("w-phone").focus();
+      }
       return;
     }
+    if (!email || email.indexOf("@") === -1) {
+      if (document.getElementById("w-email")) {
+        document.getElementById("w-email").style.borderColor = "#e53935";
+        document.getElementById("w-email").focus();
+      }
+      return;
+    }
+    
+    widgetData.phone = phone;
+    widgetData.email = email;
+    widgetData.details = document.getElementById("w-details") ? document.getElementById("w-details").value.trim() : "";
+    
+    wSubmit.textContent = "Sending...";
+    wSubmit.disabled = true;
+    
+    fetch("https://formsubmit.co/ajax/gadsonw@gmail.com", {
+      method: "POST",
+      body: JSON.stringify({
+        _subject: "NEW LEAD — " + widgetData.location + " — " + widgetData.item,
+        item: widgetData.item,
+        location: widgetData.location,
+        phone: widgetData.phone,
+        email: widgetData.email,
+        details: widgetData.details || "(none)"
+      }),
+      headers: { "Content-Type": "application/json", "Accept": "application/json" }
+    }).then(function() {
+      showStep("step-confirm");
+    }).catch(function() {
+      console.log("Form data:", widgetData);
+      showStep("step-confirm");
+    });
+  });
+}
 
-    var items = selectedItems.join(', ');
-    var subject = 'NEW LEAD — Valdosta — ' + connectionPref + ' — ' + items;
+// ===== SCROLL REVEAL =====
+var revealElements = document.querySelectorAll('.reveal');
+if (revealElements.length > 0 && typeof IntersectionObserver !== 'undefined') {
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealElements.forEach(function(el) { revealObserver.observe(el); });
+}
 
-    var data = {
-      name: name, phone: phone, items: items,
-      connection: connectionPref, preferred_day: day,
-      location: 'Valdosta, GA',
-      _subject: subject
-    };
-
-    fetch('https://formsubmit.co/ajax/gadsonw@gmail.com', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-    }).then(function() { showStep('step-confirm'); })
-    .catch(function() { showStep('step-confirm'); });
-  }
-
-  document.getElementById('submit-call').addEventListener('click', function() { submitForm('w-name', 'w-phone', null); });
-  document.getElementById('submit-visit').addEventListener('click', function() { submitForm('w-name-2', 'w-phone-2', 'w-day'); });
-})();
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href === '#') return;
+    var target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
 </script>
 
 </body>
