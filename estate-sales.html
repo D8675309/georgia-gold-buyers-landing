@@ -1659,6 +1659,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 <script>
 // ===== CALL LOCATION PICKER MODAL =====
 const callModal = document.getElementById('call-modal');
+if (callModal) {
 const callModalClose = callModal.querySelector('.call-modal-close');
 
 function openCallModal(e) {
@@ -1690,11 +1691,12 @@ callModal.querySelectorAll('.call-modal-option').forEach(opt => {
     setTimeout(closeCallModal, 300);
   });
 });
+} // end callModal null check
 
 // Sticky header shadow on scroll
 const header = document.getElementById('header');
 let lastScroll = 0;
-const headerNav = header.querySelector('.header-nav');
+const headerNav = header ? header.querySelector('.header-nav') : null;
 let prevScrollY = 0;
 
 window.addEventListener('scroll', () => {
