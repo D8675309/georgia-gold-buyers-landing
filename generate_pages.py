@@ -1,15 +1,123 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""Generate both GGB landing pages with all overhaul changes."""
+
+def generate_page(location):
+    """Generate a complete landing page for the given location."""
+    
+    is_mcdonough = location == "mcdonough"
+    
+    # Location-specific variables
+    if is_mcdonough:
+        city = "McDonough"
+        phone = "(678) 919-9265"
+        phone_tel = "+16789199265"
+        address = "120 S Point Blvd, McDonough, GA 30253"
+        address_short = "120 S Point Blvd"
+        zip_code = "30253"
+        subheadline = "Henry County's highest-rated gold buyer. Free expert appraisal, instant cash, guaranteed best offer."
+        location_value = "McDonough, GA"
+        store_name = "Georgia Gold Buyers"
+        store_name_long = "Georgia Gold Buyers &mdash; McDonough"
+        maps_review_link = "https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432"
+        maps_directions = "https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432,16z"
+        maps_embed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d-84.1883683!3d33.423772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f45941acca0667%3A0xb450892beb15f6c8!2sGeorgia%20Gold%20Buyers!5e0!3m2!1sen!2sus!4v1'
+        confirm_directions = 'https://www.google.com/maps/dir/?api=1&destination=Georgia+Gold+Buyers,+120+S+Point+Blvd,+McDonough,+GA+30253&destination_place_id=ChIJZwbKrEFZ9IgRyPYV6yuJULQ'
+        confirm_name = 'Georgia Gold Buyers — McDonough'
+        team_member_1_img = "team-gad.jpg"
+        team_member_1_name = "Gad Woodall"
+        team_member_1_title = "Owner"
+        team_member_2_img = "team-glenn.jpg"
+        team_member_2_name = "Glenn Paschal"
+        team_member_2_title = "General Manager"
+        local_seo = 'Proudly serving <strong>McDonough</strong>, <strong>Stockbridge</strong>, <strong>Hampton</strong>, <strong>Locust Grove</strong>, <strong>Conyers</strong>, <strong>Jonesboro</strong>, and all of <strong>Henry County</strong> and <strong>South Metro Atlanta</strong>.'
+        meta_desc = "Sell gold, silver, jewelry &amp; coins in McDonough, GA. Free appraisals, instant cash. Family-owned since 2012."
+        og_title = "Sell Your Gold for Top Dollar in McDonough | Georgia Gold Buyers"
+    else:
+        city = "Valdosta"
+        phone = "(229) 375-0015"
+        phone_tel = "+12293750015"
+        address = "3996 N Valdosta Rd, Valdosta, GA 31602"
+        address_short = "3996 N Valdosta Rd"
+        zip_code = "31602"
+        subheadline = "South Georgia's #1 rated gold buyer &mdash; 5.0 stars, 84+ reviews. Free expert appraisal, instant cash, guaranteed best offer."
+        location_value = "Valdosta, GA"
+        store_name = "Georgia Gold &amp; Silver Buyers"
+        store_name_long = "Georgia Gold &amp; Silver Buyers &mdash; Valdosta"
+        maps_review_link = "https://www.google.com/maps/place/Georgia+Gold+%26+Silver+Buyers/@30.8967673,-83.3243801"
+        maps_directions = "https://www.google.com/maps/place/Georgia+Gold+%26+Silver+Buyers/@30.8967673,-83.3243801,17z"
+        maps_embed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d-83.3218052!3d30.8967673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88ee67f7cc33c6d3%3A0x4939bd0c4c7f6e62!2sGeorgia%20Gold%20%26%20Silver%20Buyers!5e0!3m2!1sen!2sus!4v1'
+        confirm_directions = 'https://www.google.com/maps/dir/?api=1&destination=Georgia+Gold+%26+Silver+Buyers,+3996+N+Valdosta+Rd,+Valdosta,+GA+31602&destination_place_id=ChIJ08YzzPdn7oGRYM5_TAY9OUk'
+        confirm_name = 'Georgia Gold & Silver Buyers — Valdosta'
+        team_member_1_img = "team-gadson.jpg"
+        team_member_1_name = "Gadson Woodall"
+        team_member_1_title = "Owner"
+        team_member_2_img = "team-glenn.jpg"
+        team_member_2_name = "Glenn Paschal"
+        team_member_2_title = "General Manager"
+        local_seo = 'Proudly serving <strong>Valdosta</strong>, <strong>Tifton</strong>, <strong>Moultrie</strong>, <strong>Thomasville</strong>, <strong>Lake Park</strong>, <strong>Hahira</strong>, <strong>Douglas</strong>, and all of <strong>South Georgia</strong> and <strong>North Florida</strong>.'
+        meta_desc = "Sell gold, silver, jewelry &amp; coins in Valdosta, GA. Free appraisals, instant cash. Family-owned since 2012."
+        og_title = "Sell Your Gold for Top Dollar in Valdosta | Georgia Gold Buyers"
+
+    # Star SVG (reusable)
+    star_svg_14 = '<svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>'
+    five_stars_14 = star_svg_14 * 5
+    
+    google_badge_svg = '<svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>'
+    
+    def review_card(quote, author):
+        return f'''    <div class="lp-review-card">
+      <div class="lp-review-card-header">
+        <div class="stars-row">
+          {five_stars_14}
+        </div>
+        <span class="g-badge">{google_badge_svg} Google</span>
+      </div>
+      <blockquote>{quote}</blockquote>
+      <cite>{author}</cite>
+    </div>'''
+    
+    # Reviews with bold key phrases (#9)
+    reviews = []
+    reviews.append(review_card(
+        '"The process was <strong>super smooth</strong> and I felt really comfortable the whole time. Gadson and Glenn were so <strong>honest</strong> and gave me a <strong>fantastic price</strong> for my pieces."',
+        "Samantha Y."
+    ))
+    reviews.append(review_card(
+        '"Wonderful experience! Easy transaction and <strong>highest payout</strong> for gold in the area. We drove over an hour and it was <strong>absolutely worth it</strong>."',
+        "M Pratt"
+    ))
+    reviews.append(review_card(
+        '"The nicest guys! All <strong>testing and calculations are done right in front of you</strong> and they help explain each step. <strong>Highly recommend!</strong>"',
+        "Brandi B."
+    ))
+    # Replace WILLIAM S. with robert skinner (#9)
+    reviews.append(review_card(
+        '"Very informative, professional, and knowledgeable. Actually <strong>paid me more than I expected</strong>."',
+        "Robert Skinner"
+    ))
+    reviews.append(review_card(
+        '"<strong>Excellent place to sell your silver and gold!</strong> I\'ve been to all the other places and this place <strong>always beats them</strong>."',
+        "Mitchell Ray II"
+    ))
+    reviews.append(review_card(
+        '"Great experience and <strong>great owner</strong>! He was very knowledgeable and gave me a <strong>great price</strong>. I\'ll be going back again with more."',
+        "Katie H."
+    ))
+    
+    reviews_html = "\n".join(reviews)
+
+    html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Sell Your Gold in McDonough | Georgia Gold Buyers</title>
-<meta name="description" content="Sell gold, silver, jewelry &amp; coins in McDonough, GA. Free appraisals, instant cash. Family-owned since 2012.">
+<title>Sell Your Gold in {city} | Georgia Gold Buyers</title>
+<meta name="description" content="{meta_desc}">
 
 <!-- OG tags for social sharing -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sell Your Gold for Top Dollar in McDonough | Georgia Gold Buyers">
+<meta property="og:title" content="{og_title}">
 <meta property="og:description" content="Free appraisal. Instant cash. No obligation. Family-owned since 2012. Rated 5.0 stars.">
 <meta property="og:site_name" content="Georgia Gold Buyers">
 <meta property="og:image" content="https://georgiagoldbuying.com/hero-gold.jpg">
@@ -22,366 +130,366 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2L28 12L16 30L4 12Z' fill='%23C5961A'/></svg>" type="image/svg+xml">
 
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
-body {
+*, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+html {{ scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }}
+body {{
   font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   font-size: 16px; line-height: 1.6; color: #2a2a2a; background: #fafaf7;
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-}
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; border: none; font-family: inherit; }
-input, select, textarea { font-family: inherit; font-size: inherit; }
+}}
+img {{ max-width: 100%; display: block; }}
+a {{ color: inherit; text-decoration: none; }}
+button {{ cursor: pointer; border: none; font-family: inherit; }}
+input, select, textarea {{ font-family: inherit; font-size: inherit; }}
 
-:root {
+:root {{
   --gold: #C5961A; --gold-light: #D4A93A; --gold-dark: #A67D15;
   --dark: #1a1a1a; --dark-2: #2a2a2a; --light: #fafaf7;
   --light-2: #f3f1ec; --light-3: #e8e5de; --white: #ffffff;
   --text-primary: #1a1a1a; --text-secondary: #5a5a5a; --text-muted: #8a8a8a;
-}
+}}
 
 /* ===== MINIMAL HEADER ===== */
-.lp-header {
+.lp-header {{
   background: var(--dark); padding: 16px 24px;
   display: flex; align-items: center; justify-content: space-between;
-}
-.lp-logo { display: flex; align-items: center; gap: 10px; color: var(--white); font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
-.lp-logo svg { flex-shrink: 0; }
-.lp-phone-btn {
+}}
+.lp-logo {{ display: flex; align-items: center; gap: 10px; color: var(--white); font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }}
+.lp-logo svg {{ flex-shrink: 0; }}
+.lp-phone-btn {{
   width: 44px; height: 44px; border-radius: 50%; background: var(--gold);
   display: flex; align-items: center; justify-content: center; color: var(--white);
   transition: background 0.2s, transform 0.15s; text-decoration: none;
-}
-.lp-phone-btn:hover { background: var(--gold-light); transform: scale(1.05); }
+}}
+.lp-phone-btn:hover {{ background: var(--gold-light); transform: scale(1.05); }}
 
 /* ===== URGENCY BANNER ===== */
-.urgency-banner {
+.urgency-banner {{
   background: linear-gradient(90deg, #1a1a1a 0%, #2a2a2a 100%);
   padding: 10px 24px;
   text-align: center;
   font-size: 14px;
   color: rgba(255,255,255,0.9);
   position: relative;
-}
-.urgency-banner strong { color: #C5961A; }
-.urgency-dismiss {
+}}
+.urgency-banner strong {{ color: #C5961A; }}
+.urgency-dismiss {{
   position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
   background: none; border: none; color: rgba(255,255,255,0.4); font-size: 18px;
   cursor: pointer; padding: 4px 8px; line-height: 1;
-}
-.urgency-dismiss:hover { color: rgba(255,255,255,0.7); }
+}}
+.urgency-dismiss:hover {{ color: rgba(255,255,255,0.7); }}
 
 /* ===== HERO ===== */
-.lp-hero {
+.lp-hero {{
   background: linear-gradient(170deg, #1a1a1a 0%, #222 60%, #2a2a2a 100%);
   padding: 56px 24px 48px; text-align: center; position: relative; overflow: hidden;
-}
-.lp-hero::before {
+}}
+.lp-hero::before {{
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent);
-}
-.lp-hero::after {
+}}
+.lp-hero::after {{
   content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 600px; height: 600px;
   background: radial-gradient(circle, rgba(197,150,26,0.06) 0%, transparent 70%);
   pointer-events: none;
-}
-.lp-hero h1 {
+}}
+.lp-hero h1 {{
   font-size: clamp(28px, 5vw, 44px); font-weight: 700; color: var(--white);
   line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 14px; position: relative; z-index: 1;
-}
-.lp-hero h1 span { color: var(--gold); }
-.lp-hero p {
+}}
+.lp-hero h1 span {{ color: var(--gold); }}
+.lp-hero p {{
   font-size: clamp(16px, 2.5vw, 19px); color: rgba(255,255,255,0.65);
   margin-bottom: 28px; position: relative; z-index: 1;
-}
-.lp-trust {
+}}
+.lp-trust {{
   display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
   font-size: 14px; color: rgba(255,255,255,0.5); position: relative; z-index: 1;
-}
-.lp-trust-item { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
-.lp-trust-item svg { color: var(--gold); }
-.lp-trust-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); }
+}}
+.lp-trust-item {{ display: flex; align-items: center; gap: 5px; white-space: nowrap; }}
+.lp-trust-item svg {{ color: var(--gold); }}
+.lp-trust-sep {{ width: 1px; height: 16px; background: rgba(255,255,255,0.15); }}
 
 /* ===== WIDGET ===== */
-.widget-section { padding: 0 24px; margin-top: -24px; position: relative; z-index: 10; }
+.widget-section {{ padding: 0 24px; margin-top: -24px; position: relative; z-index: 10; }}
 
-.widget-headline {
+.widget-headline {{
   font-size: 24px; font-weight: 700; color: #1a1a1a;
   text-align: center; margin-bottom: 4px;
-}
-.widget-subline {
+}}
+.widget-subline {{
   font-size: 14px; color: #888; text-align: center; margin-bottom: 24px;
-}
-.widget-progress {
+}}
+.widget-progress {{
   display: flex; align-items: center; justify-content: center;
   gap: 0; margin-bottom: 28px; padding: 0 8px;
-}
-.widget-progress-step {
+}}
+.widget-progress-step {{
   display: flex; align-items: center; gap: 6px;
   font-size: 13px; font-weight: 500; color: #bbb;
   white-space: nowrap; transition: color 0.3s;
-}
-.widget-progress-step span {
+}}
+.widget-progress-step span {{
   display: inline-flex; align-items: center; justify-content: center;
   width: 26px; height: 26px; border-radius: 50%;
   background: #e8e6e0; color: #999; font-size: 12px; font-weight: 700;
   transition: background 0.3s, color 0.3s;
-}
-.widget-progress-step.active { color: #1a1a1a; }
-.widget-progress-step.active span { background: #C5961A; color: #fff; }
-.widget-progress-step.completed span { background: #4CAF50; color: #fff; }
-.widget-progress-step.completed { color: #4CAF50; }
-.widget-progress-line {
+}}
+.widget-progress-step.active {{ color: #1a1a1a; }}
+.widget-progress-step.active span {{ background: #C5961A; color: #fff; }}
+.widget-progress-step.completed span {{ background: #4CAF50; color: #fff; }}
+.widget-progress-step.completed {{ color: #4CAF50; }}
+.widget-progress-line {{
   flex: 1; height: 3px; background: #e8e6e0;
   margin: 0 8px; border-radius: 3px; overflow: hidden; min-width: 20px;
-}
-.widget-progress-fill {
+}}
+.widget-progress-fill {{
   height: 100%; width: 0%; background: #C5961A;
   border-radius: 3px; transition: width 0.4s ease;
-}
-.widget-header { margin-bottom: 8px; }
+}}
+.widget-header {{ margin-bottom: 8px; }}
 
-.widget-card {
+.widget-card {{
   max-width: 540px; margin: 0 auto; background: var(--white);
   border-radius: 24px; box-shadow: 0 12px 48px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
   padding: 36px 32px; overflow: hidden;
-}
+}}
 
-.widget-step { display: none; }
-.widget-step.active { display: block; animation: wFadeIn 0.35s ease; }
-@keyframes wFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.widget-step {{ display: none; }}
+.widget-step.active {{ display: block; animation: wFadeIn 0.35s ease; }}
+@keyframes wFadeIn {{ from {{ opacity: 0; transform: translateY(12px); }} to {{ opacity: 1; transform: translateY(0); }} }}
 
-.widget-step h2 {
+.widget-step h2 {{
   font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;
   letter-spacing: -0.02em;
-}
-.widget-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+}}
+.widget-subtitle {{ font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }}
 
-.widget-options {
+.widget-options {{
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px;
-}
-.widget-option {
+}}
+.widget-option {{
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
   padding: 18px 12px; border: 2px solid var(--light-3); border-radius: 12px;
   background: var(--white); font-size: 13px; font-weight: 500; color: var(--text-primary);
   transition: border-color 0.2s, background 0.2s, transform 0.15s; position: relative;
   min-height: 80px;
-}
-.widget-option:hover { border-color: #d0c9b8; background: #fdfcfa; }
-.widget-option.selected {
+}}
+.widget-option:hover {{ border-color: #d0c9b8; background: #fdfcfa; }}
+.widget-option.selected {{
   border-color: var(--gold); background: #faf8f2; transform: scale(1.02);
-}
-.widget-option.selected::after {
+}}
+.widget-option.selected::after {{
   content: ''; position: absolute; top: 8px; right: 8px;
   width: 20px; height: 20px; border-radius: 50%; background: var(--gold);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: center; background-size: 12px;
-}
-.widget-option svg { width: 28px; height: 28px; color: var(--gold); }
+}}
+.widget-option svg {{ width: 28px; height: 28px; color: var(--gold); }}
 
 /* Widget form fields */
-.widget-field { margin-bottom: 16px; }
-.widget-field label { display: block; font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
-.widget-field .required { color: #C5961A; }
-.widget-field .optional { font-weight: 400; color: #999; font-size: 12px; }
+.widget-field {{ margin-bottom: 16px; }}
+.widget-field label {{ display: block; font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }}
+.widget-field .required {{ color: #C5961A; }}
+.widget-field .optional {{ font-weight: 400; color: #999; font-size: 12px; }}
 .widget-field input,
-.widget-field textarea {
+.widget-field textarea {{
   width: 100%; padding: 14px 16px; border: 2px solid #e8e6e0;
   border-radius: 10px; font-size: 16px; font-family: 'DM Sans', sans-serif;
   background: #fff; color: #1a1a1a; transition: border-color 0.2s; box-sizing: border-box;
-}
+}}
 .widget-field input:focus,
-.widget-field textarea:focus { outline: none; border-color: #C5961A; }
-.widget-field textarea { resize: vertical; min-height: 80px; }
+.widget-field textarea:focus {{ outline: none; border-color: #C5961A; }}
+.widget-field textarea {{ resize: vertical; min-height: 80px; }}
 
 /* Confirmation */
-.widget-confirm-text { font-size: 15px; color: #666; line-height: 1.6; margin-bottom: 24px; }
-.widget-location-info {
+.widget-confirm-text {{ font-size: 15px; color: #666; line-height: 1.6; margin-bottom: 24px; }}
+.widget-location-info {{
   background: #f5f4f0; padding: 20px; border-radius: 12px; text-align: center;
-}
-.widget-location-info strong { font-size: 16px; color: #1a1a1a; }
-.widget-location-info p { font-size: 14px; color: #666; margin: 4px 0; }
-.widget-directions {
+}}
+.widget-location-info strong {{ font-size: 16px; color: #1a1a1a; }}
+.widget-location-info p {{ font-size: 14px; color: #666; margin: 4px 0; }}
+.widget-directions {{
   display: inline-flex; align-items: center; gap: 6px; margin-top: 12px;
   font-size: 14px; font-weight: 600; color: var(--gold-dark); transition: color 0.2s;
-}
-.widget-directions:hover { color: var(--gold); }
+}}
+.widget-directions:hover {{ color: var(--gold); }}
 
-.widget-connect-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.widget-connect-btn {
+.widget-connect-options {{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }}
+.widget-connect-btn {{
   display: flex; flex-direction: column; align-items: center; gap: 10px;
   padding: 28px 16px; border: 2px solid var(--light-3); border-radius: 14px;
   background: var(--white); transition: border-color 0.2s, background 0.2s, transform 0.15s;
   text-align: center;
-}
-.widget-connect-btn:hover { border-color: var(--gold); background: #faf8f2; transform: translateY(-2px); }
-.widget-connect-btn svg { width: 32px; height: 32px; color: var(--gold); }
-.widget-connect-btn strong { font-size: 16px; color: var(--text-primary); }
-.widget-connect-btn span { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+}}
+.widget-connect-btn:hover {{ border-color: var(--gold); background: #faf8f2; transform: translateY(-2px); }}
+.widget-connect-btn svg {{ width: 32px; height: 32px; color: var(--gold); }}
+.widget-connect-btn strong {{ font-size: 16px; color: var(--text-primary); }}
+.widget-connect-btn span {{ font-size: 13px; color: var(--text-muted); line-height: 1.4; }}
 
-.widget-form { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
-.widget-form input, .widget-form select {
+.widget-form {{ display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }}
+.widget-form input, .widget-form select {{
   width: 100%; height: 52px; padding: 0 18px; border: 1px solid var(--light-3);
   border-radius: 12px; font-size: 16px; background: var(--white); color: var(--text-primary);
   transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none;
-}
-.widget-form input:focus, .widget-form select:focus {
+}}
+.widget-form input:focus, .widget-form select:focus {{
   outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(197,150,26,0.12);
-}
-.widget-form input::placeholder { color: var(--text-muted); }
-.widget-submit {
+}}
+.widget-form input::placeholder {{ color: var(--text-muted); }}
+.widget-submit {{
   width: 100%; height: 52px; background: var(--gold); color: var(--dark);
   font-size: 16px; font-weight: 700; border-radius: 12px;
   transition: background 0.2s, transform 0.15s;
-}
-.widget-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
-.widget-note { font-size: 13px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+}}
+.widget-submit:hover {{ background: var(--gold-light); transform: translateY(-1px); }}
+.widget-note {{ font-size: 13px; color: var(--text-muted); text-align: center; margin-top: 12px; }}
 
-.widget-check {
+.widget-check {{
   width: 64px; height: 64px; border-radius: 50%; background: #2d8a4e;
   color: var(--white); font-size: 32px; display: flex; align-items: center; justify-content: center;
   margin: 0 auto 20px; animation: wCheckPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-@keyframes wCheckPop { from { transform: scale(0); } to { transform: scale(1); } }
+}}
+@keyframes wCheckPop {{ from {{ transform: scale(0); }} to {{ transform: scale(1); }} }}
 
-.widget-location-card {
+.widget-location-card {{
   background: var(--light-2); border: 1px solid var(--light-3); border-radius: 12px;
   padding: 20px; margin-top: 24px; text-align: center;
-}
-.widget-location-card strong { display: block; font-size: 16px; margin-bottom: 6px; }
-.widget-location-card p { font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }
+}}
+.widget-location-card strong {{ display: block; font-size: 16px; margin-bottom: 6px; }}
+.widget-location-card p {{ font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }}
 
 /* ===== HOW IT WORKS ===== */
-.lp-how-it-works { background: #fafaf7; }
+.lp-how-it-works {{ background: #fafaf7; }}
 
 /* ===== TRUST REVIEWS ===== */
-.lp-reviews { padding: 40px 24px; max-width: 720px; margin: 0 auto; }
-.lp-reviews-header { text-align: center; margin-bottom: 24px; }
-.lp-reviews-header h3 { font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
-.lp-reviews-badge {
+.lp-reviews {{ padding: 40px 24px; max-width: 720px; margin: 0 auto; }}
+.lp-reviews-header {{ text-align: center; margin-bottom: 24px; }}
+.lp-reviews-header h3 {{ font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }}
+.lp-reviews-badge {{
   display: inline-flex; align-items: center; gap: 8px;
   background: #f5f4f0; padding: 8px 16px; border-radius: 20px; font-size: 14px; color: #555;
-}
-.lp-reviews-badge .stars-inline { display: inline-flex; gap: 1px; }
-.lp-reviews-badge strong { color: #1a1a1a; }
-.lp-reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.lp-review-card {
+}}
+.lp-reviews-badge .stars-inline {{ display: inline-flex; gap: 1px; }}
+.lp-reviews-badge strong {{ color: #1a1a1a; }}
+.lp-reviews-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }}
+.lp-review-card {{
   padding: 16px; background: #fff; border: 1px solid #e8e6e0;
   border-radius: 10px; transition: border-color 0.2s;
-}
-.lp-review-card:hover { border-color: #C5961A; }
-.lp-review-card-header { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-.lp-review-card-header .stars-row { display: flex; gap: 1px; }
-.lp-review-card-header .stars-row svg { width: 12px; height: 12px; }
-.lp-review-card-header .g-badge {
+}}
+.lp-review-card:hover {{ border-color: #C5961A; }}
+.lp-review-card-header {{ display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }}
+.lp-review-card-header .stars-row {{ display: flex; gap: 1px; }}
+.lp-review-card-header .stars-row svg {{ width: 12px; height: 12px; }}
+.lp-review-card-header .g-badge {{
   display: inline-flex; align-items: center; gap: 4px; margin-left: auto;
   font-size: 11px; color: #999;
-}
-.lp-review-card blockquote { font-size: 13px; color: #444; line-height: 1.5; margin: 0 0 8px 0; }
-.lp-review-card cite { font-size: 12px; color: #999; font-style: normal; font-weight: 600; }
-.lp-reviews-link {
+}}
+.lp-review-card blockquote {{ font-size: 13px; color: #444; line-height: 1.5; margin: 0 0 8px 0; }}
+.lp-review-card cite {{ font-size: 12px; color: #999; font-style: normal; font-weight: 600; }}
+.lp-reviews-link {{
   display: block; text-align: center; margin-top: 16px;
   font-size: 13px; color: #C5961A; text-decoration: none; font-weight: 600;
-}
-.lp-reviews-link:hover { text-decoration: underline; }
+}}
+.lp-reviews-link:hover {{ text-decoration: underline; }}
 
-@media (max-width: 480px) {
-  .lp-reviews-grid { grid-template-columns: 1fr; }
-  .lp-reviews { padding: 32px 16px; }
-}
+@media (max-width: 480px) {{
+  .lp-reviews-grid {{ grid-template-columns: 1fr; }}
+  .lp-reviews {{ padding: 32px 16px; }}
+}}
 
 /* ===== LOCATION DETAILS ===== */
-.lp-location { padding: 0 24px 48px; max-width: 600px; margin: 0 auto; }
-.lp-loc-details { text-align: center; margin-bottom: 24px; }
-.lp-loc-details h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-.lp-loc-details p { font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }
-.lp-loc-details a { color: var(--text-secondary); transition: color 0.2s; }
-.lp-loc-details a:hover { color: var(--gold); }
-.lp-map { border-radius: 14px; overflow: hidden; border: 1px solid var(--light-3); margin-bottom: 16px; }
-.lp-map iframe { width: 100%; height: 240px; border: 0; }
-.lp-dir-btn {
+.lp-location {{ padding: 0 24px 48px; max-width: 600px; margin: 0 auto; }}
+.lp-loc-details {{ text-align: center; margin-bottom: 24px; }}
+.lp-loc-details h3 {{ font-size: 18px; font-weight: 700; margin-bottom: 12px; }}
+.lp-loc-details p {{ font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }}
+.lp-loc-details a {{ color: var(--text-secondary); transition: color 0.2s; }}
+.lp-loc-details a:hover {{ color: var(--gold); }}
+.lp-map {{ border-radius: 14px; overflow: hidden; border: 1px solid var(--light-3); margin-bottom: 16px; }}
+.lp-map iframe {{ width: 100%; height: 240px; border: 0; }}
+.lp-dir-btn {{
   display: flex; align-items: center; justify-content: center; gap: 8px;
   width: 100%; padding: 14px; background: var(--dark); color: var(--white);
   font-weight: 600; font-size: 15px; border-radius: 10px; transition: background 0.2s;
-}
-.lp-dir-btn:hover { background: #333; }
+}}
+.lp-dir-btn:hover {{ background: #333; }}
 
 /* ===== MOBILE BOTTOM BAR ===== */
-.lp-mobile-bar {
+.lp-mobile-bar {{
   display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
   padding: 8px 12px; padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
   background: var(--dark); border-top: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
-}
-.lp-mobile-bar a {
+}}
+.lp-mobile-bar a {{
   display: flex; align-items: center; justify-content: center; gap: 8px;
   width: 100%; height: 48px; border-radius: 12px; background: var(--gold);
   color: var(--white); font-weight: 700; font-size: 16px;
-}
+}}
 
 /* ===== FOOTER ===== */
-.lp-footer {
+.lp-footer {{
   background: var(--dark); padding: 32px 24px; text-align: center;
   color: rgba(255,255,255,0.5); font-size: 13px;
-}
-.lp-footer p { margin-bottom: 6px; }
-.lp-footer a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
-.lp-footer a:hover { color: var(--gold); }
-.lp-footer .lp-footer-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; font-weight: 600; }
+}}
+.lp-footer p {{ margin-bottom: 6px; }}
+.lp-footer a {{ color: rgba(255,255,255,0.5); transition: color 0.2s; }}
+.lp-footer a:hover {{ color: var(--gold); }}
+.lp-footer .lp-footer-link {{ display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; font-weight: 600; }}
 
 /* ===== RESPONSIVE ===== */
-@media (min-width: 640px) {
-  .widget-options { grid-template-columns: repeat(4, 1fr); }
-}
+@media (min-width: 640px) {{
+  .widget-options {{ grid-template-columns: repeat(4, 1fr); }}
+}}
 
-@media (max-width: 768px) {
-  .lp-mobile-bar { display: block; }
-  body { padding-bottom: 72px; }
-  .widget-card { padding: 28px 20px; border-radius: 20px; }
-  .lp-hero { padding: 40px 20px 36px; }
-  .lp-hero h1 { font-size: 26px; }
-  .lp-logo { font-size: 15px; }
-  .widget-step h2 { font-size: 20px; }
-}
+@media (max-width: 768px) {{
+  .lp-mobile-bar {{ display: block; }}
+  body {{ padding-bottom: 72px; }}
+  .widget-card {{ padding: 28px 20px; border-radius: 20px; }}
+  .lp-hero {{ padding: 40px 20px 36px; }}
+  .lp-hero h1 {{ font-size: 26px; }}
+  .lp-logo {{ font-size: 15px; }}
+  .widget-step h2 {{ font-size: 20px; }}
+}}
 
-@media (max-width: 480px) {
-  .widget-headline { font-size: 20px; }
-  .widget-progress-step { font-size: 11px; }
-  .widget-progress-step span { width: 22px; height: 22px; font-size: 11px; }
-  .widget-connect-options { grid-template-columns: 1fr; }
-  .lp-trust { gap: 10px; font-size: 12px; }
-  .lp-trust-sep { display: none; }
-  .lp-how-it-works .hiw-grid { grid-template-columns: 1fr !important; }
-}
+@media (max-width: 480px) {{
+  .widget-headline {{ font-size: 20px; }}
+  .widget-progress-step {{ font-size: 11px; }}
+  .widget-progress-step span {{ width: 22px; height: 22px; font-size: 11px; }}
+  .widget-connect-options {{ grid-template-columns: 1fr; }}
+  .lp-trust {{ gap: 10px; font-size: 12px; }}
+  .lp-trust-sep {{ display: none; }}
+  .lp-how-it-works .hiw-grid {{ grid-template-columns: 1fr !important; }}
+}}
 
 /* ===== CALL MODAL ===== */
-.call-modal {
+.call-modal {{
   display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.6); z-index: 200;
   align-items: center; justify-content: center; padding: 24px;
-}
-.call-modal.active { display: flex; }
-.call-modal-content {
+}}
+.call-modal.active {{ display: flex; }}
+.call-modal-content {{
   background: #fff; border-radius: 16px; padding: 32px 24px;
   max-width: 360px; width: 100%; text-align: center; position: relative;
-}
-.call-modal-close {
+}}
+.call-modal-close {{
   position: absolute; top: 12px; right: 16px;
   background: none; border: none; font-size: 24px; color: #999;
   cursor: pointer; padding: 4px;
-}
-.call-modal-close:hover { color: #333; }
-.call-modal h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
-.call-modal-option {
+}}
+.call-modal-close:hover {{ color: #333; }}
+.call-modal h3 {{ font-size: 18px; font-weight: 700; margin-bottom: 16px; }}
+.call-modal-option {{
   display: block; width: 100%; padding: 16px;
   border: 2px solid #e8e6e0; border-radius: 12px; margin-bottom: 8px;
   text-decoration: none; color: #1a1a1a; font-weight: 600;
   transition: border-color 0.2s, background 0.2s;
-}
-.call-modal-option:hover { border-color: #C5961A; background: #fdfbf5; }
-.call-modal-option span { display: block; font-size: 13px; color: #888; font-weight: 400; margin-top: 2px; }
+}}
+.call-modal-option:hover {{ border-color: #C5961A; background: #fdfbf5; }}
+.call-modal-option span {{ display: block; font-size: 13px; color: #888; font-weight: 400; margin-top: 2px; }}
 </style>
 </head>
 <body>
@@ -392,7 +500,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 2L7 10H21L14 2Z" fill="#C5961A"/><path d="M14 26L3 10H25L14 26Z" fill="#C5961A" opacity="0.7"/><path d="M14 2L7 10L14 26L21 10L14 2Z" fill="#C5961A" opacity="0.9"/></svg>
     Georgia Gold Buyers
   </a>
-  <a href="tel:+16789199265" class="lp-phone-btn" aria-label="Call McDonough">
+  <a href="tel:{phone_tel}" class="lp-phone-btn" aria-label="Call {city}">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
   </a>
 </header>
@@ -405,11 +513,11 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 
 <!-- Hero (#1) -->
 <section class="lp-hero">
-  <h1>Sell Your Gold for <span>Top Dollar</span> in McDonough</h1>
-  <p>Henry County's highest-rated gold buyer. Free expert appraisal, instant cash, guaranteed best offer.</p>
+  <h1>Sell Your Gold for <span>Top Dollar</span> in {city}</h1>
+  <p>{subheadline}</p>
   <a href="#" class="hero-phone call-trigger" style="display:inline-flex; align-items:center; gap:8px; color:#C5961A; font-size:18px; font-weight:600; text-decoration:none; margin-top:12px; position:relative; z-index:1;">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-    Call Now: (678) 919-9265
+    Call Now: {phone}
   </a>
   <div class="lp-trust" style="margin-top:20px;">
     <span class="lp-trust-item">
@@ -534,14 +642,14 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
     <p style="font-size:14px; color:#888; margin-bottom:24px;">Family-owned since 2012 &middot; Licensed &middot; Insured &middot; Professional-grade testing equipment</p>
     <div style="display:flex; justify-content:center; gap:24px; flex-wrap:wrap;">
       <div style="text-align:center;">
-        <img src="team-gad.jpg" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid #C5961A; margin-bottom:8px; display:inline-block;" alt="Gad Woodall">
-        <div style="font-size:14px; font-weight:600;">Gad Woodall</div>
-        <div style="font-size:12px; color:#888;">Owner</div>
+        <img src="{team_member_1_img}" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid #C5961A; margin-bottom:8px; display:inline-block;" alt="{team_member_1_name}">
+        <div style="font-size:14px; font-weight:600;">{team_member_1_name}</div>
+        <div style="font-size:12px; color:#888;">{team_member_1_title}</div>
       </div>
       <div style="text-align:center;">
-        <img src="team-glenn.jpg" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid #C5961A; margin-bottom:8px; display:inline-block;" alt="Glenn Paschal">
-        <div style="font-size:14px; font-weight:600;">Glenn Paschal</div>
-        <div style="font-size:12px; color:#888;">General Manager</div>
+        <img src="{team_member_2_img}" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid #C5961A; margin-bottom:8px; display:inline-block;" alt="{team_member_2_name}">
+        <div style="font-size:14px; font-weight:600;">{team_member_2_name}</div>
+        <div style="font-size:12px; color:#888;">{team_member_2_title}</div>
       </div>
     </div>
   </div>
@@ -597,103 +705,44 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
     <h3>What Our Customers Say</h3>
     <div class="lp-reviews-badge">
       <div class="stars-inline">
-        <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+        {five_stars_14}
       </div>
       <strong>5.0</strong> &middot; 84+ Google Reviews
     </div>
   </div>
   <div class="lp-reviews-grid">
-    <div class="lp-review-card">
-      <div class="lp-review-card-header">
-        <div class="stars-row">
-          <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <span class="g-badge"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</span>
-      </div>
-      <blockquote>"The process was <strong>super smooth</strong> and I felt really comfortable the whole time. Gadson and Glenn were so <strong>honest</strong> and gave me a <strong>fantastic price</strong> for my pieces."</blockquote>
-      <cite>Samantha Y.</cite>
-    </div>
-    <div class="lp-review-card">
-      <div class="lp-review-card-header">
-        <div class="stars-row">
-          <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <span class="g-badge"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</span>
-      </div>
-      <blockquote>"Wonderful experience! Easy transaction and <strong>highest payout</strong> for gold in the area. We drove over an hour and it was <strong>absolutely worth it</strong>."</blockquote>
-      <cite>M Pratt</cite>
-    </div>
-    <div class="lp-review-card">
-      <div class="lp-review-card-header">
-        <div class="stars-row">
-          <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <span class="g-badge"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</span>
-      </div>
-      <blockquote>"The nicest guys! All <strong>testing and calculations are done right in front of you</strong> and they help explain each step. <strong>Highly recommend!</strong>"</blockquote>
-      <cite>Brandi B.</cite>
-    </div>
-    <div class="lp-review-card">
-      <div class="lp-review-card-header">
-        <div class="stars-row">
-          <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <span class="g-badge"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</span>
-      </div>
-      <blockquote>"Very informative, professional, and knowledgeable. Actually <strong>paid me more than I expected</strong>."</blockquote>
-      <cite>Robert Skinner</cite>
-    </div>
-    <div class="lp-review-card">
-      <div class="lp-review-card-header">
-        <div class="stars-row">
-          <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <span class="g-badge"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</span>
-      </div>
-      <blockquote>"<strong>Excellent place to sell your silver and gold!</strong> I've been to all the other places and this place <strong>always beats them</strong>."</blockquote>
-      <cite>Mitchell Ray II</cite>
-    </div>
-    <div class="lp-review-card">
-      <div class="lp-review-card-header">
-        <div class="stars-row">
-          <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <span class="g-badge"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> Google</span>
-      </div>
-      <blockquote>"Great experience and <strong>great owner</strong>! He was very knowledgeable and gave me a <strong>great price</strong>. I'll be going back again with more."</blockquote>
-      <cite>Katie H.</cite>
-    </div>
+{reviews_html}
   </div>
-  <a href="https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432" target="_blank" class="lp-reviews-link">Read all reviews on Google &rarr;</a>
+  <a href="{maps_review_link}" target="_blank" class="lp-reviews-link">Read all reviews on Google &rarr;</a>
 </div>
 
 <!-- Serving Area - Local SEO (#10) -->
 <section style="padding:0 24px 32px;">
   <div style="max-width:660px; margin:0 auto; text-align:center;">
-    <p style="font-size:14px; color:#666; line-height:1.7;">Proudly serving <strong>McDonough</strong>, <strong>Stockbridge</strong>, <strong>Hampton</strong>, <strong>Locust Grove</strong>, <strong>Conyers</strong>, <strong>Jonesboro</strong>, and all of <strong>Henry County</strong> and <strong>South Metro Atlanta</strong>.</p>
+    <p style="font-size:14px; color:#666; line-height:1.7;">{local_seo}</p>
   </div>
 </section>
 
 <!-- Google Map Embed (#11) -->
 <section style="padding:0 24px 24px;">
   <div style="max-width:600px; margin:0 auto;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d-84.1883683!3d33.423772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f45941acca0667%3A0xb450892beb15f6c8!2sGeorgia%20Gold%20Buyers!5e0!3m2!1sen!2sus!4v1" width="100%" height="200" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="{maps_embed}" width="100%" height="200" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
 <!-- Location Details (#12 entity fix, #16 appointment clarification) -->
 <div class="lp-location">
   <div class="lp-loc-details">
-    <h3>Georgia Gold Buyers &mdash; McDonough</h3>
-    <p>120 S Point Blvd, McDonough, GA 30253</p>
-    <p><a href="tel:+16789199265">(678) 919-9265</a></p>
+    <h3>{store_name_long}</h3>
+    <p>{address}</p>
+    <p><a href="tel:{phone_tel}">{phone}</a></p>
     <p><strong>Walk-ins welcome &middot; Appointments recommended</strong> &middot; Open 7 Days a Week</p>
     <p style="font-size:13px; color:#888; margin-top:4px;">Call to check today's availability or schedule a time that works for you.</p>
   </div>
   <div class="lp-map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d-84.1883683!3d33.423772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f45941acca0667%3A0xb450892beb15f6c8!2sGeorgia%20Gold%20Buyers!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Georgia Gold Buyers McDonough"></iframe>
+    <iframe src="{maps_embed}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="{store_name} {city}"></iframe>
   </div>
-  <a href="https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432,16z" target="_blank" rel="noopener noreferrer" class="lp-dir-btn">
+  <a href="{maps_directions}" target="_blank" rel="noopener noreferrer" class="lp-dir-btn">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
     Get Directions
   </a>
@@ -715,7 +764,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 
 <!-- Mobile Bottom Bar -->
 <div class="lp-mobile-bar">
-  <a href="tel:+16789199265">
+  <a href="tel:{phone_tel}">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
     Call Now
   </a>
@@ -723,7 +772,7 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 
 <!-- Footer (#13 privacy policy link) -->
 <footer class="lp-footer">
-  <p>120 S Point Blvd, McDonough, GA 30253 &middot; <a href="tel:+16789199265">(678) 919-9265</a></p>
+  <p>{address} &middot; <a href="tel:{phone_tel}">{phone}</a></p>
   <p>&copy; 2026 Georgia Gold Buyers</p>
   <a href="index.html" class="lp-footer-link">Visit our website &rarr;</a>
   <br>
@@ -733,160 +782,160 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 <script>
 // ===== URGENCY BANNER DISMISS =====
 var dismissBtn = document.querySelector('.urgency-dismiss');
-if (dismissBtn) {
-  if (window.__urgencyDismissed) {
+if (dismissBtn) {{
+  if (window.__urgencyDismissed) {{
     var banner = document.querySelector('.urgency-banner');
     if (banner) banner.style.display = 'none';
-  }
-  dismissBtn.addEventListener('click', function() {
+  }}
+  dismissBtn.addEventListener('click', function() {{
     var banner = document.querySelector('.urgency-banner');
     if (banner) banner.style.display = 'none';
     window.__urgencyDismissed = true;
-  });
-}
+  }});
+}}
 
 // ===== CALL LOCATION PICKER MODAL =====
 var callModal = document.getElementById('call-modal');
-if (callModal) {
+if (callModal) {{
   var callModalClose = callModal.querySelector('.call-modal-close');
   
-  function openCallModal(e) {
+  function openCallModal(e) {{
     e.preventDefault();
     callModal.classList.add('active');
     callModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-  }
-  function closeCallModal() {
+  }}
+  function closeCallModal() {{
     callModal.classList.remove('active');
     callModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-  }
+  }}
   
-  document.querySelectorAll('.call-trigger').forEach(function(btn) {
+  document.querySelectorAll('.call-trigger').forEach(function(btn) {{
     btn.addEventListener('click', openCallModal);
-  });
+  }});
   
   if (callModalClose) callModalClose.addEventListener('click', closeCallModal);
-  callModal.addEventListener('click', function(e) {
+  callModal.addEventListener('click', function(e) {{
     if (e.target === callModal) closeCallModal();
-  });
-  document.addEventListener('keydown', function(e) {
+  }});
+  document.addEventListener('keydown', function(e) {{
     if (e.key === 'Escape' && callModal.classList.contains('active')) closeCallModal();
-  });
-  callModal.querySelectorAll('.call-modal-option').forEach(function(opt) {
-    opt.addEventListener('click', function() { setTimeout(closeCallModal, 300); });
-  });
-}
+  }});
+  callModal.querySelectorAll('.call-modal-option').forEach(function(opt) {{
+    opt.addEventListener('click', function() {{ setTimeout(closeCallModal, 300); }});
+  }});
+}}
 
 // ===== WIDGET LOGIC (2-step: Items → Contact) =====
-var widgetData = { item: "", location: "McDonough, GA", phone: "", email: "", details: "" };
+var widgetData = {{ item: "", location: "{location_value}", phone: "", email: "", details: "" }};
 
-function showStep(stepId) {
-  document.querySelectorAll(".widget-step").forEach(function(s) { s.classList.remove("active"); });
+function showStep(stepId) {{
+  document.querySelectorAll(".widget-step").forEach(function(s) {{ s.classList.remove("active"); }});
   var el = document.getElementById(stepId);
   if (el) el.classList.add("active");
   updateProgress(stepId);
-}
+}}
 
-function updateProgress(stepId) {
+function updateProgress(stepId) {{
   var steps = document.querySelectorAll(".widget-progress-step");
   var fill1 = document.getElementById("progress-fill");
   
-  if (stepId === "step-1") {
+  if (stepId === "step-1") {{
     steps[0].className = "widget-progress-step active";
     steps[1].className = "widget-progress-step";
     if (fill1) fill1.style.width = "0%";
-  } else if (stepId === "step-3") {
+  }} else if (stepId === "step-3") {{
     steps[0].className = "widget-progress-step completed";
     steps[1].className = "widget-progress-step active";
     if (fill1) fill1.style.width = "100%";
-  } else if (stepId === "step-confirm") {
+  }} else if (stepId === "step-confirm") {{
     steps[0].className = "widget-progress-step completed";
     steps[1].className = "widget-progress-step completed";
     if (fill1) fill1.style.width = "100%";
     // Hide progress on confirmation
     var header = document.querySelector(".widget-header");
     if (header) header.style.display = "none";
-  }
-}
+  }}
+}}
 
 // Step 1: Category selection - auto-advance (skip location, go to contact)
-document.querySelectorAll("#step-1 .widget-option").forEach(function(btn) {
-  btn.addEventListener("click", function() {
+document.querySelectorAll("#step-1 .widget-option").forEach(function(btn) {{
+  btn.addEventListener("click", function() {{
     widgetData.item = this.getAttribute("data-value");
-    document.querySelectorAll("#step-1 .widget-option").forEach(function(b) { b.classList.remove("selected"); });
+    document.querySelectorAll("#step-1 .widget-option").forEach(function(b) {{ b.classList.remove("selected"); }});
     this.classList.add("selected");
     // Auto-set location and skip to contact step
-    setTimeout(function() { showStep("step-3"); }, 250);
-  });
-});
+    setTimeout(function() {{ showStep("step-3"); }}, 250);
+  }});
+}});
 
 // Phone formatting
 var wPhone = document.getElementById("w-phone");
-if (wPhone) {
-  wPhone.addEventListener("input", function() {
-    var val = this.value.replace(/\D/g, "");
+if (wPhone) {{
+  wPhone.addEventListener("input", function() {{
+    var val = this.value.replace(/\\D/g, "");
     if (val.length > 10) val = val.substring(0, 10);
-    if (val.length >= 7) {
+    if (val.length >= 7) {{
       this.value = "(" + val.substring(0,3) + ") " + val.substring(3,6) + "-" + val.substring(6);
-    } else if (val.length >= 4) {
+    }} else if (val.length >= 4) {{
       this.value = "(" + val.substring(0,3) + ") " + val.substring(3);
-    } else if (val.length > 0) {
+    }} else if (val.length > 0) {{
       this.value = "(" + val;
-    }
-  });
-}
+    }}
+  }});
+}}
 
 // Populate confirmation with selected location
-function updateConfirmation() {
+function updateConfirmation() {{
   var locDiv = document.getElementById('confirm-location');
   if (!locDiv) return;
   
-  var locations = {
-    'McDonough, GA': {
+  var locations = {{
+    'McDonough, GA': {{
       name: 'Georgia Gold Buyers — McDonough',
       address: '120 S Point Blvd, McDonough, GA 30253',
       phone: '(678) 919-9265',
       directions: 'https://www.google.com/maps/dir/?api=1&destination=Georgia+Gold+Buyers,+120+S+Point+Blvd,+McDonough,+GA+30253&destination_place_id=ChIJZwbKrEFZ9IgRyPYV6yuJULQ'
-    },
-    'Valdosta, GA': {
+    }},
+    'Valdosta, GA': {{
       name: 'Georgia Gold & Silver Buyers — Valdosta',
       address: '3996 N Valdosta Rd, Valdosta, GA 31602',
       phone: '(229) 375-0015',
       directions: 'https://www.google.com/maps/dir/?api=1&destination=Georgia+Gold+%26+Silver+Buyers,+3996+N+Valdosta+Rd,+Valdosta,+GA+31602&destination_place_id=ChIJ08YzzPdn7oGRYM5_TAY9OUk'
-    }
-  };
+    }}
+  }};
   
-  var loc = locations[widgetData.location] || locations['McDonough, GA'];
+  var loc = locations[widgetData.location] || locations['{location_value}'];
   
   locDiv.innerHTML = '<strong>' + loc.name + '</strong>' +
     '<p>' + loc.address + '</p>' +
     '<p>' + loc.phone + '</p>' +
     '<a href="' + loc.directions + '" target="_blank" class="widget-directions">Get Directions &rarr;</a>';
-}
+}}
 
 // Step 2 (contact): Submit
 var wSubmit = document.getElementById("w-submit");
-if (wSubmit) {
-  wSubmit.addEventListener("click", function(e) {
+if (wSubmit) {{
+  wSubmit.addEventListener("click", function(e) {{
     e.preventDefault();
     var phone = document.getElementById("w-phone") ? document.getElementById("w-phone").value.trim() : "";
     var email = document.getElementById("w-email") ? document.getElementById("w-email").value.trim() : "";
     
-    if (!phone || phone.replace(/\D/g, "").length < 10) {
-      if (document.getElementById("w-phone")) {
+    if (!phone || phone.replace(/\\D/g, "").length < 10) {{
+      if (document.getElementById("w-phone")) {{
         document.getElementById("w-phone").style.borderColor = "#e53935";
         document.getElementById("w-phone").focus();
-      }
+      }}
       return;
-    }
-    if (!email || email.indexOf("@") === -1) {
-      if (document.getElementById("w-email")) {
+    }}
+    if (!email || email.indexOf("@") === -1) {{
+      if (document.getElementById("w-email")) {{
         document.getElementById("w-email").style.borderColor = "#e53935";
         document.getElementById("w-email").focus();
-      }
+      }}
       return;
-    }
+    }}
     
     widgetData.phone = phone;
     widgetData.email = email;
@@ -895,53 +944,69 @@ if (wSubmit) {
     wSubmit.textContent = "Sending...";
     wSubmit.disabled = true;
     
-    fetch("https://formsubmit.co/ajax/gadsonw@gmail.com", {
+    fetch("https://formsubmit.co/ajax/gadsonw@gmail.com", {{
       method: "POST",
-      body: JSON.stringify({
+      body: JSON.stringify({{
         _subject: "NEW LEAD — " + widgetData.location + " — " + widgetData.item,
         item: widgetData.item,
         location: widgetData.location,
         phone: widgetData.phone,
         email: widgetData.email,
         details: widgetData.details || "(none)"
-      }),
-      headers: { "Content-Type": "application/json", "Accept": "application/json" }
-    }).then(function() {
+      }}),
+      headers: {{ "Content-Type": "application/json", "Accept": "application/json" }}
+    }}).then(function() {{
       updateConfirmation(); showStep("step-confirm");
-    }).catch(function() {
+    }}).catch(function() {{
       console.log("Form data:", widgetData);
       updateConfirmation(); showStep("step-confirm");
-    });
-  });
-}
+    }});
+  }});
+}}
 
 // ===== SCROLL REVEAL =====
 var revealElements = document.querySelectorAll('.reveal');
-if (revealElements.length > 0 && typeof IntersectionObserver !== 'undefined') {
-  var revealObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
+if (revealElements.length > 0 && typeof IntersectionObserver !== 'undefined') {{
+  var revealObserver = new IntersectionObserver(function(entries) {{
+    entries.forEach(function(entry) {{
+      if (entry.isIntersecting) {{
         entry.target.classList.add('revealed');
         revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  revealElements.forEach(function(el) { revealObserver.observe(el); });
-}
+      }}
+    }});
+  }}, {{ threshold: 0.1 }});
+  revealElements.forEach(function(el) {{ revealObserver.observe(el); }});
+}}
 
 // ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {{
+  a.addEventListener('click', function(e) {{
     var href = this.getAttribute('href');
     if (href === '#') return;
     var target = document.querySelector(href);
-    if (target) {
+    if (target) {{
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
+      target.scrollIntoView({{ behavior: 'smooth' }});
+    }}
+  }});
+}});
 </script>
 
 </body>
-</html>
+</html>'''
+    
+    return html
+
+# Generate both pages
+mcdonough_html = generate_page("mcdonough")
+valdosta_html = generate_page("valdosta")
+
+with open("/home/user/workspace/ggb-landing/lp-mcdonough.html", "w") as f:
+    f.write(mcdonough_html)
+
+with open("/home/user/workspace/ggb-landing/lp-valdosta.html", "w") as f:
+    f.write(valdosta_html)
+
+print("Both pages generated successfully!")
+print(f"McDonough: {len(mcdonough_html)} chars")
+print(f"Valdosta: {len(valdosta_html)} chars")
