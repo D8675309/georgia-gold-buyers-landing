@@ -461,11 +461,8 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
       </div>
       <h2>You're in great hands.</h2>
       <p class="widget-confirm-text">A Georgia Gold Buyers specialist will reach out to you shortly. We look forward to helping you get the most value for your items.</p>
-      <div class="widget-location-info">
-        <strong>Georgia Gold Buyers — Valdosta</strong>
-        <p>3996 N Valdosta Rd, Valdosta, GA 31602</p>
-        <p>(229) 375-0015</p>
-        <a href="https://www.google.com/maps/place/Georgia+Gold+%26+Silver+Buyers/@30.8967673,-83.3243801" target="_blank" class="widget-directions">Get Directions &rarr;</a>
+      <div class="widget-location-info" id="confirm-location">
+        <!-- Populated dynamically based on selected location -->
       </div>
     </div>
 </div>
@@ -634,6 +631,35 @@ if (wPhone) {
   });
 }
 
+
+// Populate confirmation with selected location
+function updateConfirmation() {
+  var locDiv = document.getElementById('confirm-location');
+  if (!locDiv) return;
+  
+  var locations = {
+    'McDonough, GA': {
+      name: 'Georgia Gold Buyers — McDonough',
+      address: '120 S Point Blvd, McDonough, GA 30253',
+      phone: '(678) 919-9265',
+      directions: 'https://www.google.com/maps/dir/?api=1&destination=Georgia+Gold+Buyers,+120+S+Point+Blvd,+McDonough,+GA+30253&destination_place_id=ChIJZwbKrEFZ9IgRyPYV6yuJULQ'
+    },
+    'Valdosta, GA': {
+      name: 'Georgia Gold & Silver Buyers — Valdosta',
+      address: '3996 N Valdosta Rd, Valdosta, GA 31602',
+      phone: '(229) 375-0015',
+      directions: 'https://www.google.com/maps/dir/?api=1&destination=Georgia+Gold+%26+Silver+Buyers,+3996+N+Valdosta+Rd,+Valdosta,+GA+31602&destination_place_id=ChIJ08YzzPdn7oGRYM5_TAY9OUk'
+    }
+  };
+  
+  var loc = locations[widgetData.location] || locations['McDonough, GA'];
+  
+  locDiv.innerHTML = '<strong>' + loc.name + '</strong>' +
+    '<p>' + loc.address + '</p>' +
+    '<p>' + loc.phone + '</p>' +
+    '<a href="' + loc.directions + '" target="_blank" class="widget-directions">Get Directions &rarr;</a>';
+}
+
 // Step 3: Submit
 var wSubmit = document.getElementById("w-submit");
 if (wSubmit) {
@@ -676,10 +702,10 @@ if (wSubmit) {
       }),
       headers: { "Content-Type": "application/json", "Accept": "application/json" }
     }).then(function() {
-      showStep("step-confirm");
+      updateConfirmation(); showStep("step-confirm");
     }).catch(function() {
       console.log("Form data:", widgetData);
-      showStep("step-confirm");
+      updateConfirmation(); showStep("step-confirm");
     });
   });
 }
