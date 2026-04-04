@@ -1632,6 +1632,67 @@ textarea.form-control {
     gap: 10px;
   }
 }
+
+/* ===== PRICE TICKER BAR ===== */
+.price-ticker {
+  background: var(--dark);
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(197,150,26,0.15);
+}
+.ticker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.ticker-card {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  border-left: 3px solid var(--gold);
+}
+.ticker-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.ticker-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+.ticker-change {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.ticker-change.positive { color: #34d399; }
+.ticker-change.negative { color: #f87171; }
+.ticker-updated {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 14px;
+}
+.ticker-updated .status-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+.ticker-updated .status-badge.live { background: rgba(52,211,153,0.15); color: #34d399; }
+.ticker-updated .status-badge.estimated { background: rgba(251,191,36,0.15); color: #fbbf24; }
+@media (max-width: 768px) {
+  .ticker-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .ticker-price { font-size: 19px; }
+}
 </style>
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
@@ -1793,6 +1854,8 @@ textarea.form-control {
       <span class="header-nav-sep">|</span>
       <a href="services.html">Services</a>
       <span class="header-nav-sep">|</span>
+      <a href="gold-prices.html">Gold Prices</a>
+      <span class="header-nav-sep">|</span>
       <a href="estate-sales.html">Estate Sales</a>
       <span class="header-nav-sep">|</span>
       <a href="about.html">About</a>
@@ -1853,6 +1916,35 @@ textarea.form-control {
         <img src="hero-gold.jpg" alt="Gold jewelry, chains, rings, coins, and cash displayed on dark velvet" loading="lazy" width="636" height="520">
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===== PRICE TICKER BAR ===== -->
+<section class="price-ticker" id="price-ticker">
+  <div class="container">
+    <div class="ticker-grid">
+      <div class="ticker-card">
+        <span class="ticker-label">Gold</span>
+        <span class="ticker-price" id="ticker-gold-price">$3,050.00</span>
+        <span class="ticker-change positive" id="ticker-gold-change">+$12.50 (+0.41%)</span>
+      </div>
+      <div class="ticker-card">
+        <span class="ticker-label">Silver</span>
+        <span class="ticker-price" id="ticker-silver-price">$34.25</span>
+        <span class="ticker-change positive" id="ticker-silver-change">+$0.35 (+1.03%)</span>
+      </div>
+      <div class="ticker-card">
+        <span class="ticker-label">Platinum</span>
+        <span class="ticker-price" id="ticker-platinum-price">$985.00</span>
+        <span class="ticker-change negative" id="ticker-platinum-change">-$5.20 (-0.53%)</span>
+      </div>
+      <div class="ticker-card">
+        <span class="ticker-label">Palladium</span>
+        <span class="ticker-price" id="ticker-palladium-price">$1,025.00</span>
+        <span class="ticker-change positive" id="ticker-palladium-change">+$8.75 (+0.86%)</span>
+      </div>
+    </div>
+    <p class="ticker-updated">Spot prices per troy ounce · <span id="price-status" class="status-badge estimated">Estimated</span> · <a href="gold-prices.html" style="color:#C5961A;">View Details &amp; Calculator &rarr;</a></p>
   </div>
 </section>
 
@@ -2202,6 +2294,7 @@ textarea.form-control {
         <ul class="footer-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="services.html">Services</a></li>
+          <li><a href="gold-prices.html">Gold Prices</a></li>
           <li><a href="estate-sales.html">Estate Sales</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="mcdonough.html">McDonough</a></li>
@@ -2484,6 +2577,89 @@ document.querySelectorAll('.nav-dropdown > a').forEach(link => {
     parent.classList.toggle('open');
   });
 });
+
+// ===== PRICE TICKER LIVE FETCH =====
+(function() {
+  const FALLBACK = {
+    gold: { price: 3050.00, change: 12.50, changePercent: 0.41 },
+    silver: { price: 34.25, change: 0.35, changePercent: 1.03 },
+    platinum: { price: 985.00, change: -5.20, changePercent: -0.53 },
+    palladium: { price: 1025.00, change: 8.75, changePercent: 0.86 }
+  };
+
+  function fmt(n) {
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function updateTicker(data, isLive) {
+    const metals = ['gold','silver','platinum','palladium'];
+    metals.forEach(function(m) {
+      var priceEl = document.getElementById('ticker-' + m + '-price');
+      var changeEl = document.getElementById('ticker-' + m + '-change');
+      if (!priceEl || !changeEl || !data[m]) return;
+      priceEl.textContent = '$' + fmt(data[m].price);
+      var ch = data[m].change;
+      var pct = data[m].changePercent;
+      var sign = ch >= 0 ? '+' : '';
+      changeEl.textContent = sign + '$' + fmt(Math.abs(ch)) + ' (' + sign + pct.toFixed(2) + '%)';
+      changeEl.className = 'ticker-change ' + (ch >= 0 ? 'positive' : 'negative');
+    });
+    var statusEl = document.getElementById('price-status');
+    if (statusEl) {
+      statusEl.textContent = isLive ? 'Live' : 'Estimated';
+      statusEl.className = 'status-badge ' + (isLive ? 'live' : 'estimated');
+    }
+  }
+
+  async function fetchPrices() {
+    try {
+      var r = await fetch('https://api.gold-api.com/price/XAU');
+      if (r.ok) {
+        var d = await r.json();
+        if (d && d.price) {
+          var goldPrice = d.price;
+          // Fetch silver
+          var rs = await fetch('https://api.gold-api.com/price/XAG');
+          var ds = rs.ok ? await rs.json() : null;
+          var rp = await fetch('https://api.gold-api.com/price/XPT');
+          var dp = rp.ok ? await rp.json() : null;
+          var rpa = await fetch('https://api.gold-api.com/price/XPD');
+          var dpa = rpa.ok ? await rpa.json() : null;
+          var live = {
+            gold: { price: goldPrice, change: d.ch || d.change || 12.50, changePercent: d.chp || d.changePercent || 0.41 },
+            silver: { price: (ds && ds.price) || FALLBACK.silver.price, change: (ds && (ds.ch || ds.change)) || FALLBACK.silver.change, changePercent: (ds && (ds.chp || ds.changePercent)) || FALLBACK.silver.changePercent },
+            platinum: { price: (dp && dp.price) || FALLBACK.platinum.price, change: (dp && (dp.ch || dp.change)) || FALLBACK.platinum.change, changePercent: (dp && (dp.chp || dp.changePercent)) || FALLBACK.platinum.changePercent },
+            palladium: { price: (dpa && dpa.price) || FALLBACK.palladium.price, change: (dpa && (dpa.ch || dpa.change)) || FALLBACK.palladium.change, changePercent: (dpa && (dpa.chp || dpa.changePercent)) || FALLBACK.palladium.changePercent }
+          };
+          updateTicker(live, true);
+          return;
+        }
+      }
+    } catch(e) {}
+    // Try metals.live
+    try {
+      var r2 = await fetch('https://api.metals.live/v1/spot');
+      if (r2.ok) {
+        var arr = await r2.json();
+        if (Array.isArray(arr) && arr.length) {
+          var map = {};
+          arr.forEach(function(item) { map[item.metal] = item; });
+          var live2 = {
+            gold: { price: (map.gold && map.gold.price) || FALLBACK.gold.price, change: (map.gold && map.gold.change) || FALLBACK.gold.change, changePercent: (map.gold && map.gold.changePercent) || FALLBACK.gold.changePercent },
+            silver: { price: (map.silver && map.silver.price) || FALLBACK.silver.price, change: (map.silver && map.silver.change) || FALLBACK.silver.change, changePercent: (map.silver && map.silver.changePercent) || FALLBACK.silver.changePercent },
+            platinum: { price: (map.platinum && map.platinum.price) || FALLBACK.platinum.price, change: (map.platinum && map.platinum.change) || FALLBACK.platinum.change, changePercent: (map.platinum && map.platinum.changePercent) || FALLBACK.platinum.changePercent },
+            palladium: { price: (map.palladium && map.palladium.price) || FALLBACK.palladium.price, change: (map.palladium && map.palladium.change) || FALLBACK.palladium.change, changePercent: (map.palladium && map.palladium.changePercent) || FALLBACK.palladium.changePercent }
+          };
+          updateTicker(live2, true);
+          return;
+        }
+      }
+    } catch(e) {}
+    updateTicker(FALLBACK, false);
+  }
+
+  fetchPrices();
+})();
 </script>
 
 </body>

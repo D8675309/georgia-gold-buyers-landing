@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Prices Today | Scrap Gold Calculator | Georgia Gold Buyers</title>
+<meta name="description" content="Live gold, silver, platinum, and palladium prices. Use our free calculator to estimate the value of your items. Visit Georgia Gold Buyers for your exact quote.">
+<meta name="application-name" content="Georgia Gold Buyers">
+<meta name="subject" content="Gold, Silver, Jewelry, and Precious Metals Buyer in Georgia">
+<link rel="canonical" href="https://georgiagoldbuying.com/gold-prices.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gold Prices Today | Scrap Gold Calculator | Georgia Gold Buyers">
+<meta property="og:description" content="Live gold, silver, platinum, and palladium prices. Use our free calculator to estimate the value of your items. Visit Georgia Gold Buyers for your exact quote.">
+<meta property="og:url" content="https://georgiagoldbuying.com/gold-prices.html">
+<meta property="og:site_name" content="Georgia Gold Buyers">
+
+<!-- Google Fonts: DM Sans 400,500,600,700 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2L28 12L16 30L4 12Z' fill='%23C5961A'/></svg>" type="image/svg+xml">
+
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2a2a2a;
+  background: #fafaf7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; font-family: inherit; }
+ul { list-style: none; }
+input, select, textarea { font-family: inherit; font-size: inherit; }
+
+/* ===== VARIABLES ===== */
+:root {
+  --gold: #C5961A;
+  --gold-light: #D4A93A;
+  --gold-dark: #A67D15;
+  --dark: #1a1a1a;
+  --dark-2: #2a2a2a;
+  --dark-3: #333;
+  --light: #fafaf7;
+  --light-2: #f3f1ec;
+  --light-3: #e8e5de;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a5a;
+  --text-muted: #8a8a8a;
+  --white: #ffffff;
+  --max-width: 1200px;
+  --header-height: 72px;
+}
+
+/* ===== UTILITY ===== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
+}
+
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(26, 26, 26, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  height: auto;
+  transition: box-shadow 0.3s ease;
+}
+.header--scrolled { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); }
+
+.header-main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-nav {
+  background: rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  overflow: visible;
+}
+.header-nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 40px;
+}
+.header-nav a {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.header-nav a:hover { color: var(--gold); }
+.header-nav a.active { color: var(--gold); font-weight: 600; }
+.header-nav-sep { color: rgba(255,255,255,0.15); font-size: 13px; }
+
+.header-nav--hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  white-space: nowrap;
+}
+.logo-text-short { display: none; }
+
+/* Header actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-phone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+  font-weight: 500;
+  background: none;
+  transition: color 0.2s;
+}
+.header-phone:hover { color: var(--gold); }
+.header-phone-mobile { display: none; }
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+  padding: 14px 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.breadcrumb a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb span { margin: 0 6px; }
+
+/* ===== URGENCY BANNER ===== */
+.urgency-banner {
+  background: linear-gradient(90deg, #C5961A, #D4A93A);
+  color: var(--dark);
+  text-align: center;
+  padding: 8px 40px 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  position: relative;
+}
+.urgency-dismiss {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--dark);
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.urgency-dismiss:hover { opacity: 1; }
+
+/* ===== PAGE HERO ===== */
+.page-hero {
+  background: var(--dark);
+  padding: 48px 0 40px;
+  text-align: center;
+}
+.page-hero h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.page-hero h1 span { color: var(--gold); }
+.page-hero p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+
+/* ===== LIVE PRICE CARDS ===== */
+.prices-section {
+  background: var(--dark);
+  padding: 0 0 48px;
+}
+.price-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.price-card {
+  background: rgba(255,255,255,0.04);
+  border-top: 4px solid var(--gold);
+  border-radius: 0 0 8px 8px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.price-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.price-card-price {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.price-card-unit {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 8px;
+}
+.price-card-change {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.price-card-change.positive { color: #34d399; }
+.price-card-change.negative { color: #f87171; }
+.price-card-sub {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.price-card-sub-item {
+  text-align: center;
+}
+.price-card-sub-label {
+  display: block;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 2px;
+}
+.price-card-sub-value {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+}
+.prices-status {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.status-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+.status-badge.live { background: rgba(52,211,153,0.15); color: #34d399; }
+.status-badge.estimated { background: rgba(251,191,36,0.15); color: #fbbf24; }
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 64px 0;
+}
+.section--alt {
+  background: var(--light-2);
+}
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.section-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== KARAT PRICE TABLE ===== */
+.karat-table-wrap {
+  margin-bottom: 48px;
+}
+.karat-table-wrap h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+}
+.karat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.karat-table thead th {
+  background: var(--dark);
+  color: var(--gold);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.karat-table thead th:first-child { border-radius: 6px 0 0 0; }
+.karat-table thead th:last-child { border-radius: 0 6px 0 0; }
+.karat-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--light-3);
+}
+.karat-table tbody tr:nth-child(even) {
+  background: var(--light-2);
+}
+.karat-table tbody tr:hover {
+  background: rgba(197,150,26,0.06);
+}
+.karat-table .karat-label {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.karat-table .karat-purity {
+  color: var(--text-muted);
+}
+
+/* ===== VALUE ESTIMATOR ===== */
+.calculator-section {
+  background: var(--light);
+  padding: 64px 0;
+}
+.calculator-card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 40px 36px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  border: 1px solid var(--light-3);
+}
+.calculator-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  text-align: center;
+}
+.calc-group {
+  margin-bottom: 20px;
+}
+.calc-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.calc-control {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--light-3);
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--text-primary);
+  background: var(--white);
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.calc-control:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(197,150,26,0.12);
+}
+select.calc-control {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.calc-weight-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+.calc-weight-row .calc-group { flex: 1; }
+.calc-weight-row .calc-group:last-child { flex: 0 0 140px; }
+
+.calc-result {
+  margin-top: 28px;
+  padding: 24px;
+  background: rgba(197,150,26,0.04);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  text-align: center;
+}
+.calc-result-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+.calc-result-value {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.calc-result-note {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.calc-result .btn-gold {
+  font-size: 16px;
+  padding: 14px 32px;
+}
+.calc-disclaimer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ===== WHY SELL NOW ===== */
+.why-sell {
+  padding: 64px 0;
+  background: var(--light-2);
+}
+.why-sell-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.why-sell h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.why-sell p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.why-sell .btn-gold {
+  font-size: 16px;
+  padding: 14px 32px;
+}
+
+/* ===== FAQ ===== */
+.faq-list { max-width: 800px; margin: 0 auto; }
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--light-3);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.faq-item.active { border-color: var(--gold); }
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 18px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.faq-question svg {
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.faq-item.active .faq-question svg { transform: rotate(180deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.faq-answer-inner {
+  padding: 0 20px 18px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ===== FORM SECTION ===== */
+.form-section {
+  background: var(--dark);
+  padding: 64px 0;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.form-info {
+  padding-top: 20px;
+}
+.form-info h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.form-info h2 span { color: var(--gold); }
+.form-info p {
+  color: rgba(255,255,255,0.65);
+  font-size: 16px;
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.form-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+.form-trust-item svg { flex-shrink: 0; }
+.form-wrapper {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 36px;
+}
+.form-wrapper h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.form-wrapper .section-subtitle {
+  text-align: left;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.form-group .optional {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.form-control {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--light-3);
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text-primary);
+  background: var(--white);
+  transition: border-color 0.2s;
+}
+.form-control:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(197,150,26,0.12); }
+select.form-control {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+textarea.form-control { height: 100px; padding: 12px 14px; resize: vertical; }
+.radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.radio-option input[type="radio"] { accent-color: var(--gold); }
+.btn-submit {
+  width: 100%;
+  height: 52px;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 8px;
+}
+.btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+.form-security {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+.form-review-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.form-review-badge svg { width: 14px; height: 14px; }
+
+/* ===== LOCATIONS DROPDOWN ===== */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-dropdown > a::after {
+  content: '';
+  display: inline-block;
+  width: 0; height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  margin-top: 1px;
+}
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 8px 0;
+  min-width: 140px;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7) !important;
+  white-space: nowrap;
+}
+.nav-dropdown-menu a:hover {
+  color: var(--gold) !important;
+  background: rgba(255,255,255,0.05);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.65);
+  padding: 64px 0 32px;
+  border-top: 1px solid rgba(197,150,26,0.15);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.footer-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.footer h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { font-size: 14px; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-contact p {
+  font-size: 14px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.footer-contact a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px;
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+}
+.footer-bottom a { transition: color 0.2s; }
+.footer-bottom a:hover { color: var(--gold); }
+.footer-attribution {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+}
+.footer-attribution a { color: rgba(255,255,255,0.25); transition: color 0.2s; }
+.footer-attribution a:hover { color: rgba(255,255,255,0.4); }
+.footer-legal { width: 100%; text-align: center; margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.3); }
+.footer-legal a { color: rgba(255,255,255,0.3); transition: color 0.2s; }
+.footer-legal a:hover { color: var(--gold); }
+.footer-legal-sep { margin: 0 8px; }
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+.footer-social a {
+  color: rgba(255,255,255,0.4);
+  transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--gold); }
+
+/* ===== CALL MODAL ===== */
+.call-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.call-modal-overlay.active { display: flex; }
+.call-modal {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  width: 90%;
+  max-width: 380px;
+  position: relative;
+}
+.call-modal-close {
+  position: absolute;
+  top: 12px; right: 16px;
+  background: none;
+  font-size: 24px;
+  color: var(--text-muted);
+}
+.call-modal h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.call-modal-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid var(--light-3);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.call-modal-option:hover { border-color: var(--gold); }
+.call-modal-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.call-modal-location strong {
+  display: block;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+.call-modal-location span {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.call-modal-phone {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  white-space: nowrap;
+}
+
+/* ===== MOBILE BOTTOM BAR ===== */
+.mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px env(safe-area-inset-bottom);
+}
+.mobile-bar-inner {
+  display: flex;
+  gap: 10px;
+}
+.mobile-bar .bar-call,
+.mobile-bar .bar-quote {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.mobile-bar .bar-call {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.mobile-bar .bar-quote {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .header-nav-inner { gap: 16px; height: 36px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .header-nav-inner::-webkit-scrollbar { display: none; }
+}
+@media (max-width: 768px) {
+  .header-phone-desktop { display: none; }
+  .header-phone-mobile { display: flex; }
+  .logo-text-long { display: none; }
+  .logo-text-short { display: inline; }
+  .page-hero h1 { font-size: 28px; }
+  .page-hero p { font-size: 15px; }
+  .price-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .price-card-price { font-size: 26px; }
+  .price-card { padding: 18px 14px; }
+  .karat-table { font-size: 13px; }
+  .karat-table thead th { padding: 10px 10px; font-size: 11px; }
+  .karat-table tbody td { padding: 10px 10px; }
+  .calculator-card { padding: 28px 20px; }
+  .calc-weight-row { flex-direction: column; }
+  .calc-weight-row .calc-group:last-child { flex: 1; }
+  .section-title { font-size: 24px; }
+  .form-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+  .mobile-bar { display: block; }
+  body { padding-bottom: 72px; }
+}
+@media (max-width: 480px) {
+  .price-card-price { font-size: 22px; }
+  .price-card-sub-value { font-size: 13px; }
+  .calc-result-value { font-size: 32px; }
+}
+</style>
+
+<!-- JSON-LD: WebPage + FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Gold Prices Today | Scrap Gold Calculator",
+  "description": "Live gold, silver, platinum, and palladium prices with a free scrap gold calculator.",
+  "url": "https://georgiagoldbuying.com/gold-prices.html",
+  "mainEntity": {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much is 14K gold worth per gram today?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The price of 14K gold per gram changes daily based on the spot price of gold. 14K gold is 58.3% pure gold. To calculate the current value, multiply the spot price of gold per gram by 0.583. Visit Georgia Gold Buyers for a free appraisal and the exact price we'll pay for your 14K gold items."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much is sterling silver worth today?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sterling silver (925) is 92.5% pure silver. Its value is calculated by multiplying the spot silver price per gram by 0.925. Silver prices change daily. Visit Georgia Gold Buyers for a free appraisal and instant cash offer on your sterling silver items."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between spot price and what a dealer pays?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The spot price is the current market price for pure metal per troy ounce, set by global commodity markets. Dealers typically pay a percentage of the melt value, which accounts for refining costs, business overhead, and market risk. The actual payout varies by dealer. Georgia Gold Buyers is committed to paying competitive, fair prices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know the karat of my gold?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most gold jewelry has a stamp indicating its karat. Common stamps include: 24K or 999 (pure gold), 22K or 917, 18K or 750, 14K or 585, 10K or 417, and 9K or 375. The stamp is usually on the clasp of a necklace, inside a ring band, or on the back of earrings. If you can't find a stamp, bring it to Georgia Gold Buyers — we'll test it for free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are gold prices the same everywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The spot price of gold is determined by global markets and is the same worldwide at any given moment. However, the amount a dealer pays for your gold varies. Factors include the dealer's payout percentage, overhead costs, and location. Georgia Gold Buyers offers competitive payouts — visit us for a free, no-obligation appraisal."
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://georgiagoldbuying.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Gold Prices Today", "item": "https://georgiagoldbuying.com/gold-prices.html" }
+  ]
+}
+</script>
+
+</head>
+<body>
+
+<!-- ===== STICKY HEADER ===== -->
+<header class="header" id="header">
+  <div class="header-main">
+    <a href="index.html" class="logo" aria-label="Georgia Gold Buyers — Home">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 2L7 10H21L14 2Z" fill="#C5961A"/>
+        <path d="M14 26L3 10H25L14 26Z" fill="#C5961A" opacity="0.7"/>
+        <path d="M14 2L7 10L14 26L21 10L14 2Z" fill="#C5961A" opacity="0.9"/>
+      </svg>
+      <span class="logo-text-long">Georgia Gold Buyers</span>
+      <span class="logo-text-short">GGB</span>
+    </a>
+    <div class="header-actions">
+      <button class="header-phone header-phone-mobile call-trigger" aria-label="Call us">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (678) 919-9265
+      </button>
+      <button class="header-phone header-phone-desktop call-trigger" aria-label="Call us">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call Us
+      </button>
+      <a href="#quote-form" class="btn-gold">Get Free Quote</a>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <div class="header-nav-inner">
+      <a href="index.html">Home</a>
+      <span class="header-nav-sep">|</span>
+      <a href="services.html">Services</a>
+      <span class="header-nav-sep">|</span>
+      <a href="gold-prices.html" class="active">Gold Prices</a>
+      <span class="header-nav-sep">|</span>
+      <a href="estate-sales.html">Estate Sales</a>
+      <span class="header-nav-sep">|</span>
+      <a href="about.html">About</a>
+      <span class="header-nav-sep">|</span>
+      <span class="nav-dropdown">
+        <a href="#">Locations</a>
+        <div class="nav-dropdown-menu">
+          <a href="mcdonough.html">McDonough, GA</a>
+          <a href="valdosta.html">Valdosta, GA</a>
+        </div>
+      </span>
+      <span class="header-nav-sep">|</span>
+      <a href="#quote-form">Get a Quote</a>
+    </div>
+  </nav>
+</header>
+
+<div class="urgency-banner">
+  &#128293; Gold prices are near record highs — <span>now is the best time to sell. Get your free appraisal today.</span>
+  <button class="urgency-dismiss" aria-label="Dismiss banner">&times;</button>
+</div>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>›</span> <span>Gold Prices Today</span></nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="container">
+    <h1>Gold Prices <span>Today</span></h1>
+    <p>Live spot prices for precious metals, updated during market hours.</p>
+  </div>
+</section>
+
+<!-- ===== LIVE PRICE CARDS ===== -->
+<section class="prices-section">
+  <div class="container">
+    <div class="price-cards-grid">
+      <div class="price-card">
+        <div class="price-card-name">Gold</div>
+        <div class="price-card-price" id="gold-price">$3,050.00</div>
+        <div class="price-card-unit">per troy ounce</div>
+        <div class="price-card-change positive" id="gold-change">&#9650; +$12.50 (+0.41%)</div>
+        <div class="price-card-sub">
+          <div class="price-card-sub-item">
+            <span class="price-card-sub-label">Per Gram</span>
+            <span class="price-card-sub-value" id="gold-gram">$98.07</span>
+          </div>
+          <div class="price-card-sub-item">
+            <span class="price-card-sub-label">Per DWT</span>
+            <span class="price-card-sub-value" id="gold-dwt">$152.50</span>
+          </div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-card-name">Silver</div>
+        <div class="price-card-price" id="silver-price">$34.25</div>
+        <div class="price-card-unit">per troy ounce</div>
+        <div class="price-card-change positive" id="silver-change">&#9650; +$0.35 (+1.03%)</div>
+        <div class="price-card-sub">
+          <div class="price-card-sub-item">
+            <span class="price-card-sub-label">Per Gram</span>
+            <span class="price-card-sub-value" id="silver-gram">$1.10</span>
+          </div>
+          <div class="price-card-sub-item">
+            <span class="price-card-sub-label">Per DWT</span>
+            <span class="price-card-sub-value" id="silver-dwt">$1.71</span>
+          </div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-card-name">Platinum</div>
+        <div class="price-card-price" id="platinum-price">$985.00</div>
+        <div class="price-card-unit">per troy ounce</div>
+        <div class="price-card-change negative" id="platinum-change">&#9660; -$5.20 (-0.53%)</div>
+        <div class="price-card-sub">
+          <div class="price-card-sub-item">
+            <span class="price-card-sub-label">Per Gram</span>
+            <span class="price-card-sub-value" id="platinum-gram">$31.67</span>
+          </div>
+          <div class="price-card-sub-item">
+            <span class="price-card-sub-label">Per DWT</span>
+            <span class="price-card-sub-value" id="platinum-dwt">$49.25</span>
+          </div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-card-name">Palladium</div>
+        <div class="price-card-price" id="palladium-price">$1,025.00</div>
+        <div class="price-card-unit">per troy ounce</div>
+        <div class="price-card-change positive" id="palladium-change">&#9650; +$8.75 (+0.86%)</div>
+        <div class="price-card-sub">
+          <div class="price-card-sub-item">
+            <span class="price-card-sub-label">Per Gram</span>
+            <span class="price-card-sub-value" id="palladium-gram">$32.96</span>
+          </div>
+          <div class="price-card-sub-item">
+            <span class="price-card-sub-label">Per DWT</span>
+            <span class="price-card-sub-value" id="palladium-dwt">$51.25</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="prices-status">Spot prices per troy ounce &middot; <span id="price-status" class="status-badge estimated">Estimated</span> &middot; Prices update during market hours. Actual offer may vary.</p>
+  </div>
+</section>
+
+<!-- ===== KARAT PRICE TABLES ===== -->
+<section class="section" id="karat-prices">
+  <div class="container">
+    <h2 class="section-title reveal">Today's Precious Metal Prices by Purity</h2>
+    <p class="section-subtitle reveal">All prices are calculated dynamically from today's spot price.</p>
+
+    <!-- Gold Karat Table -->
+    <div class="karat-table-wrap reveal">
+      <h3>Gold Prices by Karat</h3>
+      <table class="karat-table" id="gold-karat-table">
+        <thead>
+          <tr>
+            <th>Karat</th>
+            <th>Purity</th>
+            <th>Price / Gram</th>
+            <th>Price / DWT</th>
+            <th>Price / Oz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="karat-label">24K</td><td class="karat-purity">99.9%</td><td id="gk-24-gram">$98.07</td><td id="gk-24-dwt">$152.50</td><td id="gk-24-oz">$3,050.00</td></tr>
+          <tr><td class="karat-label">22K</td><td class="karat-purity">91.7%</td><td id="gk-22-gram">$89.93</td><td id="gk-22-dwt">$139.84</td><td id="gk-22-oz">$2,796.85</td></tr>
+          <tr><td class="karat-label">18K</td><td class="karat-purity">75.0%</td><td id="gk-18-gram">$73.55</td><td id="gk-18-dwt">$114.38</td><td id="gk-18-oz">$2,287.50</td></tr>
+          <tr><td class="karat-label">14K</td><td class="karat-purity">58.3%</td><td id="gk-14-gram">$57.18</td><td id="gk-14-dwt">$88.91</td><td id="gk-14-oz">$1,778.15</td></tr>
+          <tr><td class="karat-label">10K</td><td class="karat-purity">41.7%</td><td id="gk-10-gram">$40.89</td><td id="gk-10-dwt">$63.59</td><td id="gk-10-oz">$1,271.85</td></tr>
+          <tr><td class="karat-label">9K</td><td class="karat-purity">37.5%</td><td id="gk-9-gram">$36.78</td><td id="gk-9-dwt">$57.19</td><td id="gk-9-oz">$1,143.75</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Silver Purity Table -->
+    <div class="karat-table-wrap reveal">
+      <h3>Silver Prices by Purity</h3>
+      <table class="karat-table" id="silver-purity-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Purity</th>
+            <th>Price / Gram</th>
+            <th>Price / DWT</th>
+            <th>Price / Oz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="karat-label">Fine Silver</td><td class="karat-purity">99.9%</td><td id="sk-999-gram">$1.10</td><td id="sk-999-dwt">$1.71</td><td id="sk-999-oz">$34.25</td></tr>
+          <tr><td class="karat-label">Sterling (925)</td><td class="karat-purity">92.5%</td><td id="sk-925-gram">$1.02</td><td id="sk-925-dwt">$1.58</td><td id="sk-925-oz">$31.68</td></tr>
+          <tr><td class="karat-label">Coin Silver (900)</td><td class="karat-purity">90.0%</td><td id="sk-900-gram">$0.99</td><td id="sk-900-dwt">$1.54</td><td id="sk-900-oz">$30.83</td></tr>
+          <tr><td class="karat-label">800 Silver</td><td class="karat-purity">80.0%</td><td id="sk-800-gram">$0.88</td><td id="sk-800-dwt">$1.37</td><td id="sk-800-oz">$27.40</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Platinum Purity Table -->
+    <div class="karat-table-wrap reveal">
+      <h3>Platinum Prices by Purity</h3>
+      <table class="karat-table" id="platinum-purity-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Purity</th>
+            <th>Price / Gram</th>
+            <th>Price / DWT</th>
+            <th>Price / Oz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="karat-label">Pt 950</td><td class="karat-purity">95.0%</td><td id="pk-950-gram">$30.09</td><td id="pk-950-dwt">$46.79</td><td id="pk-950-oz">$935.75</td></tr>
+          <tr><td class="karat-label">Pt 900</td><td class="karat-purity">90.0%</td><td id="pk-900-gram">$28.51</td><td id="pk-900-dwt">$44.33</td><td id="pk-900-oz">$886.50</td></tr>
+          <tr><td class="karat-label">Pt 850</td><td class="karat-purity">85.0%</td><td id="pk-850-gram">$26.92</td><td id="pk-850-dwt">$41.86</td><td id="pk-850-oz">$837.25</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALUE ESTIMATOR ===== -->
+<section class="calculator-section" id="calculator">
+  <div class="container">
+    <div class="calculator-card reveal">
+      <h2>Estimate Your Item's Value</h2>
+
+      <div class="calc-group">
+        <label for="calc-metal">Metal Type</label>
+        <select id="calc-metal" class="calc-control">
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="platinum">Platinum</option>
+          <option value="palladium">Palladium</option>
+        </select>
+      </div>
+
+      <div class="calc-group" id="calc-purity-group">
+        <label for="calc-purity">Karat / Purity</label>
+        <select id="calc-purity" class="calc-control">
+          <option value="0.999">24K (99.9%)</option>
+          <option value="0.917">22K (91.7%)</option>
+          <option value="0.750">18K (75.0%)</option>
+          <option value="0.583" selected>14K (58.3%)</option>
+          <option value="0.417">10K (41.7%)</option>
+          <option value="0.375">9K (37.5%)</option>
+        </select>
+      </div>
+
+      <div class="calc-weight-row">
+        <div class="calc-group">
+          <label for="calc-weight">Weight</label>
+          <input type="number" id="calc-weight" class="calc-control" placeholder="Enter weight" min="0" step="0.01" value="">
+        </div>
+        <div class="calc-group">
+          <label for="calc-unit">Unit</label>
+          <select id="calc-unit" class="calc-control">
+            <option value="grams">Grams</option>
+            <option value="dwt">Pennyweight (dwt)</option>
+            <option value="ozt">Troy Ounces</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-result" id="calc-result">
+        <div class="calc-result-label">Estimated Melt Value</div>
+        <div class="calc-result-value" id="calc-value">$0.00</div>
+        <div class="calc-result-note">Enter the weight of your item above to see an estimate based on today's market price.</div>
+        <a href="#quote-form" class="btn-gold">Get Your Exact Quote &rarr;</a>
+      </div>
+
+      <p class="calc-disclaimer">* This estimate is based on metal melt value only. Designer jewelry, rare coins, luxury watches, and antique items may be worth significantly more than their melt value. Visit Georgia Gold Buyers for a complete, free appraisal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY SELL NOW ===== -->
+<section class="why-sell">
+  <div class="container">
+    <div class="why-sell-inner reveal">
+      <h2>Why Sell Now?</h2>
+      <p>Gold prices have been trending near all-time highs throughout 2025 and 2026, driven by global economic uncertainty, central bank purchasing, and inflation hedging. For individuals holding gold jewelry, coins, or bullion, the current market represents a favorable selling opportunity. Gold prices are cyclical &mdash; the current price level may not last indefinitely.</p>
+      <p>Whether you have a single gold ring or an entire inherited collection, now is an excellent time to find out what your items are worth. Georgia Gold Buyers offers free, no-obligation appraisals at both of our Georgia locations.</p>
+      <a href="#quote-form" class="btn-gold">Get Your Free Appraisal &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq">
+  <div class="container">
+    <h2 class="section-title reveal">Frequently Asked Questions</h2>
+    <p class="section-subtitle reveal">Common questions about gold prices and selling your precious metals.</p>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How much is 14K gold worth per gram today?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Based on today's spot price, 14K gold (58.3% purity) is worth approximately <strong id="faq-14k-price">$57.18 per gram</strong>. This value changes throughout the day as the spot price of gold fluctuates. Visit Georgia Gold Buyers for a free appraisal and an exact cash offer for your 14K gold items.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How much is sterling silver worth today?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sterling silver (92.5% pure) is worth approximately <strong id="faq-sterling-price">$1.02 per gram</strong> based on today's silver spot price. Sterling silver items include jewelry marked "925," flatware, and many decorative items. Bring your sterling silver to Georgia Gold Buyers for a free, no-obligation appraisal.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What is the difference between spot price and what a dealer pays?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">The spot price is the real-time market price for one troy ounce of pure metal, determined by global commodity exchanges. When you sell to a dealer, the payout is typically a percentage of the melt value (spot price adjusted for purity and weight). The difference accounts for refining costs, business overhead, and market risk. At Georgia Gold Buyers, we are committed to offering competitive, transparent payouts &mdash; and we test and weigh everything right in front of you.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How do I know the karat of my gold?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Most gold jewelry has a small stamp indicating its karat. Look for markings such as: <strong>24K</strong> or <strong>999</strong> (pure gold), <strong>22K</strong> or <strong>917</strong>, <strong>18K</strong> or <strong>750</strong>, <strong>14K</strong> or <strong>585</strong>, <strong>10K</strong> or <strong>417</strong>, and <strong>9K</strong> or <strong>375</strong>. The stamp is typically found on the clasp of a necklace, inside a ring band, or on the post of earrings. If you can't find a stamp or aren't sure, bring your items to Georgia Gold Buyers &mdash; we'll test them for free using professional equipment.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Are gold prices the same everywhere?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">The spot price of gold is determined by global markets and is essentially the same worldwide at any given moment. However, what a dealer or buyer actually pays for your gold can vary significantly. Factors include the dealer's payout percentage, overhead costs, and local competition. That's why it pays to compare offers. Georgia Gold Buyers offers competitive payouts with a transparent, no-pressure process &mdash; visit us for a free, no-obligation appraisal.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEAD CAPTURE FORM ===== -->
+<section class="form-section" id="quote-form">
+  <div class="container">
+    <div class="form-grid">
+      <div class="form-info">
+        <h2>Get Your <span>Free Quote</span></h2>
+        <p>Ready to find out what your gold, silver, or jewelry is worth? Fill out the form and a specialist will contact you within minutes during business hours.</p>
+        <div class="form-trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C5961A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          Free appraisal — no obligation to sell
+        </div>
+        <div class="form-trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C5961A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Same-day cash or check payment
+        </div>
+        <div class="form-trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C5961A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          We respond within minutes
+        </div>
+        <div class="form-trust-item">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          5.0 · 84+ Google Reviews
+        </div>
+      </div>
+
+      <div class="form-wrapper">
+        <h2 class="section-title reveal">Get Your Free Quote</h2>
+        <p class="section-subtitle reveal">Fill out the form below and a specialist will contact you within minutes.</p>
+        <form action="#" method="POST" id="lead-form" novalidate>
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full_name" class="form-control" placeholder="Your full name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="(555) 123-4567" required autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="optional">(optional)</span></label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="item-type">What would you like to sell?</label>
+            <select id="item-type" name="item_type" class="form-control" required>
+              <option value="" disabled selected>What would you like to sell?</option>
+              <option value="Gold Jewelry">Gold Jewelry</option>
+              <option value="Silver Items">Silver Items</option>
+              <option value="Coins & Bullion">Coins &amp; Bullion</option>
+              <option value="Diamonds & Gems">Diamonds &amp; Gems</option>
+              <option value="Platinum/Palladium">Platinum / Palladium</option>
+              <option value="Luxury Watch">Luxury Watch</option>
+              <option value="Designer Handbag">Designer Handbag</option>
+              <option value="Designer Jewelry">Designer Jewelry</option>
+              <option value="Estate Sale">Estate Sale / Inherited Collection</option>
+              <option value="Multiple Items">Multiple Items</option>
+              <option value="Other">Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Location</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="location" value="McDonough, GA" required>
+                McDonough, GA
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="location" value="Valdosta, GA">
+                Valdosta, GA
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="details">Additional Details <span class="optional">(optional)</span></label>
+            <textarea id="details" name="details" class="form-control" placeholder="Describe what you'd like to sell, quantity, condition, etc."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Get My Free Quote</button>
+        </form>
+        <p class="form-security">&#128274; Your information is secure and will never be shared.</p>
+        <div class="form-review-badge">
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          5.0 ★ · 84+ Google Reviews
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ENTITY SUMMARY (AI Semantic Block) ===== -->
+<aside class="entity-summary" style="max-width:800px; margin:0 auto; padding:24px; text-align:center; font-size:13px; color:#999; line-height:1.6;">
+  Georgia Gold Buyers is a family-owned precious metals dealer in Georgia, established in 2012. We buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods at two locations: McDonough, GA and Valdosta, GA. Rated 5.0 stars on Google. This page provides current gold, silver, platinum, and palladium prices along with a free scrap gold calculator to estimate the melt value of your precious metal items.
+</aside>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 2L7 10H21L14 2Z" fill="#C5961A"/>
+            <path d="M14 26L3 10H25L14 26Z" fill="#C5961A" opacity="0.7"/>
+            <path d="M14 2L7 10L14 26L21 10L14 2Z" fill="#C5961A" opacity="0.9"/>
+          </svg>
+          Georgia Gold Buyers
+        </div>
+        <p class="footer-desc">Georgia's trusted gold, silver, and jewelry buyers since 2012. Two locations serving McDonough and Valdosta. Free appraisals, instant cash payment.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/profile.php?id=61576541493879" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UCHZ5I4F7IfOZWofu5eBmUZQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/georgiagoldbuyers/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gold-prices.html">Gold Prices</a></li>
+          <li><a href="estate-sales.html">Estate Sales</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="mcdonough.html">McDonough</a></li>
+          <li><a href="valdosta.html">Valdosta</a></li>
+          <li><a href="#quote-form">Get a Quote</a></li>
+        </ul>
+        <h4 style="margin-top: 24px;">Leave a Review</h4>
+        <ul class="footer-links">
+          <li><a href="review-mcdonough.html">McDonough Review</a></li>
+          <li><a href="review-valdosta.html">Valdosta Review</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><strong>McDonough</strong><br>
+        <a href="https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432,16z" target="_blank" rel="noopener noreferrer">120 S Point Blvd, McDonough, GA 30253</a><br>
+        <a href="tel:+16789199265">(678) 919-9265</a></p>
+        <p><strong>Valdosta</strong><br>
+        <a href="https://www.google.com/maps/place/Georgia+Gold+%26+Silver+Buyers/@30.8967673,-83.3243801,17z" target="_blank" rel="noopener noreferrer">3996 N Valdosta Rd, Valdosta, GA 31602</a><br>
+        <a href="tel:+12293750015">(229) 375-0015</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Georgia Gold Buyers. All rights reserved.</span>
+    </div>
+    <div class="footer-legal">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <span class="footer-legal-sep">|</span>
+      <a href="terms-of-service.html">Terms of Service</a>
+    </div>
+    <div class="footer-attribution">
+      
+    </div>
+  </div>
+</footer>
+
+<!-- ===== CALL LOCATION PICKER MODAL ===== -->
+<div class="call-modal-overlay" id="call-modal" aria-hidden="true">
+  <div class="call-modal">
+    <button class="call-modal-close" aria-label="Close">&times;</button>
+    <h3>Which location would you like to call?</h3>
+    <a href="tel:+16789199265" class="call-modal-option">
+      <div class="call-modal-location">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <strong>McDonough</strong>
+          <span>120 S Point Blvd, McDonough, GA</span>
+        </div>
+      </div>
+      <span class="call-modal-phone">(678) 919-9265</span>
+    </a>
+    <a href="tel:+12293750015" class="call-modal-option">
+      <div class="call-modal-location">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <strong>Valdosta</strong>
+          <span>3996 N Valdosta Rd, Valdosta, GA</span>
+        </div>
+      </div>
+      <span class="call-modal-phone">(229) 375-0015</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===== MOBILE BOTTOM BAR ===== -->
+<div class="mobile-bar" id="mobile-bar">
+  <div class="mobile-bar-inner">
+    <button class="bar-call call-trigger">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call Now
+    </button>
+    <a href="#quote-form" class="bar-quote">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Get Free Quote
+    </a>
+  </div>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== CALL LOCATION PICKER MODAL =====
+const callModal = document.getElementById('call-modal');
+const callModalClose = callModal.querySelector('.call-modal-close');
+
+function openCallModal(e) {
+  e.preventDefault();
+  callModal.classList.add('active');
+  callModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeCallModal() {
+  callModal.classList.remove('active');
+  callModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.call-trigger').forEach(btn => {
+  btn.addEventListener('click', openCallModal);
+});
+
+callModalClose.addEventListener('click', closeCallModal);
+callModal.addEventListener('click', (e) => {
+  if (e.target === callModal) closeCallModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && callModal.classList.contains('active')) closeCallModal();
+});
+
+callModal.querySelectorAll('.call-modal-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    setTimeout(closeCallModal, 300);
+  });
+});
+
+// Sticky header shadow on scroll
+const header = document.getElementById('header');
+let lastScroll = 0;
+const headerNav = header.querySelector('.header-nav');
+let prevScrollY = 0;
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (scrollY > 10) {
+    header.classList.add('header--scrolled');
+  } else {
+    header.classList.remove('header--scrolled');
+  }
+  if (headerNav) {
+    if (scrollY > 50 && scrollY > prevScrollY) {
+      headerNav.classList.add('header-nav--hidden');
+    } else if (scrollY < prevScrollY) {
+      headerNav.classList.remove('header-nav--hidden');
+    }
+  }
+  prevScrollY = scrollY;
+  lastScroll = scrollY;
+}, { passive: true });
+
+// Urgency banner dismiss
+const urgencyBanner = document.querySelector('.urgency-banner');
+const urgencyDismiss = document.querySelector('.urgency-dismiss');
+if (window.__urgencyDismissed) {
+  if (urgencyBanner) urgencyBanner.style.display = 'none';
+}
+if (urgencyDismiss) {
+  urgencyDismiss.addEventListener('click', () => {
+    urgencyBanner.style.display = 'none';
+    window.__urgencyDismissed = true;
+  });
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const headerH = header.offsetHeight;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerH - 16;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const inner = answer.querySelector('.faq-answer-inner');
+    const isOpen = item.classList.contains('active');
+
+    document.querySelectorAll('.faq-item.active').forEach(openItem => {
+      if (openItem !== item) {
+        openItem.classList.remove('active');
+        openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        openItem.querySelector('.faq-answer').style.maxHeight = '0';
+      }
+    });
+
+    if (isOpen) {
+      item.classList.remove('active');
+      button.setAttribute('aria-expanded', 'false');
+      answer.style.maxHeight = '0';
+    } else {
+      item.classList.add('active');
+      button.setAttribute('aria-expanded', 'true');
+      answer.style.maxHeight = inner.scrollHeight + 'px';
+    }
+  });
+});
+
+// Basic form validation
+const form = document.getElementById('lead-form');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('full-name');
+    const phone = document.getElementById('phone');
+    const itemType = document.getElementById('item-type');
+    const locationRadios = document.querySelectorAll('input[name="location"]');
+    let locationSelected = false;
+    locationRadios.forEach(r => { if (r.checked) locationSelected = true; });
+
+    let valid = true;
+    [name, phone, itemType].forEach(field => {
+      if (!field.value.trim() || (field.tagName === 'SELECT' && field.value === '')) {
+        field.style.borderColor = '#e53e3e';
+        valid = false;
+      } else {
+        field.style.borderColor = '';
+      }
+    });
+    if (!locationSelected) valid = false;
+
+    if (valid) {
+      const btn = form.querySelector('.btn-submit');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      
+      const formData = new FormData(form);
+      formData.append('_subject', 'New Lead — Georgia Gold Buyers (Gold Prices Page)');
+      
+      fetch('https://formsubmit.co/ajax/gadsonw@gmail.com', {
+        method: 'POST',
+        body: JSON.stringify(Object.fromEntries(formData)),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+      }).then(function() {
+        btn.textContent = "Thank You! We'll Call You Shortly.";
+        btn.style.background = '#2d8a4e';
+        btn.style.color = '#fff';
+      }).catch(function() {
+        console.log('Form data:', Object.fromEntries(formData));
+        btn.textContent = "Thank You! We'll Call You Shortly.";
+        btn.style.background = '#2d8a4e';
+        btn.style.color = '#fff';
+      });
+    }
+  });
+}
+
+// Phone number formatting
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+  phoneInput.addEventListener('input', function() {
+    let val = this.value.replace(/\D/g, '');
+    if (val.length > 10) val = val.substring(0, 10);
+    if (val.length >= 6) {
+      this.value = '(' + val.substring(0,3) + ') ' + val.substring(3,6) + '-' + val.substring(6);
+    } else if (val.length >= 3) {
+      this.value = '(' + val.substring(0,3) + ') ' + val.substring(3);
+    } else if (val.length > 0) {
+      this.value = '(' + val;
+    }
+  });
+}
+
+// Scroll reveal animation
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -40px 0px'
+});
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Locations dropdown on mobile (tap)
+document.querySelectorAll('.nav-dropdown > a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const parent = this.parentElement;
+    parent.classList.toggle('open');
+  });
+});
+
+// ===== LIVE PRICE FETCH + CALCULATOR =====
+(function() {
+  var TROY_OZ_TO_GRAMS = 31.1035;
+  var TROY_OZ_TO_DWT = 20;
+
+  var FALLBACK = {
+    gold: { price: 3050.00, change: 12.50, changePercent: 0.41 },
+    silver: { price: 34.25, change: 0.35, changePercent: 1.03 },
+    platinum: { price: 985.00, change: -5.20, changePercent: -0.53 },
+    palladium: { price: 1025.00, change: 8.75, changePercent: 0.86 }
+  };
+
+  var currentPrices = JSON.parse(JSON.stringify(FALLBACK));
+
+  var goldKarats = [
+    { k: '24', purity: 0.999 },
+    { k: '22', purity: 0.917 },
+    { k: '18', purity: 0.750 },
+    { k: '14', purity: 0.583 },
+    { k: '10', purity: 0.417 },
+    { k: '9', purity: 0.375 }
+  ];
+  var silverPurities = [
+    { id: '999', purity: 0.999 },
+    { id: '925', purity: 0.925 },
+    { id: '900', purity: 0.900 },
+    { id: '800', purity: 0.800 }
+  ];
+  var platinumPurities = [
+    { id: '950', purity: 0.950 },
+    { id: '900', purity: 0.900 },
+    { id: '850', purity: 0.850 }
+  ];
+
+  function fmt(n) {
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function setTxt(id, val) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+
+  function updateAllPrices(data, isLive) {
+    currentPrices = data;
+
+    // Update main price cards
+    var metals = ['gold', 'silver', 'platinum', 'palladium'];
+    metals.forEach(function(m) {
+      var d = data[m];
+      if (!d) return;
+      setTxt(m + '-price', '$' + fmt(d.price));
+      var ch = d.change;
+      var pct = d.changePercent;
+      var sign = ch >= 0 ? '+' : '';
+      var arrow = ch >= 0 ? '\u25B2' : '\u25BC';
+      var changeEl = document.getElementById(m + '-change');
+      if (changeEl) {
+        changeEl.textContent = arrow + ' ' + sign + '$' + fmt(Math.abs(ch)) + ' (' + sign + pct.toFixed(2) + '%)';
+        changeEl.className = 'price-card-change ' + (ch >= 0 ? 'positive' : 'negative');
+      }
+      setTxt(m + '-gram', '$' + fmt(d.price / TROY_OZ_TO_GRAMS));
+      setTxt(m + '-dwt', '$' + fmt(d.price / TROY_OZ_TO_DWT));
+    });
+
+    // Update gold karat table
+    var goldSpot = data.gold.price;
+    goldKarats.forEach(function(k) {
+      setTxt('gk-' + k.k + '-gram', '$' + fmt((goldSpot / TROY_OZ_TO_GRAMS) * k.purity));
+      setTxt('gk-' + k.k + '-dwt', '$' + fmt((goldSpot / TROY_OZ_TO_DWT) * k.purity));
+      setTxt('gk-' + k.k + '-oz', '$' + fmt(goldSpot * k.purity));
+    });
+
+    // Update silver purity table
+    var silverSpot = data.silver.price;
+    silverPurities.forEach(function(s) {
+      setTxt('sk-' + s.id + '-gram', '$' + fmt((silverSpot / TROY_OZ_TO_GRAMS) * s.purity));
+      setTxt('sk-' + s.id + '-dwt', '$' + fmt((silverSpot / TROY_OZ_TO_DWT) * s.purity));
+      setTxt('sk-' + s.id + '-oz', '$' + fmt(silverSpot * s.purity));
+    });
+
+    // Update platinum purity table
+    var platSpot = data.platinum.price;
+    platinumPurities.forEach(function(p) {
+      setTxt('pk-' + p.id + '-gram', '$' + fmt((platSpot / TROY_OZ_TO_GRAMS) * p.purity));
+      setTxt('pk-' + p.id + '-dwt', '$' + fmt((platSpot / TROY_OZ_TO_DWT) * p.purity));
+      setTxt('pk-' + p.id + '-oz', '$' + fmt(platSpot * p.purity));
+    });
+
+    // Update FAQ dynamic answers
+    setTxt('faq-14k-price', '$' + fmt((goldSpot / TROY_OZ_TO_GRAMS) * 0.583) + ' per gram');
+    setTxt('faq-sterling-price', '$' + fmt((silverSpot / TROY_OZ_TO_GRAMS) * 0.925) + ' per gram');
+
+    // Status badge
+    var statusEl = document.getElementById('price-status');
+    if (statusEl) {
+      statusEl.textContent = isLive ? 'Live' : 'Estimated';
+      statusEl.className = 'status-badge ' + (isLive ? 'live' : 'estimated');
+    }
+
+    // Recalculate calculator
+    calculateEstimate();
+  }
+
+  // ===== CALCULATOR LOGIC =====
+  var metalSelect = document.getElementById('calc-metal');
+  var puritySelect = document.getElementById('calc-purity');
+  var weightInput = document.getElementById('calc-weight');
+  var unitSelect = document.getElementById('calc-unit');
+  var resultEl = document.getElementById('calc-value');
+  var resultNote = document.querySelector('.calc-result-note');
+
+  var purityOptions = {
+    gold: [
+      { value: '0.999', label: '24K (99.9%)' },
+      { value: '0.917', label: '22K (91.7%)' },
+      { value: '0.750', label: '18K (75.0%)' },
+      { value: '0.583', label: '14K (58.3%)' },
+      { value: '0.417', label: '10K (41.7%)' },
+      { value: '0.375', label: '9K (37.5%)' }
+    ],
+    silver: [
+      { value: '0.999', label: 'Fine Silver (99.9%)' },
+      { value: '0.925', label: 'Sterling 925 (92.5%)' },
+      { value: '0.900', label: 'Coin Silver 900 (90.0%)' },
+      { value: '0.800', label: '800 Silver (80.0%)' }
+    ],
+    platinum: [
+      { value: '0.950', label: 'Pt 950 (95.0%)' },
+      { value: '0.900', label: 'Pt 900 (90.0%)' },
+      { value: '0.850', label: 'Pt 850 (85.0%)' }
+    ],
+    palladium: [
+      { value: '0.999', label: 'Pd 999 (99.9%)' },
+      { value: '0.950', label: 'Pd 950 (95.0%)' },
+      { value: '0.500', label: 'Pd 500 (50.0%)' }
+    ]
+  };
+
+  function updatePurityOptions() {
+    var metal = metalSelect.value;
+    var options = purityOptions[metal] || [];
+    puritySelect.innerHTML = '';
+    options.forEach(function(opt, i) {
+      var o = document.createElement('option');
+      o.value = opt.value;
+      o.textContent = opt.label;
+      if (metal === 'gold' && opt.value === '0.583') o.selected = true;
+      else if (i === 0 && metal !== 'gold') o.selected = true;
+      puritySelect.appendChild(o);
+    });
+    calculateEstimate();
+  }
+
+  function calculateEstimate() {
+    var metal = metalSelect.value;
+    var purity = parseFloat(puritySelect.value) || 0;
+    var weight = parseFloat(weightInput.value) || 0;
+    var unit = unitSelect.value;
+
+    var spotPerOz = currentPrices[metal] ? currentPrices[metal].price : 0;
+    var spotPerGram = spotPerOz / TROY_OZ_TO_GRAMS;
+
+    // Convert weight to grams
+    var weightGrams = weight;
+    if (unit === 'dwt') weightGrams = weight * (TROY_OZ_TO_GRAMS / TROY_OZ_TO_DWT);
+    else if (unit === 'ozt') weightGrams = weight * TROY_OZ_TO_GRAMS;
+
+    var value = weightGrams * spotPerGram * purity;
+
+    if (resultEl) {
+      resultEl.textContent = '$' + fmt(value);
+    }
+    if (resultNote) {
+      if (weight > 0) {
+        resultNote.textContent = 'Your items could be worth up to this amount based on today\'s market price. Get your exact quote at Georgia Gold Buyers.';
+      } else {
+        resultNote.textContent = 'Enter the weight of your item above to see an estimate based on today\'s market price.';
+      }
+    }
+  }
+
+  metalSelect.addEventListener('change', updatePurityOptions);
+  puritySelect.addEventListener('change', calculateEstimate);
+  weightInput.addEventListener('input', calculateEstimate);
+  unitSelect.addEventListener('change', calculateEstimate);
+
+  // ===== FETCH LIVE PRICES =====
+  async function fetchPrices() {
+    try {
+      var r = await fetch('https://api.gold-api.com/price/XAU');
+      if (r.ok) {
+        var d = await r.json();
+        if (d && d.price) {
+          var goldPrice = d.price;
+          var rs = await fetch('https://api.gold-api.com/price/XAG');
+          var ds = rs.ok ? await rs.json() : null;
+          var rp = await fetch('https://api.gold-api.com/price/XPT');
+          var dp = rp.ok ? await rp.json() : null;
+          var rpa = await fetch('https://api.gold-api.com/price/XPD');
+          var dpa = rpa.ok ? await rpa.json() : null;
+          var live = {
+            gold: { price: goldPrice, change: d.ch || d.change || FALLBACK.gold.change, changePercent: d.chp || d.changePercent || FALLBACK.gold.changePercent },
+            silver: { price: (ds && ds.price) || FALLBACK.silver.price, change: (ds && (ds.ch || ds.change)) || FALLBACK.silver.change, changePercent: (ds && (ds.chp || ds.changePercent)) || FALLBACK.silver.changePercent },
+            platinum: { price: (dp && dp.price) || FALLBACK.platinum.price, change: (dp && (dp.ch || dp.change)) || FALLBACK.platinum.change, changePercent: (dp && (dp.chp || dp.changePercent)) || FALLBACK.platinum.changePercent },
+            palladium: { price: (dpa && dpa.price) || FALLBACK.palladium.price, change: (dpa && (dpa.ch || dpa.change)) || FALLBACK.palladium.change, changePercent: (dpa && (dpa.chp || dpa.changePercent)) || FALLBACK.palladium.changePercent }
+          };
+          updateAllPrices(live, true);
+          return;
+        }
+      }
+    } catch(e) {}
+    // Try metals.live
+    try {
+      var r2 = await fetch('https://api.metals.live/v1/spot');
+      if (r2.ok) {
+        var arr = await r2.json();
+        if (Array.isArray(arr) && arr.length) {
+          var map = {};
+          arr.forEach(function(item) { map[item.metal] = item; });
+          var live2 = {
+            gold: { price: (map.gold && map.gold.price) || FALLBACK.gold.price, change: (map.gold && map.gold.change) || FALLBACK.gold.change, changePercent: (map.gold && map.gold.changePercent) || FALLBACK.gold.changePercent },
+            silver: { price: (map.silver && map.silver.price) || FALLBACK.silver.price, change: (map.silver && map.silver.change) || FALLBACK.silver.change, changePercent: (map.silver && map.silver.changePercent) || FALLBACK.silver.changePercent },
+            platinum: { price: (map.platinum && map.platinum.price) || FALLBACK.platinum.price, change: (map.platinum && map.platinum.change) || FALLBACK.platinum.change, changePercent: (map.platinum && map.platinum.changePercent) || FALLBACK.platinum.changePercent },
+            palladium: { price: (map.palladium && map.palladium.price) || FALLBACK.palladium.price, change: (map.palladium && map.palladium.change) || FALLBACK.palladium.change, changePercent: (map.palladium && map.palladium.changePercent) || FALLBACK.palladium.changePercent }
+          };
+          updateAllPrices(live2, true);
+          return;
+        }
+      }
+    } catch(e) {}
+    updateAllPrices(FALLBACK, false);
+  }
+
+  fetchPrices();
+})();
+</script>
+
+</body>
+</html>
