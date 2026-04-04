@@ -1663,7 +1663,7 @@ document.querySelectorAll('.call-trigger').forEach(btn => {
   btn.addEventListener('click', openCallModal);
 });
 
-callModalClose.addEventListener('click', closeCallModal);
+if (callModalClose) callModalClose.addEventListener('click', closeCallModal);
 callModal.addEventListener('click', (e) => {
   if (e.target === callModal) closeCallModal();
 });
@@ -1686,11 +1686,13 @@ let prevScrollY = 0;
 
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  if (scrollY > 10) {
-    header.classList.add('header--scrolled');
-  } else {
-    header.classList.remove('header--scrolled');
-  }
+  if (header) {
+    if (scrollY > 10) {
+      header.classList.add('header--scrolled');
+    } else {
+      header.classList.remove('header--scrolled');
+    }
+  } // end if(header)
   if (headerNav) {
     if (scrollY > 50 && scrollY > prevScrollY) {
       headerNav.classList.add('header-nav--hidden');
@@ -1944,7 +1946,8 @@ revealElements.forEach(el => revealObserver.observe(el));
   }
 
   // ===== CALCULATOR LOGIC =====
-  var metalSelect = document.getElementById('calc-metal');
+  try {
+var metalSelect = document.getElementById('calc-metal'); // removed element
   var puritySelect = document.getElementById('calc-purity');
   var weightInput = document.getElementById('calc-weight');
   var unitSelect = document.getElementById('calc-unit');
@@ -1979,9 +1982,9 @@ revealElements.forEach(el => revealObserver.observe(el));
   };
 
   function updatePurityOptions() {
-    var metal = metalSelect.value;
+    // var metal = metalSelect.value; // REMOVED - calculator element no longer exists
     var options = purityOptions[metal] || [];
-    puritySelect.innerHTML = '';
+    // puritySelect.innerHTML = ''; // REMOVED - calculator element no longer exists
     options.forEach(function(opt, i) {
       var o = document.createElement('option');
       o.value = opt.value;
@@ -1994,10 +1997,10 @@ revealElements.forEach(el => revealObserver.observe(el));
   }
 
   function calculateEstimate() {
-    var metal = metalSelect.value;
-    var purity = parseFloat(puritySelect.value) || 0;
-    var weight = parseFloat(weightInput.value) || 0;
-    var unit = unitSelect.value;
+    // var metal = metalSelect.value; // REMOVED - calculator element no longer exists
+    // var purity = parseFloat(puritySelect.value) || 0; // REMOVED - calculator element no longer exists
+    // var weight = parseFloat(weightInput.value) || 0; // REMOVED - calculator element no longer exists
+    // var unit = unitSelect.value; // REMOVED - calculator element no longer exists
 
     var spotPerOz = currentPrices[metal] ? currentPrices[metal].price : 0;
     var spotPerGram = spotPerOz / TROY_OZ_TO_GRAMS;
@@ -2021,13 +2024,15 @@ revealElements.forEach(el => revealObserver.observe(el));
     }
   }
 
-  metalSelect.addEventListener('change', updatePurityOptions);
-  puritySelect.addEventListener('change', calculateEstimate);
-  weightInput.addEventListener('input', calculateEstimate);
-  unitSelect.addEventListener('change', calculateEstimate);
+  // metalSelect.addEventListener('change', updatePurityOptions); // REMOVED - calculator element no longer exists
+  // puritySelect.addEventListener('change', calculateEstimate); // REMOVED - calculator element no longer exists
+  // weightInput.addEventListener('input', calculateEstimate); // REMOVED - calculator element no longer exists
+  // unitSelect.addEventListener('change', calculateEstimate); // REMOVED - calculator element no longer exists
 
   // ===== FETCH LIVE PRICES =====
-  async function fetchPrices() {
+  } catch(e) { /* calculator elements removed */ }
+
+async function fetchPrices() {
     // Strategy 1: Try gold-api.com directly (works if CORS allows)
     try {
       var responses = await Promise.all([
