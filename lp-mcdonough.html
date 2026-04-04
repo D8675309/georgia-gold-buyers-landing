@@ -127,13 +127,89 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 .widget-option svg { width: 28px; height: 28px; color: var(--gold); }
 
-.widget-next {
+.widget-next-old {
   width: 100%; padding: 16px; background: var(--gold); color: var(--dark);
   font-size: 16px; font-weight: 700; border-radius: 12px;
   transition: background 0.2s, transform 0.15s, opacity 0.2s;
 }
 .widget-next:hover:not(:disabled) { background: var(--gold-light); transform: translateY(-1px); }
 .widget-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+
+/* Step 2: Location buttons */
+.widget-locations {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.widget-location-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #e8e6e0;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.widget-location-btn:hover {
+  border-color: #C5961A;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(197,150,26,0.15);
+}
+.widget-location-btn svg { color: #C5961A; flex-shrink: 0; }
+.widget-location-btn strong { display: block; font-size: 17px; color: #1a1a1a; }
+.widget-location-btn span { display: block; font-size: 13px; color: #888; margin-top: 2px; }
+
+/* Widget form fields */
+.widget-field { margin-bottom: 16px; }
+.widget-field label { display: block; font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
+.widget-field .required { color: #C5961A; }
+.widget-field .optional { font-weight: 400; color: #999; font-size: 12px; }
+.widget-field input,
+.widget-field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e8e6e0;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: 'DM Sans', sans-serif;
+  background: #fff;
+  color: #1a1a1a;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.widget-field input:focus,
+.widget-field textarea:focus { outline: none; border-color: #C5961A; }
+.widget-field textarea { resize: vertical; min-height: 80px; }
+
+/* Confirmation */
+.widget-confirm-text {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.widget-location-info {
+  background: #f5f4f0;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+.widget-location-info strong { font-size: 16px; color: #1a1a1a; }
+.widget-location-info p { font-size: 14px; color: #666; margin: 4px 0; }
+.widget-directions {
+  display: inline-block;
+  margin-top: 12px;
+  color: #C5961A;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+}
+.widget-directions:hover { text-decoration: underline; }
 
 /* Step 2: Connect options */
 .widget-connect-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -308,107 +384,90 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 
     <!-- Step 1: What are you selling? -->
     <div class="widget-step active" id="step-1">
-      <h2>What are you looking to sell?</h2>
-      <p class="widget-subtitle">Select all that apply</p>
+      <h2>What would you like to sell?</h2>
       <div class="widget-options">
-        <button class="widget-option" data-value="Gold Jewelry">
-          <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M16 6V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>Gold Jewelry</span>
+        <button class="widget-option" data-value="Jewelry">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          <span>Jewelry</span>
         </button>
         <button class="widget-option" data-value="Coins & Bullion">
-          <svg viewBox="0 0 32 32" fill="none"><circle cx="12" cy="18" r="8" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="14" r="8" stroke="currentColor" stroke-width="2"/><path d="M20 11V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 14H23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>Coins &amp; Bullion</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" fill="currentColor" font-size="10" font-weight="bold">$</text></svg>
+          <span>Coins & Bullion</span>
         </button>
-        <button class="widget-option" data-value="Silver Items">
-          <svg viewBox="0 0 32 32" fill="none"><rect x="6" y="10" width="12" height="16" rx="2" stroke="currentColor" stroke-width="2"/><rect x="14" y="8" width="12" height="16" rx="2" stroke="currentColor" stroke-width="2"/><line x1="9" y1="16" x2="15" y2="16" stroke="currentColor" stroke-width="1.5"/><line x1="17" y1="14" x2="23" y2="14" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span>Silver Items</span>
+        <button class="widget-option" data-value="Watches">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 14.5 13.5"/><path d="M9 2h6M9 22h6M7.5 4.2A9 9 0 0 0 5 7.5M16.5 4.2A9 9 0 0 1 19 7.5M7.5 19.8A9 9 0 0 1 5 16.5M16.5 19.8A9 9 0 0 0 19 16.5"/></svg>
+          <span>Watches</span>
         </button>
         <button class="widget-option" data-value="Diamonds & Gems">
-          <svg viewBox="0 0 32 32" fill="none"><path d="M16 4L28 14L16 28L4 14L16 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 14H28" stroke="currentColor" stroke-width="1.5"/><path d="M10 4L8 14L16 28L24 14L22 4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          <span>Diamonds &amp; Gems</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 20 8.5 16 21 8 21 4 8.5"/><polyline points="4 8.5 12 13 20 8.5"/><line x1="12" y1="2" x2="12" y2="13"/></svg>
+          <span>Diamonds & Gems</span>
         </button>
-        <button class="widget-option" data-value="Luxury Watch">
-          <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="2"/><path d="M16 10V16L20 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 4H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12 28H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>Luxury Watch</span>
+        <button class="widget-option" data-value="Designer Goods">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+          <span>Designer Goods</span>
         </button>
-        <button class="widget-option" data-value="Designer Bag">
-          <svg viewBox="0 0 32 32" fill="none"><rect x="5" y="14" width="22" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="M11 14V10C11 7.24 13.24 5 16 5C18.76 5 21 7.24 21 10V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="21" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span>Designer Bag</span>
-        </button>
-        <button class="widget-option" data-value="Estate Collection">
-          <svg viewBox="0 0 32 32" fill="none"><rect x="6" y="8" width="20" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M6 14H26" stroke="currentColor" stroke-width="1.5"/><path d="M13 14V8" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="20" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span>Estate Collection</span>
-        </button>
-        <button class="widget-option" data-value="Not Sure">
-          <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/><path d="M12 12C12 9.79 13.79 8 16 8C18.21 8 20 9.79 20 12C20 14.21 18.21 15 16 16V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="22" r="1.5" fill="currentColor"/></svg>
-          <span>Not Sure</span>
+        <button class="widget-option" data-value="Other">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg>
+          <span>Other</span>
         </button>
       </div>
-      <button class="widget-next" id="to-step-2" disabled>Continue &rarr;</button>
     </div>
 
-    <!-- Step 2: How to connect -->
+    <!-- Step 2: Choose location -->
     <div class="widget-step" id="step-2">
-      <h2>How would you like to connect?</h2>
-      <div class="widget-connect-options">
-        <button class="widget-connect-btn" id="opt-call">
-          <svg viewBox="0 0 32 32" fill="none"><path d="M27 20.92v3.75a2.5 2.5 0 01-2.72 2.5A24.74 24.74 0 0113.5 23.33a24.37 24.37 0 01-7.5-7.5A24.74 24.74 0 012.17 5.02 2.5 2.5 0 014.64 2.5h3.75a2.5 2.5 0 012.5 2.15c.16 1.2.45 2.38.88 3.51a2.5 2.5 0 01-.56 2.64L9.86 12.15a20 20 0 007.5 7.5l1.35-1.35a2.5 2.5 0 012.64-.56c1.13.43 2.31.72 3.51.88a2.5 2.5 0 012.14 2.3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <strong>Call Me Now</strong>
-          <span>We'll call you within 5 minutes</span>
+      <h2>Which location is closest to you?</h2>
+      <div class="widget-locations">
+        <button class="widget-location-btn" data-value="McDonough, GA">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <strong>McDonough, GA</strong>
+            <span>120 S Point Blvd · Henry County</span>
+          </div>
         </button>
-        <button class="widget-connect-btn" id="opt-visit">
-          <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="22" rx="3" stroke="currentColor" stroke-width="2"/><path d="M22 4V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 4V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 12H28" stroke="currentColor" stroke-width="2"/><path d="M10 18H14V22H10V18Z" stroke="currentColor" stroke-width="1.5"/></svg>
-          <strong>I'll Come In</strong>
-          <span>Schedule a convenient time</span>
+        <button class="widget-location-btn" data-value="Valdosta, GA">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <strong>Valdosta, GA</strong>
+            <span>3996 N Valdosta Rd · South Georgia</span>
+          </div>
         </button>
       </div>
     </div>
 
-    <!-- Step 2a: Call Me form -->
-    <div class="widget-step" id="step-call">
-      <h2>We'll call you right away</h2>
+    <!-- Step 3: Contact info -->
+    <div class="widget-step" id="step-3">
+      <h2>How can we reach you?</h2>
       <div class="widget-form">
-        <input type="text" placeholder="Your Name" id="w-name" required autocomplete="name">
-        <input type="tel" placeholder="Phone Number" id="w-phone" required autocomplete="tel">
-        <button class="widget-submit" id="submit-call">Call Me Now</button>
-      </div>
-      <p class="widget-note">We typically call within 5 minutes during business hours.</p>
-    </div>
-
-    <!-- Step 2b: Visit form -->
-    <div class="widget-step" id="step-visit">
-      <h2>Schedule your free appraisal</h2>
-      <div class="widget-form">
-        <input type="text" placeholder="Your Name" id="w-name-2" required autocomplete="name">
-        <input type="tel" placeholder="Phone Number" id="w-phone-2" required autocomplete="tel">
-        <select id="w-day">
-          <option value="" disabled selected>Preferred Day</option>
-          <option>Today</option>
-          <option>Tomorrow</option>
-          <option>This Week</option>
-          <option>Next Week</option>
-          <option>Just Browsing</option>
-        </select>
-        <button class="widget-submit" id="submit-visit">Schedule My Appraisal</button>
+        <div class="widget-field">
+          <label for="w-phone">Phone Number <span class="required">*</span></label>
+          <input type="tel" id="w-phone" placeholder="(___) ___-____" required>
+        </div>
+        <div class="widget-field">
+          <label for="w-email">Email <span class="required">*</span></label>
+          <input type="email" id="w-email" placeholder="you@email.com" required>
+        </div>
+        <div class="widget-field">
+          <label for="w-details">Tell us about your items <span class="optional">(optional)</span></label>
+          <textarea id="w-details" placeholder="Describe what you have, any questions, or anything else we should know..." rows="3"></textarea>
+        </div>
+        <button class="widget-submit" id="w-submit">Get My Free Quote</button>
       </div>
     </div>
 
-    <!-- Step 3: Confirmation -->
+    <!-- Step 4: Confirmation -->
     <div class="widget-step" id="step-confirm">
-      <div class="widget-check">&#10003;</div>
-      <h2 style="text-align:center">You're all set!</h2>
-      <p style="text-align:center; color:var(--text-secondary); margin-top:8px">A specialist will reach out within 5 minutes.</p>
-      <div class="widget-location-card">
-        <strong>Georgia Gold Buyers &mdash; McDonough</strong>
+      <div class="widget-check-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+      </div>
+      <h2>You're in great hands.</h2>
+      <p class="widget-confirm-text">A Georgia Gold Buyers specialist will reach out to you shortly. We look forward to helping you get the most value for your items.</p>
+      <div class="widget-location-info">
+        <strong>Georgia Gold Buyers — McDonough</strong>
         <p>120 S Point Blvd, McDonough, GA 30253</p>
         <p>(678) 919-9265</p>
-        <a href="https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432,16z" target="_blank" rel="noopener noreferrer" class="widget-directions">
-          Get Directions &rarr;
-        </a>
+        <a href="https://www.google.com/maps/place/Georgia+Gold+Buyers/@33.423772,-84.1909432" target="_blank" class="widget-directions">Get Directions &rarr;</a>
       </div>
     </div>
-
-  </div>
 </div>
 
 <!-- Trust Reviews -->
