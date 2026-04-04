@@ -462,6 +462,10 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 .mobile-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; }
 .mobile-menu-overlay.open { display: block; }
 
+/* ===== QUICK FACTS DL ===== */
+.quick-facts-dl dt { font-weight: 600; margin-top: 20px; color: #1a1a1a; }
+.quick-facts-dl dd { margin-left: 0; color: #666; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -569,11 +573,41 @@ textarea.form-control { resize: vertical; min-height: 100px; }
     "ratingValue": "5.0",
     "reviewCount": "84"
   },
-  "areaServed": ["McDonough","Stockbridge","Hampton","Locust Grove","Henry County","South Metro Atlanta"]
+  "areaServed": ["McDonough","Stockbridge","Hampton","Locust Grove","Henry County","South Metro Atlanta"],
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61576541493879",
+    "https://www.youtube.com/channel/UCHZ5I4F7IfOZWofu5eBmUZQ",
+    "https://www.instagram.com/georgiagoldbuyers/"
+  ],
+  "knowsAbout": ["gold buying", "silver buying", "platinum buying", "precious metals appraisal", "jewelry appraisal", "coin appraisal", "luxury watch appraisal", "designer handbag authentication", "estate jewelry", "XRF analysis", "precious metals testing"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Precious Metals & Luxury Buying Services",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Gold", "description": "We buy gold jewelry, coins, bullion, and scrap gold in all karats for instant cash."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Silver", "description": "We buy sterling silver jewelry, flatware, coins, bullion at competitive rates."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Platinum", "description": "We buy platinum jewelry, bullion, and dental platinum."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Luxury Watch Buying", "description": "We buy Rolex, Omega, Cartier, Breitling, and other luxury watches."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Designer Goods Buying", "description": "We buy Chanel, Louis Vuitton, Gucci, Hermès handbags and accessories."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Designer Jewelry Buying", "description": "We buy David Yurman, Tiffany & Co., Cartier, and other designer jewelry."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Estate Sale Services", "description": "We buy jewelry, coins, and valuables from estate sales and inheritances."}}
+    ]
+  }
 }
 </script>
 
-<!-- Schema: FAQPage -->
+<!-- Schema: Person (McDonough Team) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gad Woodall",
+  "jobTitle": "Owner & Precious Metals Specialist",
+  "worksFor": {"@type": "LocalBusiness", "name": "Georgia Gold Buyers", "address": {"@type": "PostalAddress", "addressLocality": "McDonough", "addressRegion": "GA"}}
+}
+</script>
+
+<!-- Schema: FAQPage (merged FAQ + Quick Facts = 12 entries) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -625,6 +659,54 @@ textarea.form-control { resize: vertical; min-height: 100px; }
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Absolutely. We buy sterling silver flatware sets, silver tea sets, pre-1964 silver coins (Morgan dollars, Peace dollars, quarters, dimes), silver bullion, and sterling silver jewelry. Silver items add up quickly in value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Georgia Gold Buyers in McDonough do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Georgia Gold Buyers in McDonough, GA purchases gold, silver, platinum, jewelry, coins, bullion, luxury watches, designer handbags, and estate collections from individuals for instant cash payment. Located at 120 S Point Blvd in McDonough, we serve Henry County and the entire South Metro Atlanta area."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who runs the McDonough location?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The McDonough location is operated by owner Gad Woodall, a precious metals specialist with years of hands-on experience in gold evaluation and purchasing. The team includes trained appraisers who use professional-grade testing equipment including XRF analyzers and Sigma Metalytics verifiers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes Georgia Gold Buyers different from pawn shops in McDonough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Georgia Gold Buyers typically pays significantly more than pawn shops because gold buying is our primary business, not a sideline. We use XRF analyzers for precise purity testing (accurate to 0.01%), lab-grade scales, and base our offers on live spot prices. Pawn shops often estimate karat and use outdated pricing. We encourage customers to compare offers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What testing equipment does the McDonough location use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our McDonough location uses XRF (X-Ray Fluorescence) analyzers for exact purity analysis, Sigma Metalytics precious metals verifiers for coin and bullion authentication, touchstone acid testing for secondary verification, density testing via water displacement, and lab-grade precision scales accurate to 0.01 grams."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Georgia Gold Buyers in McDonough handle estate sales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We regularly work with families handling estate jewelry, coin collections, and inherited valuables in the McDonough and Henry County area. Our team evaluates collections of any size with patience and discretion. All appraisals are free and come with no obligation to sell."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far do people drive to visit the McDonough location?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Customers regularly visit our McDonough location from across South Metro Atlanta, including Stockbridge, Hampton, Locust Grove, Conyers, Covington, Jonesboro, and Peachtree City. The location is conveniently accessible from I-75 via Exit 218."
       }
     }
   ]
@@ -882,6 +964,20 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   </div>
 </section>
 
+<!-- ===== PROFESSIONAL TESTING ===== -->
+<section class="section section--alt">
+  <div class="container" style="max-width:800px; text-align:center;">
+    <h2 class="section-title reveal">Professional-Grade Testing at Our McDonough Location</h2>
+    <p class="reveal" style="font-size:15px; color:#666; line-height:1.7; margin-bottom:16px;">
+      Every item we evaluate at our McDonough location is tested using professional-grade equipment &mdash; the same technology trusted by refineries and assay offices. Our testing arsenal includes XRF (X-Ray Fluorescence) analyzers for exact purity analysis, Sigma Metalytics verifiers for coin authentication, acid and touchstone testing, density testing, and lab-grade precision scales.
+    </p>
+    <p class="reveal" style="font-size:15px; color:#666; line-height:1.7; margin-bottom:24px;">
+      All testing is done right in front of you. You'll see the XRF reading, watch the scale, and understand exactly how we arrive at our offer. No guesswork, no black boxes.
+    </p>
+    <a href="testing.html" class="btn-gold reveal" style="display:inline-block;">Learn About Our Testing Process &rarr;</a>
+  </div>
+</section>
+
 <!-- ===== REVIEWS ===== -->
 <section class="section" id="reviews">
   <div class="container">
@@ -1068,6 +1164,32 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   </div>
 </section>
 
+<!-- ===== QUICK FACTS ===== -->
+<section class="section" id="quick-facts">
+  <div class="container" style="max-width:800px;">
+    <h2 class="section-title reveal">Quick Facts About Georgia Gold Buyers in McDonough</h2>
+    <dl class="quick-facts-dl reveal" style="font-size:15px; line-height:1.8; color:#555;">
+      <dt style="font-weight:600; margin-top:20px; color:#1a1a1a;">What does Georgia Gold Buyers in McDonough do?</dt>
+      <dd style="margin-left:0; color:#666;">Georgia Gold Buyers in McDonough, GA purchases gold, silver, platinum, jewelry, coins, bullion, luxury watches, designer handbags, and estate collections from individuals for instant cash payment. Located at 120 S Point Blvd in McDonough, we serve Henry County and the entire South Metro Atlanta area.</dd>
+
+      <dt style="font-weight:600; margin-top:20px; color:#1a1a1a;">Who runs the McDonough location?</dt>
+      <dd style="margin-left:0; color:#666;">The McDonough location is operated by owner Gad Woodall, a precious metals specialist with years of hands-on experience in gold evaluation and purchasing. The team includes trained appraisers who use professional-grade testing equipment including XRF analyzers and Sigma Metalytics verifiers.</dd>
+
+      <dt style="font-weight:600; margin-top:20px; color:#1a1a1a;">What makes Georgia Gold Buyers different from pawn shops in McDonough?</dt>
+      <dd style="margin-left:0; color:#666;">Georgia Gold Buyers typically pays significantly more than pawn shops because gold buying is our primary business, not a sideline. We use XRF analyzers for precise purity testing (accurate to 0.01%), lab-grade scales, and base our offers on live spot prices. Pawn shops often estimate karat and use outdated pricing. We encourage customers to compare offers.</dd>
+
+      <dt style="font-weight:600; margin-top:20px; color:#1a1a1a;">What testing equipment does the McDonough location use?</dt>
+      <dd style="margin-left:0; color:#666;">Our McDonough location uses XRF (X-Ray Fluorescence) analyzers for exact purity analysis, Sigma Metalytics precious metals verifiers for coin and bullion authentication, touchstone acid testing for secondary verification, density testing via water displacement, and lab-grade precision scales accurate to 0.01 grams.</dd>
+
+      <dt style="font-weight:600; margin-top:20px; color:#1a1a1a;">Does Georgia Gold Buyers in McDonough handle estate sales?</dt>
+      <dd style="margin-left:0; color:#666;">Yes. We regularly work with families handling estate jewelry, coin collections, and inherited valuables in the McDonough and Henry County area. Our team evaluates collections of any size with patience and discretion. All appraisals are free and come with no obligation to sell.</dd>
+
+      <dt style="font-weight:600; margin-top:20px; color:#1a1a1a;">How far do people drive to visit the McDonough location?</dt>
+      <dd style="margin-left:0; color:#666;">Customers regularly visit our McDonough location from across South Metro Atlanta, including Stockbridge, Hampton, Locust Grove, Conyers, Covington, Jonesboro, and Peachtree City. The location is conveniently accessible from I-75 via Exit 218.</dd>
+    </dl>
+  </div>
+</section>
+
 <!-- ===== AREAS WE SERVE ===== -->
 <section class="section" id="areas-served">
   <div class="container">
@@ -1247,7 +1369,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 
 <!-- ===== ENTITY SUMMARY ===== -->
 <aside class="entity-summary" style="max-width:800px; margin:0 auto; padding:24px; text-align:center; font-size:13px; color:#999; line-height:1.6;">
-  Georgia Gold Buyers is a family-owned precious metals dealer located at 120 S Point Blvd, McDonough, GA 30253. Established in 2012, we buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods. Owner Gad Woodall leads the McDonough team. Open by appointment 7 days a week. Serving McDonough, Stockbridge, Hampton, Locust Grove, Henry County, and all of South Metro Atlanta. Rated 5.0 stars on Google. Phone: (678) 919-9265.
+  Georgia Gold Buyers in McDonough, Georgia is a family-owned precious metals dealer established in 2012. Located at 120 S Point Blvd, McDonough, GA 30253, we buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods. Serving Henry County, Stockbridge, Hampton, Locust Grove, and all of South Metro Atlanta. Open 7 days a week by appointment. Call (678) 919-9265.
 </aside>
 
 <!-- ===== FOOTER ===== -->
