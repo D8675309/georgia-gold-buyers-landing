@@ -192,14 +192,25 @@ input, select, textarea { font-family: inherit; font-size: inherit; }
 .header-phone {
   color: var(--white);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: color 0.2s;
+  transition: color 0.2s, border-color 0.2s;
+  cursor: pointer;
 }
 
-.header-phone:hover { color: var(--gold); }
+.header-phone-desktop {
+  background: none;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 8px;
+  padding: 7px 14px;
+  white-space: nowrap;
+}
+.header-phone-desktop:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
 .header-phone svg { flex-shrink: 0; }
 
 .btn-gold {
