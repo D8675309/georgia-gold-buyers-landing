@@ -412,6 +412,7 @@
       body: JSON.stringify(Object.fromEntries(formData)),
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
     }).then(function() {
+      gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
       document.getElementById('formSection').classList.add('hidden');
       document.getElementById('thankYou').classList.add('visible');
     }).catch(function() {

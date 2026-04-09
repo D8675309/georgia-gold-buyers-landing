@@ -1551,7 +1551,8 @@ if (form) {
       var btn = form.querySelector('.btn-submit'); btn.textContent = 'Sending...'; btn.disabled = true;
       var formData = new FormData(form); formData.append('_subject', 'New Lead — McDonough — Georgia Gold Buyers');
       fetch('https://formsubmit.co/ajax/gadsonw@gmail.com', { method: 'POST', body: JSON.stringify(Object.fromEntries(formData)), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
-      .then(function() { btn.textContent = "Thank You! We'll Call You Shortly."; btn.style.background = '#2d8a4e'; btn.style.color = '#fff'; })
+      .then(function() { gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
+        btn.textContent = "Thank You! We'll Call You Shortly."; btn.style.background = '#2d8a4e'; btn.style.color = '#fff'; })
       .catch(function() { btn.textContent = "Thank You! We'll Call You Shortly."; btn.style.background = '#2d8a4e'; btn.style.color = '#fff'; });
     }
   });

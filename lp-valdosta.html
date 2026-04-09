@@ -958,7 +958,8 @@ if (wSubmit) {
       }),
       headers: { "Content-Type": "application/json", "Accept": "application/json" }
     }).then(function() {
-      updateConfirmation(); showStep("step-confirm");
+      updateConfirmation(); gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
+      showStep("step-confirm");
     }).catch(function() {
       console.log("Form data:", widgetData);
       updateConfirmation(); showStep("step-confirm");
