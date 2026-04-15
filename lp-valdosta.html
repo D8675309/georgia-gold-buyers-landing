@@ -949,12 +949,20 @@ if (wSubmit) {
     // Send to POS Lead Inbox (primary)
     fetch("https://web-production-56765.up.railway.app/api/leads/submit", {
       method: "POST",
-      body: JSON.stringify({ full_name: "Website Lead", phone: widgetData.phone, email: widgetData.email, item_type: widgetData.item, location: widgetData.location, details: widgetData.details, shop: "ggb" }),
+      body: JSON.stringify({ full_name: widgetData.email.split('@')[0] || 'Website Lead', phone: widgetData.phone, email: widgetData.email, item_type: widgetData.item, location: widgetData.location, details: widgetData.details, shop: "ggb" }),
       headers: { "Content-Type": "application/json" }
-    }).catch(function(err) { console.log("POS lead error:", err); });
+    }).then(function() {
+      updateConfirmation();
+      showStep("step-confirm");
+    }).catch(function(err) {
+      console.log("POS lead error:", err);
+      // Still show confirmation even if API fails
+      updateConfirmation();
+      showStep("step-confirm");
+    });
 
-    // FormSubmit removed — POS is primary
-    updateConfirmation(); gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'
+    // Google Ads conversion tracking
+    gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
   });
 }
 
