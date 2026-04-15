@@ -1550,6 +1550,14 @@ if (form) {
     if (valid) {
       var btn = form.querySelector('.btn-submit'); btn.textContent = 'Sending...'; btn.disabled = true;
       var formData = new FormData(form); formData.append('_subject', 'New Lead — Valdosta — Georgia Gold Buyers');
+    // Send to POS Lead Inbox (primary)
+    var posPayload = Object.fromEntries(formData);
+    fetch('https://web-production-56765.up.railway.app/api/leads/submit', {
+      method: 'POST',
+      body: JSON.stringify(Object.assign({}, posPayload, { shop: 'ggb' })),
+      headers: { 'Content-Type': 'application/json' }
+    }).catch(function(err) { console.log('POS lead error:', err); });
+
       fetch('https://formsubmit.co/ajax/gadsonw@gmail.com', { method: 'POST', body: JSON.stringify(Object.fromEntries(formData)), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
       .then(function() { gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
         btn.textContent = "Thank You! We'll Call You Shortly."; btn.style.background = '#2d8a4e'; btn.style.color = '#fff'; })

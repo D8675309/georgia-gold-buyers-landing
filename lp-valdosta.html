@@ -946,6 +946,14 @@ if (wSubmit) {
     wSubmit.textContent = "Sending...";
     wSubmit.disabled = true;
     
+    // Send to POS Lead Inbox (primary)
+    fetch("https://web-production-56765.up.railway.app/api/leads/submit", {
+      method: "POST",
+      body: JSON.stringify({ full_name: "Website Lead", phone: widgetData.phone, email: widgetData.email, item_type: widgetData.item, location: widgetData.location, details: widgetData.details, shop: "ggb" }),
+      headers: { "Content-Type": "application/json" }
+    }).catch(function(err) { console.log("POS lead error:", err); });
+
+    // Send to FormSubmit (email backup)
     fetch("https://formsubmit.co/ajax/gadsonw@gmail.com", {
       method: "POST",
       body: JSON.stringify({
