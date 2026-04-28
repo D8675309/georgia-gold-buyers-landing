@@ -2643,19 +2643,31 @@ form.addEventListener('submit', function(e) {
     const formData = new FormData(form);
     formData.append('_subject', 'New Lead — Georgia Gold Buyers');
     
-    // Send to POS Lead Inbox (primary)
+    // Build POS payload with ad-attribution from URL
     const posPayload = Object.fromEntries(formData);
+    const urlParams = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'].forEach(p => {
+      const v = urlParams.get(p);
+      if (v) posPayload[p] = v;
+    });
+    posPayload.shop = 'ggb';
+
+    // Send to POS Lead Inbox (primary)
     fetch('https://web-production-56765.up.railway.app/api/leads/submit', {
       method: 'POST',
-      body: JSON.stringify({ ...posPayload, shop: 'ggb' }),
+      body: JSON.stringify(posPayload),
       headers: { 'Content-Type': 'application/json' }
-    }).catch(function(err) { console.log('POS lead submit error:', err); });
-
-    // FormSubmit removed — POS is primary
-    gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
+    }).then(function(r) {
+      gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
       btn.textContent = 'Thank You! We\'ll Call You Shortly.';
       btn.style.background = '#2d8a4e';
       btn.style.color = '#fff';
+    }).catch(function(err) {
+      console.log('POS lead submit error:', err, posPayload);
+      btn.textContent = 'Thank You! We\'ll Call You Shortly.';
+      btn.style.background = '#2d8a4e';
+      btn.style.color = '#fff';
+    });
   }
 });
 

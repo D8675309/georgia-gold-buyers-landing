@@ -403,21 +403,36 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
 
-    // Send feedback to email via Formspree
+    // Send feedback to email backup
     formData.append('_subject', 'NEGATIVE FEEDBACK — Georgia Gold Buyers McDonough');
     formData.append('_replyto', data.email || '');
-    
     fetch('https://formsubmit.co/ajax/gadsonw@gmail.com', {
       method: 'POST',
       body: JSON.stringify(Object.fromEntries(formData)),
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+    }).catch(function(){});
+
+    // Also send to POS Lead Inbox so it shows up as a flagged lead
+    var posPayload = {
+      full_name: data.name || 'Anonymous Feedback',
+      phone: data.phone || '',
+      email: data.email || '',
+      item_type: 'Customer Feedback',
+      location: 'McDonough',
+      details: '[NEGATIVE FEEDBACK] ' + (data.feedback || ''),
+      lead_source: 'negative_feedback_form',
+      shop: 'ggb'
+    };
+    fetch('https://web-production-56765.up.railway.app/api/leads/submit', {
+      method: 'POST',
+      body: JSON.stringify(posPayload),
+      headers: { 'Content-Type': 'application/json' }
     }).then(function() {
       gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
       document.getElementById('formSection').classList.add('hidden');
       document.getElementById('thankYou').classList.add('visible');
     }).catch(function() {
-      // Show success anyway — log data as backup
-      console.log('Feedback data:', data);
+      console.log('Feedback data:', posPayload);
       document.getElementById('formSection').classList.add('hidden');
       document.getElementById('thankYou').classList.add('visible');
     });
