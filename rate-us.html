@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>How was your visit? | Georgia Gold Buyers</title>
+<meta name="description" content="Tell us how your visit went. Your feedback helps us improve.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2L28 12L16 30L4 12Z' fill='%23C5961A'/></svg>" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+
+<!-- Google Ads tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16941991771"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-16941991771');
+</script>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #C5961A;
+    --gold-hover: #b3870f;
+    --dark: #1a1a1a;
+    --bg: #fafaf7;
+    --text: #2a2a2a;
+    --muted: #8a8a8a;
+    --border: #e0ddd6;
+  }
+  html, body { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--dark);
+    margin-bottom: 32px;
+    letter-spacing: 0.02em;
+  }
+  .logo span { color: var(--gold); }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    width: 100%;
+    max-width: 520px;
+    padding: 40px 28px 32px;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+  .emoji-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 24px auto 4px;
+    max-width: 440px;
+  }
+  .emoji-btn {
+    flex: 1;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 6px 14px;
+    font-size: 38px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .emoji-btn:hover, .emoji-btn:focus {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    background: #fffaf0;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(197,150,26,0.15);
+  }
+  .emoji-btn:active { transform: scale(0.97); }
+  .emoji-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.2;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .footer-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 24px;
+    line-height: 1.5;
+  }
+  .footer-note a { color: var(--gold); text-decoration: none; }
+  .footer-note a:hover { text-decoration: underline; }
+  .redirect-msg {
+    display: none;
+    margin-top: 20px;
+    padding: 14px;
+    background: #fffaf0;
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .redirect-msg.show { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  @media (max-width: 480px) {
+    .card { padding: 32px 18px 24px; border-radius: 14px; }
+    h1 { font-size: 22px; }
+    .emoji-btn { font-size: 32px; padding: 14px 4px 12px; }
+    .emoji-label { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+  <div class="logo">GEORGIA <span>GOLD</span> BUYERS</div>
+
+  <div class="card">
+    <h1 id="heading">How was your visit?</h1>
+    <p class="sub" id="sub">Tap the face that best describes your experience. Your feedback goes straight to the owner.</p>
+
+    <div class="emoji-row" role="radiogroup" aria-label="Rate your experience">
+      <button class="emoji-btn" data-rating="1" aria-label="Terrible">😡<span class="emoji-label">Terrible</span></button>
+      <button class="emoji-btn" data-rating="2" aria-label="Bad">😕<span class="emoji-label">Bad</span></button>
+      <button class="emoji-btn" data-rating="3" aria-label="Okay">😐<span class="emoji-label">Okay</span></button>
+      <button class="emoji-btn" data-rating="4" aria-label="Good">🙂<span class="emoji-label">Good</span></button>
+      <button class="emoji-btn" data-rating="5" aria-label="Excellent">🤩<span class="emoji-label">Excellent</span></button>
+    </div>
+
+    <div class="redirect-msg" id="redirectMsg">
+      Thanks — taking you there now…
+    </div>
+
+    <p class="footer-note">
+      Need to call us instead?
+      <a href="tel:6789199265" id="phoneLink">(678) 919-9265</a>
+    </p>
+  </div>
+
+<script>
+(function() {
+  // ── Parse URL params ────────────────────────────────────────────
+  // Accepted params:
+  //   cid  — customer_id from POS (preserved through the flow)
+  //   loc  — "mcdonough" | "valdosta" (defaults to mcdonough if absent)
+  //   appt — appointment_id (optional, helps the POS attribute the rating)
+  //   src  — where the link came from ("post_visit_sms", "qr", etc.)
+  var params = new URLSearchParams(window.location.search);
+  var cid    = params.get('cid')  || '';
+  var loc    = (params.get('loc') || 'mcdonough').toLowerCase();
+  var apptId = params.get('appt') || '';
+  var src    = params.get('src')  || 'rate_us_page';
+
+  if (loc !== 'valdosta') loc = 'mcdonough';
+
+  // Update phone link based on location
+  var phoneEl = document.getElementById('phoneLink');
+  if (loc === 'valdosta') {
+    phoneEl.href = 'tel:2293750015';
+    phoneEl.textContent = '(229) 375-0015';
+  }
+
+  // ── Log the rating to POS (fire-and-forget — never blocks redirect) ──
+  function logRatingToPOS(rating) {
+    try {
+      var payload = {
+        customer_id: cid ? Number(cid) : null,
+        appointment_id: apptId ? Number(apptId) : null,
+        rating: rating,
+        location: loc,
+        source: src,
+        page: 'rate-us',
+        clicked_at: new Date().toISOString(),
+        shop: 'ggb'
+      };
+      // Public ratings endpoint on the POS — failures are silent so we never
+      // block the user's redirect to the review or feedback page.
+      fetch('https://web-production-56765.up.railway.app/api/ratings/click', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' },
+        // keepalive so the request still flies if the page unloads
+        keepalive: true
+      }).catch(function(){});
+    } catch (e) { /* noop */ }
+  }
+
+  // ── Routing rules (matches what user described) ─────────────────
+  // 1, 2 → negative feedback form (with tracking params preserved)
+  // 3    → negative feedback form, but with a "tell us how to do better" tone
+  // 4, 5 → review page (which routes to Google Business Profile)
+  function destinationFor(rating) {
+    var qs = [];
+    if (cid) qs.push('cid=' + encodeURIComponent(cid));
+    if (apptId) qs.push('appt=' + encodeURIComponent(apptId));
+    qs.push('rating=' + rating);
+    qs.push('src=' + encodeURIComponent(src));
+    var query = qs.length ? ('?' + qs.join('&')) : '';
+
+    if (rating <= 3) {
+      return 'feedback-' + loc + '.html' + query;
+    }
+    return 'review-' + loc + '.html' + query;
+  }
+
+  // ── Click handlers ──────────────────────────────────────────────
+  var buttons = document.querySelectorAll('.emoji-btn');
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var rating = Number(btn.getAttribute('data-rating'));
+
+      // Visual feedback
+      buttons.forEach(function(b) { b.style.opacity = '0.4'; });
+      btn.style.opacity = '1';
+      btn.style.borderColor = 'var(--gold)';
+      btn.style.background = '#fffaf0';
+
+      document.getElementById('redirectMsg').classList.add('show');
+
+      // Track in Google Ads
+      try {
+        gtag('event', 'rating_submitted', {
+          event_category: 'rate_us',
+          rating: rating,
+          location: loc
+        });
+      } catch (e) {}
+
+      logRatingToPOS(rating);
+
+      // Brief delay so the user sees the confirmation, then redirect
+      setTimeout(function() {
+        window.location.href = destinationFor(rating);
+      }, 600);
+    });
+  });
+
+  // ── Personalize heading if customer name passed via ?name= ──────
+  var name = params.get('name');
+  if (name) {
+    var first = name.split(/\s+/)[0];
+    document.getElementById('heading').textContent = 'Hey ' + first + ' — how was your visit?';
+  }
+})();
+</script>
+</body>
+</html>
