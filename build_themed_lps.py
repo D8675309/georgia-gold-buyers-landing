@@ -246,6 +246,35 @@ def transform(src_html: str, city: str, theme: str) -> str:
         t['expert_line'] + ' Transparent process &mdash; you see everything.'
     )
 
+    # ===== FIX HERO CTA: direct tel: instead of modal trigger =====
+    # On themed city LPs the user has ALREADY chosen a city, so the location picker
+    # modal is confusing. Make the hero CTA dial that city directly.
+    phone_tel = c['phone_tel']
+    phone_display = c['phone_display']
+    # Original: <a href="#" class="hero-phone call-trigger" style="...">...Call Now: (XXX) XXX-XXXX...</a>
+    # Replace with direct tel link + conversion tracking
+    html = re.sub(
+        r'<a href="#" class="hero-phone call-trigger"',
+        f'<a href="tel:{phone_tel}" class="hero-phone" onclick="window.__gads_fire(\'AW-16941991771/FJz9CITzxM8aENuOyY4_\')"',
+        html
+    )
+
+    # ===== REMOVE CALL MODAL (no longer needed on single-city LPs) =====
+    # The modal HTML block — wholesale removal
+    html = re.sub(
+        r'<!-- Call Location Picker Modal -->\s*<div class="call-modal" id="call-modal"[^>]*>.*?</div>\s*</div>\s*</div>',
+        '',
+        html,
+        flags=re.DOTALL
+    )
+    # Belt-and-suspenders: if the regex above doesn't perfectly match, also try simpler removal
+    html = re.sub(
+        r'<div class="call-modal" id="call-modal"[^>]*>.*?(?=<!-- Mobile Bottom Bar -->)',
+        '',
+        html,
+        flags=re.DOTALL
+    )
+
     return html
 
 
