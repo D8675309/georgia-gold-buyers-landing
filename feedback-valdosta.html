@@ -309,6 +309,15 @@
     }
   }
 </style>
+<!-- Conversion tracking helpers (added by axon-ads) -->
+<script>
+window.__gads_fire = function(label) {
+  if (typeof gtag === 'function') {
+    try { gtag('event', 'conversion', { 'send_to': label }); } catch(e) {}
+  }
+  return true; // always allow default link behavior
+};
+</script>
 </head>
 <body>
 
@@ -374,7 +383,7 @@
 
   <!-- Footer -->
   <div class="page-footer">
-    Need immediate help? Call us: <a href="tel:+12293750015">(229) 375-0015</a>
+    Need immediate help? Call us: <a href="tel:+12293750015" onclick="window.__gads_fire('AW-16941991771/FJz9CITzxM8aENuOyY4_')">(229) 375-0015</a>
     <br>
     <a href="index.html" class="back-link">← Return to Georgia Gold Buyers</a>
   </div>
@@ -428,7 +437,7 @@
       body: JSON.stringify(posPayload),
       headers: { 'Content-Type': 'application/json' }
     }).then(function() {
-      gtag('event', 'conversion', {'send_to': 'AW-16941991771/xH6vCLTht88aENuOyY4_'});
+      gtag('event', 'conversion', {'send_to': 'AW-16941991771/zCH5CJP9xs8aENuOyY4_'});
       document.getElementById('formSection').classList.add('hidden');
       document.getElementById('thankYou').classList.add('visible');
     }).catch(function() {
