@@ -1589,7 +1589,8 @@ window.__gads_fire = function(label) {
             <label for="details">Additional Details <span class="optional">(optional)</span></label>
             <textarea id="details" name="details" class="form-control" placeholder="Describe what you'd like to sell, quantity, condition, etc."></textarea>
           </div>
-          <button type="submit" class="btn-submit">Get My Free Quote</button>
+          <label for="sms-consent" class="sms-consent" style="display:flex;gap:10px;align-items:flex-start;margin:4px 0 14px;font-size:12.5px;line-height:1.45;color:#5a5a5a;text-align:left;cursor:pointer;font-weight:400"><input type="checkbox" id="sms-consent" name="sms_consent" value="yes" style="flex:0 0 auto;width:20px;height:20px;min-width:20px;margin:1px 0 0;padding:0;border:0;border-radius:4px;box-shadow:none;-webkit-appearance:checkbox;appearance:auto;accent-color:#b8860b;cursor:pointer"><span>I agree to receive text messages from Georgia Gold Buyers about my quote and appointment. Message frequency varies. Msg &amp; data rates may apply. Reply HELP for help, STOP to opt out. Consent is not a condition of purchase. <a href="privacy-policy.html" target="_blank" style="text-decoration:underline">Privacy Policy</a> &amp; <a href="terms-of-service.html" target="_blank" style="text-decoration:underline">Terms</a>.</span></label>
+        <button type="submit" class="btn-submit">Get My Free Quote</button>
         </form>
         <p class="form-security">&#128274; Your information is secure and will never be shared.</p>
         <div class="form-review-badge">
@@ -1874,6 +1875,7 @@ if (form) {
         if (v) posPayload[p] = v;
       });
       posPayload.shop = 'ggb';
+    posPayload.sms_consent = (document.getElementById('sms-consent') && document.getElementById('sms-consent').checked) ? 'yes' : 'no';
 
       // Send to POS Lead Inbox (primary)
       fetch('https://web-production-56765.up.railway.app/api/leads/submit', {
