@@ -149,6 +149,8 @@ def build(g):
 
 {faq_block}'''
     t = t[:start] + body + t[end:]
+    # --- no guides strip on guide pages (they have their own related block)
+    t = re.sub(r'<!-- ===== SELLER GUIDES STRIP ===== -->.*?</section>\s*', '', t, count=1, flags=re.S)
     # --- entity summary
     t = re.sub(r'(<aside class="entity-summary"[^>]*>).*?(</aside>)', r'\1\n  ' + g['entity'] + r'\n\2', t, count=1, flags=re.S)
     open(g['slug'], 'w', encoding='utf-8').write(t)
@@ -160,7 +162,8 @@ RELATED = '''<div class="related">
     <a class="guide-card" href="how-much-is-gold-worth.html"><h3>How much is my gold worth?</h3><p>10k, 14k, 18k and 24k value per gram, with the math.</p></a>
     <a class="guide-card" href="sell-or-pawn-gold.html"><h3>Sell or pawn your gold?</h3><p>How each option works in Georgia and which pays more.</p></a>
     <a class="guide-card" href="selling-gold-what-to-expect.html"><h3>What to bring &amp; what to expect</h3><p>ID, hours, testing, and payment &mdash; step by step.</p></a>
-    <a class="guide-card" href="testing.html"><h3>How we test your gold</h3><p>XRF, Sigma verifier, acid, and precision scales explained.</p></a>
+    <a class="guide-card" href="sell-silver-coins-flatware.html"><h3>Selling silver coins &amp; flatware</h3><p>Silver content of US coins, sterling vs. silverplate.</p></a>
+    <a class="guide-card" href="sell-rolex-luxury-watch.html"><h3>Selling a Rolex or luxury watch</h3><p>What drives the offer and how to prepare.</p></a>
   </div>
 </div>'''
 
@@ -344,12 +347,167 @@ dict(slug='guides.html', crumb='Seller Guides',
   <a class="guide-card" href="how-much-is-gold-worth.html"><h3>How much is my gold worth?</h3><p>10k, 14k, 18k and 24k value per gram, a worked example, and how to read karat stamps.</p></a>
   <a class="guide-card" href="sell-or-pawn-gold.html"><h3>Sell or pawn your gold?</h3><p>How each option works, what pawn loans cost under Georgia law, and which fits you.</p></a>
   <a class="guide-card" href="selling-gold-what-to-expect.html"><h3>What to bring &amp; what to expect</h3><p>Photo ID, hours, our step-by-step process, and how you get paid.</p></a>
+  <a class="guide-card" href="sell-silver-coins-flatware.html"><h3>Selling silver coins &amp; flatware</h3><p>Silver content of pre-1965 coins, Morgan dollars, and sterling &mdash; and how to spot silverplate.</p></a>
+  <a class="guide-card" href="sell-rolex-luxury-watch.html"><h3>Selling a Rolex or luxury watch</h3><p>Model, condition, box and papers &mdash; what decides the offer.</p></a>
+  <a class="guide-card" href="dental-gold-value.html"><h3>Is dental gold worth anything?</h3><p>What crowns and bridges are made of and how they&rsquo;re valued.</p></a>
   <a class="guide-card" href="testing.html"><h3>How we test your gold</h3><p>XRF analysis, Sigma verification, acid testing, and precision scales.</p></a>
   <a class="guide-card" href="gold-prices.html"><h3>Live gold &amp; silver prices</h3><p>Today&rsquo;s spot prices and a scrap gold calculator.</p></a>
   <a class="guide-card" href="estate-sales.html"><h3>Selling inherited jewelry</h3><p>How to handle an estate or a loved one&rsquo;s collection.</p></a>
 </div>''',
  entity='Georgia Gold Buyers publishes plain-language guides for people selling gold, silver, coins, and jewelry in Georgia. Locations: Valdosta, GA and McDonough, GA.'),
 ]
+
+SILVER_JS = '''<script>
+(function(){
+  function fill(s){
+    var g=s/31.1035, set=function(id,v){var e=document.getElementById(id); if(e) e.textContent='$'+v.toFixed(2);};
+    var sp=document.getElementById('silver-spot'); if(sp) sp.textContent='$'+s.toFixed(2)+' per troy ounce';
+    set('ag-sterling-g', g*0.925); set('ag-coin-g', g*0.90);
+    set('ag-face', s*0.715); set('ag-morgan', s*0.7734); set('ag-k64', s*0.3617); set('ag-k65', s*0.1479);
+  }
+  fetch('https://api.gold-api.com/price/XAG',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined})
+    .then(function(r){return r.json()}).then(function(d){ if(d&&d.price) fill(d.price); }).catch(function(){});
+})();
+</script>'''
+
+NEW = [
+dict(slug='sell-silver-coins-flatware.html', crumb='Selling Silver Coins & Flatware',
+ title='Selling Silver Coins, Sterling Flatware & Silver Jewelry | Georgia Gold Buyers',
+ desc='What your silver is worth: silver content of pre-1965 US coins, Morgan and Peace dollars, Kennedy halves, and sterling flatware — plus how to tell sterling from silverplate.',
+ h1='Selling <span>Silver</span> Coins &amp; Flatware', h1_plain='Selling Silver Coins, Sterling Flatware, and Silver Jewelry',
+ hero_sub='How much silver is really in your coins, flatware, and jewelry &mdash; and how to spot silverplate.',
+ answer='US dimes, quarters, and half dollars dated <strong>1964 and earlier are 90% silver</strong> &mdash; every $1 of face value holds about <strong>0.715 troy ounces</strong> of silver. Kennedy halves from <strong>1965&ndash;1970 are 40% silver</strong>. Sterling silver (stamped <strong>Sterling</strong> or <strong>925</strong>) is 92.5% silver. Items marked <strong>EPNS</strong>, <strong>silverplate</strong>, or <strong>IS</strong> have only a thin silver coating and little melt value.',
+ about=[{"@type":"Thing","name":"Silver"},{"@type":"Thing","name":"Junk silver coins"},{"@type":"Thing","name":"Sterling silver"}],
+ citations=["https://goldsilver.com/industry-news/article/what-is-junk-silver/","https://en.wikipedia.org/wiki/Morgan_dollar","https://en.wikipedia.org/wiki/Kennedy_half_dollar"],
+ body='''<p>Today&rsquo;s silver spot price: <strong id="silver-spot">see our <a href="gold-prices.html">live prices page</a></strong>. The values below update when this page loads and show <strong>melt value only</strong> &mdash; not an offer, and not collector value.</p>
+
+<h2>Silver content of common US coins</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Coin</th><th>Silver</th><th>Pure silver</th><th>Melt value</th></tr></thead>
+<tbody>
+<tr><td>Dimes, quarters, halves 1964 and earlier (per $1 face)</td><td>90%</td><td class="num">0.715 oz</td><td class="num" id="ag-face">&mdash;</td></tr>
+<tr><td>Morgan dollar (1878&ndash;1921) / Peace dollar (1921&ndash;1935)</td><td>90%</td><td class="num">0.7734 oz</td><td class="num" id="ag-morgan">&mdash;</td></tr>
+<tr><td>1964 Kennedy half dollar</td><td>90%</td><td class="num">0.3617 oz</td><td class="num" id="ag-k64">&mdash;</td></tr>
+<tr><td>1965&ndash;1970 Kennedy half dollar</td><td>40%</td><td class="num">0.1479 oz</td><td class="num" id="ag-k65">&mdash;</td></tr>
+</tbody></table></div>
+<p class="note">Silver content per the US Mint specifications summarized by <a href="https://goldsilver.com/industry-news/article/what-is-junk-silver/" target="_blank" rel="noopener">GoldSilver</a>, <a href="https://en.wikipedia.org/wiki/Morgan_dollar" target="_blank" rel="noopener">Morgan dollar</a> and <a href="https://en.wikipedia.org/wiki/Kennedy_half_dollar" target="_blank" rel="noopener">Kennedy half dollar</a> references. Dimes and quarters from 1965 on, and halves from 1971 on, contain no silver.</p>
+
+<h2>Rare dates are worth more than melt</h2>
+<p>Some coins &mdash; certain Morgan dollar dates and mint marks, high-grade coins, and proofs &mdash; sell for well above their silver value. Don&rsquo;t clean your coins (cleaning can cut collector value). Bring them as they are and we&rsquo;ll check dates and condition before quoting.</p>
+
+<h2>Sterling vs. silverplate</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>Mark</th><th>What it means</th><th>Melt value</th></tr></thead>
+<tbody>
+<tr><td>Sterling, 925, .925</td><td>92.5% silver throughout</td><td class="num" id="ag-sterling-g">&mdash;</td></tr>
+<tr><td>Coin, 900</td><td>90% silver (older American flatware)</td><td class="num" id="ag-coin-g">&mdash;</td></tr>
+<tr><td>EPNS, Silverplate, Silver on Copper, IS, Quadruple Plate</td><td>Thin silver coating over base metal</td><td>Little to none</td></tr>
+</tbody></table></div>
+<p class="note">Melt values in the table are per gram of item weight.</p>
+
+<h2>Weighted sterling: knives, candlesticks, and hollowware</h2>
+<p>Sterling knife handles, candlesticks, and some bowls are <strong>weighted</strong> &mdash; filled with cement, pitch, or another material, and often marked &ldquo;weighted&rdquo; or &ldquo;reinforced.&rdquo; Only the thin silver shell counts, so a weighted piece is worth far less than its total weight suggests. Knife blades are usually stainless steel. We separate these before weighing so you see a fair number.</p>
+
+<h2>What we buy</h2>
+<ul>
+<li>Sterling flatware sets, tea sets, trays, and serving pieces (including Tiffany and Georg Jensen)</li>
+<li>Pre-1965 US dimes, quarters, and halves; Morgan and Peace dollars; 40% Kennedy halves</li>
+<li>Silver bullion bars and rounds (1 oz, 10 oz, 100 oz)</li>
+<li>Sterling jewelry and scrap silver</li>
+</ul>
+''' + SILVER_JS,
+ faqs=[
+  ('How much silver is in a pre-1965 quarter?', 'US dimes, quarters, and half dollars dated 1964 and earlier are 90% silver. Every $1 of face value (for example, four quarters) contains about 0.715 troy ounces of pure silver.'),
+  ('Are 1965 quarters silver?', 'No. US dimes and quarters dated 1965 and later are copper-nickel clad and contain no silver. Kennedy half dollars from 1965 to 1970 are 40% silver.'),
+  ('Is silverplate worth anything?', 'Silverplate (marked EPNS, Silverplate, IS, or Quadruple Plate) has only a very thin silver layer, so it has little to no melt value. Sterling, marked Sterling or 925, is 92.5% silver and is valued by weight.'),
+  ('Do you buy sterling silver flatware?', 'Yes. We buy sterling flatware sets, tea sets, trays, and serving pieces. Weighted handles and stainless knife blades are separated before weighing so the offer reflects the real silver content.'),
+  ('Should I clean my silver coins before selling?', 'No. Cleaning can scratch coins and reduce their collector value. Bring them as they are.'),
+ ],
+ entity='Georgia Gold Buyers buys silver coins, sterling flatware, silver bullion, and sterling jewelry at 3996 N Valdosta Rd, Valdosta, GA 31602 ((229) 375-0015) and 120 S Point Blvd, McDonough, GA 30253 ((678) 919-9265). Free testing and quotes.'),
+
+dict(slug='sell-rolex-luxury-watch.html', crumb='Selling a Rolex or Luxury Watch',
+ title='How to Sell a Rolex or Luxury Watch in Georgia | Georgia Gold Buyers',
+ desc='What decides a pre-owned Rolex, Omega, Cartier, or Breitling offer — model and reference, condition, box and papers, service history — and how to prepare before you sell.',
+ h1='Selling a <span>Rolex</span> or Luxury Watch', h1_plain='How to Sell a Rolex or Luxury Watch in Georgia',
+ hero_sub='What drives the offer, what to bring, and what not to do before you sell.',
+ answer='A luxury watch is valued on <strong>brand, model and reference number, condition, and demand</strong> &mdash; not just its gold weight. Original <strong>box, papers, and service records</strong> can raise the offer but aren&rsquo;t required. Bring all removed bracelet links, and <strong>don&rsquo;t polish the watch</strong> first.',
+ about=[{"@type":"Thing","name":"Rolex"},{"@type":"Thing","name":"Luxury watches"}],
+ citations=[],
+ body='''<h2>What decides the offer</h2>
+<ul>
+<li><strong>Brand and model</strong> &mdash; for example Rolex Submariner, Datejust, Day-Date, GMT-Master, or Daytona; Omega Speedmaster or Seamaster.</li>
+<li><strong>Reference number</strong> &mdash; identifies the exact version, year range, dial, and bezel.</li>
+<li><strong>Condition</strong> &mdash; case and bracelet wear, crystal, dial, and whether it keeps time.</li>
+<li><strong>Completeness</strong> &mdash; original box, warranty card or papers, receipts, and extra links.</li>
+<li><strong>Service history</strong> &mdash; recent service records from an authorized service center help.</li>
+<li><strong>Metal</strong> &mdash; solid gold and platinum models have a higher floor value than steel.</li>
+</ul>
+
+<h2>How to prepare</h2>
+<ol>
+<li><strong>Find the papers.</strong> Box, warranty card, receipt, and service paperwork &mdash; if you have them.</li>
+<li><strong>Gather every link.</strong> Removed bracelet links matter; a short bracelet lowers value.</li>
+<li><strong>Don&rsquo;t polish or refinish.</strong> Buyers and collectors often prefer original, unpolished cases.</li>
+<li><strong>Don&rsquo;t open the case</strong> or try to fix it yourself.</li>
+<li><strong>Bring your photo ID.</strong> Required for every sale.</li>
+</ol>
+
+<h2>Brands we buy</h2>
+<p>Rolex, Omega, Cartier, Breitling, TAG Heuer, Patek Philippe, Audemars Piguet, IWC, and other luxury and designer watches &mdash; steel, two-tone, gold, and platinum, vintage or current. See <a href="services.html">all services</a>.</p>
+
+<h2>Broken or not running?</h2>
+<p>We still buy it. A non-running luxury watch has value from its parts, and a solid-gold case or bracelet always has at least its metal value. Bring it in for a free evaluation.</p>
+''',
+ faqs=[
+  ('Do I need box and papers to sell a Rolex?', 'No. Box and papers can increase the offer, but they are not required. We evaluate the watch itself: model, reference, condition, and demand.'),
+  ('Do you buy broken or non-running watches?', 'Yes. Non-running luxury watches still have value, and solid-gold or platinum watches are worth at least their metal value.'),
+  ('Should I polish my watch before selling it?', 'No. Polishing removes metal and can lower value, especially on collectible models. Bring it as it is.'),
+  ('Which watch brands do you buy?', 'Rolex, Omega, Cartier, Breitling, TAG Heuer, Patek Philippe, Audemars Piguet, IWC, and other luxury and designer brands.'),
+ ],
+ entity='Georgia Gold Buyers buys pre-owned Rolex, Omega, Cartier, Breitling, TAG Heuer, and other luxury watches at 3996 N Valdosta Rd, Valdosta, GA 31602 ((229) 375-0015) and 120 S Point Blvd, McDonough, GA 30253 ((678) 919-9265). Free evaluations; box and papers not required.'),
+
+dict(slug='dental-gold-value.html', crumb='Selling Dental Gold',
+ title='Is Dental Gold Worth Anything? Selling Gold Crowns & Bridges | Georgia Gold Buyers',
+ desc='What dental gold is made of, how buyers value gold crowns, bridges, and fillings, and how to sell them in Valdosta or McDonough, GA.',
+ h1='Is Dental Gold <span>Worth Anything?</span>', h1_plain='Is Dental Gold Worth Anything? Selling Gold Crowns and Bridges',
+ hero_sub='Yes &mdash; here&rsquo;s what&rsquo;s in it and how it&rsquo;s valued.',
+ answer='Yes. Dental crowns, bridges, and inlays are often made from <strong>gold alloys that also contain palladium, platinum, or silver</strong>. Under the American Dental Association&rsquo;s classification, &ldquo;high noble&rdquo; alloys contain at least 60% noble metal, including at least 40% gold. Because the mix varies, dental gold should be <strong>tested, not guessed</strong> &mdash; we use an XRF analyzer to read the exact content in front of you.',
+ about=[{"@type":"Thing","name":"Dental gold"},{"@type":"Thing","name":"Dental alloys"}],
+ citations=["https://www.ada.org/resources/ada-library/oral-health-topics/materials-for-indirect-restorations"],
+ body='''<h2>What dental gold is made of</h2>
+<p>Dental work is rarely pure gold. The <a href="https://www.ada.org/resources/ada-library/oral-health-topics/materials-for-indirect-restorations" target="_blank" rel="noopener">American Dental Association</a> groups dental alloys by their noble-metal content:</p>
+<div class="table-scroll"><table>
+<thead><tr><th>ADA class</th><th>Noble metal content</th><th>Typical value</th></tr></thead>
+<tbody>
+<tr><td>High noble</td><td>At least 60% noble metal (gold, platinum, palladium), with at least 40% gold</td><td>Highest</td></tr>
+<tr><td>Noble</td><td>At least 25% noble metal</td><td>Moderate</td></tr>
+<tr><td>Predominantly base metal</td><td>Less than 25% noble metal</td><td>Low</td></tr>
+</tbody></table></div>
+
+<h2>How dental gold is valued</h2>
+<ol>
+<li><strong>Remove what isn&rsquo;t metal.</strong> Porcelain, tooth material, and cement are removed or accounted for so only metal is weighed.</li>
+<li><strong>Test the alloy.</strong> Our XRF analyzer reads the percentage of gold, platinum, palladium, and silver without damaging the piece.</li>
+<li><strong>Weigh</strong> on a precision scale.</li>
+<li><strong>Price each metal</strong> from the live spot price, and show you the math.</li>
+</ol>
+
+<h2>Crowns with porcelain</h2>
+<p>Many crowns are porcelain fused to metal, with a thin metal layer under the white porcelain. They still have value, but less metal than a full gold crown. Silver-colored crowns can also contain palladium or platinum &mdash; testing tells you.</p>
+
+<h2>Is it legal to sell my dental gold?</h2>
+<p>Yes. Crowns and bridges removed from your own mouth are your property. Ask your dentist to return them after a procedure. As with any sale, bring a valid photo ID.</p>
+''',
+ faqs=[
+  ('Is dental gold real gold?', 'Usually it is a gold alloy mixed with other metals such as palladium, platinum, silver, or copper. High-noble dental alloys contain at least 40% gold and at least 60% noble metal in total, according to the American Dental Association&rsquo;s classification.'),
+  ('How much is a gold crown worth?', 'It depends on the metal weight and the alloy mix, which vary widely. We test each piece with an XRF analyzer, weigh it, and price it from the live spot price at no charge.'),
+  ('Do I need to clean my crowns before selling?', 'No. Bring them as they are, in a sealed bag. We account for porcelain, tooth material, and cement before weighing.'),
+  ('Do you buy silver-colored dental work?', 'Yes. Some silver-colored crowns and bridges contain palladium or platinum. Testing shows what is there.'),
+ ],
+ entity='Georgia Gold Buyers buys dental gold, crowns, bridges, and dental alloys containing gold, platinum, and palladium at 3996 N Valdosta Rd, Valdosta, GA 31602 ((229) 375-0015) and 120 S Point Blvd, McDonough, GA 30253 ((678) 919-9265). XRF testing in front of you.'),
+]
+
+GUIDES[-1:-1] = NEW
 
 if __name__ == '__main__':
     for g in GUIDES:
