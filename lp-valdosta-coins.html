@@ -501,6 +501,11 @@ window.__gads_fire = function(label) {
       <h2>How can we reach you?</h2>
       <div class="widget-form">
         <div class="widget-field">
+          <label for="w-name">First Name <span class="required">*</span></label>
+          <input type="text" id="w-name" placeholder="Your first name" autocomplete="given-name" autocapitalize="words" required>
+        </div>
+        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label for="w-company-website">Company website</label><input type="text" id="w-company-website" name="company_website" tabindex="-1" autocomplete="off"></div>
+        <div class="widget-field">
           <label for="w-phone">Phone Number <span class="required">*</span></label>
           <input type="tel" id="w-phone" placeholder="(___) ___-____" required>
         </div>
@@ -933,6 +938,9 @@ var wSubmit = document.getElementById("w-submit");
 if (wSubmit) {
   wSubmit.addEventListener("click", function(e) {
     e.preventDefault();
+    var wName = document.getElementById("w-name");
+    var firstName = wName ? wName.value.trim() : "";
+    if (wName && !firstName) { wName.style.borderColor = "#e53935"; wName.focus(); return; }
     var phone = document.getElementById("w-phone") ? document.getElementById("w-phone").value.trim() : "";
     var email = document.getElementById("w-email") ? document.getElementById("w-email").value.trim() : "";
     
@@ -961,7 +969,8 @@ if (wSubmit) {
     // Build POS payload from widget state + ad-attribution from URL
     var urlParams = new URLSearchParams(window.location.search);
     var posPayload = {
-      full_name: widgetData.email ? (widgetData.email.split('@')[0] || 'Website Lead') : 'Website Lead',
+      full_name: firstName || 'Website Lead',
+      company_website: (document.getElementById('w-company-website') || {}).value || '',
       phone: widgetData.phone,
       email: widgetData.email,
       item_type: widgetData.item,
