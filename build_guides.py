@@ -71,9 +71,21 @@ def faq_html(faqs):
 def strip(s):
     return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', '', s))).strip()
 
+LABELS = {
+ 'en': dict(by='By Georgia Gold Buyers &middot; ', updated='Updated', date=TODAY_H, quick='Quick answer', faq='Frequently Asked Questions', cta='Get Your Free Quote'),
+ 'es': dict(by='Por Georgia Gold Buyers &middot; ', updated='Actualizado el', date='30 de septiembre de 2026', quick='Respuesta rápida', faq='Preguntas frecuentes', cta='Obtenga su cotización gratis'),
+}
+
 def build(g):
     t = SRC
+    es = g.get('lang') == 'es'
+    L = LABELS['es' if es else 'en']
     url = BASE + g['slug']
+    if es:
+        t = t.replace('<html lang="en">', '<html lang="es">', 1)
+    if g.get('alt'):
+        en_url, es_url = (BASE + g['alt'], url) if es else (url, BASE + g['alt'])
+        t = t.replace('</head>', f'<link rel="alternate" hreflang="en" href="{en_url}">\n<link rel="alternate" hreflang="es" href="{es_url}">\n<link rel="alternate" hreflang="x-default" href="{en_url}">\n</head>', 1)
     # --- head meta
     t = re.sub(r'<title>.*?</title>', f"<title>{html.escape(g['title'])}</title>", t, count=1, flags=re.S)
     for name in ['description', 'twitter:description']:
@@ -84,11 +96,13 @@ def build(g):
     t = re.sub(r'<meta name="twitter:title" content="[^"]*">', f'<meta name="twitter:title" content="{html.escape(g["title"])}">', t, count=1)
     t = re.sub(r'<meta property="og:type" content="[^"]*">', '<meta property="og:type" content="article">', t, count=1)
     t = t.replace('https://georgiagoldbuying.com/testing.html', url)
+    if g.get('og'):
+        t = t.replace(BASE + 'og-image.jpg', BASE + g['og'])
     t = re.sub(r'<meta name="subject" content="[^"]*">', f'<meta name="subject" content="{html.escape(g["h1_plain"])}">', t, count=1)
     # --- schema: drop testing.html ld+json, insert ours
     t = re.sub(r'<script type="application/ld\+json">.*?</script>\s*', '', t, flags=re.S)
     ld = [
-        {"@context": "https://schema.org", "@type": "Article", "headline": g['h1_plain'], "description": g['desc'],
+        {"@context": "https://schema.org", "@type": g.get("ld_type", "Article"), "headline": g['h1_plain'], "inLanguage": "es" if es else "en", "description": g['desc'],
          "url": url, "mainEntityOfPage": url, "datePublished": TODAY, "dateModified": TODAY,
          "image": BASE + "og-image.jpg",
          "author": {"@type": "Organization", "name": "Georgia Gold Buyers", "url": BASE},
@@ -98,8 +112,8 @@ def build(g):
          "citation": g.get('citations', [])},
         {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE},
-            {"@type": "ListItem", "position": 2, "name": "Seller Guides", "item": BASE + "guides.html"},
-        ] + ([] if g['slug'] == 'guides.html' else [{"@type": "ListItem", "position": 3, "name": g['crumb'], "item": url}])},
+            {"@type": "ListItem", "position": 2, "name": g.get('parent_name', 'Seller Guides'), "item": BASE + g.get('parent', 'guides.html')},
+        ] + ([] if g['slug'] == g.get('parent', 'guides.html') else [{"@type": "ListItem", "position": 3, "name": g['crumb'], "item": url}])},
     ]
     if g.get('faqs'):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -118,7 +132,7 @@ def build(g):
         faq_block = f'''<!-- ===== FAQ ===== -->
 <section class="section section--alt" id="faq">
   <div class="container">
-    <h2 class="section-title reveal">{g.get('faq_title', 'Frequently Asked Questions')}</h2>
+    <h2 class="section-title reveal">{g.get('faq_title', L['faq'])}</h2>
     <div class="faq-list">
 {faq_html(g['faqs'])}
     </div>
@@ -131,18 +145,18 @@ def build(g):
   <div class="container">
     <h1>{g['h1']}</h1>
     <p>{g['hero_sub']}</p>
-    <a href="#quote-form" class="btn-gold">Get Your Free Quote</a>
+    <a href="#quote-form" class="btn-gold">{L['cta']}</a>
   </div>
 </section>
 
 <!-- ===== GUIDE ===== -->
 <section class="section">
   <div class="guide-wrap">
-    <p class="guide-meta">{('By Georgia Gold Buyers &middot; ' if g['slug'] != 'guides.html' else '')}Updated {TODAY_H}</p>
-    {('<div class="answer-box"><h2>Quick answer</h2><p>' + g['answer'] + '</p></div>') if g.get('answer') else ''}
+    <p class="guide-meta">{L['by'] if g['slug'] != 'guides.html' else ''}{L['updated']} {L['date']}</p>
+    {('<div class="answer-box"><h2>' + L['quick'] + '</h2><p>' + g['answer'] + '</p></div>') if g.get('answer') else ''}
     <div class="guide-body">
 {g['body']}
-{RELATED if g['slug'] != 'guides.html' else ''}
+{g.get('related', RELATED_ES if es else RELATED) if g['slug'] != 'guides.html' else ''}
     </div>
   </div>
 </section>
@@ -349,10 +363,19 @@ dict(slug='guides.html', crumb='Seller Guides',
   <a class="guide-card" href="selling-gold-what-to-expect.html"><h3>What to bring &amp; what to expect</h3><p>Photo ID, hours, our step-by-step process, and how you get paid.</p></a>
   <a class="guide-card" href="sell-silver-coins-flatware.html"><h3>Selling silver coins &amp; flatware</h3><p>Silver content of pre-1965 coins, Morgan dollars, and sterling &mdash; and how to spot silverplate.</p></a>
   <a class="guide-card" href="sell-rolex-luxury-watch.html"><h3>Selling a Rolex or luxury watch</h3><p>Model, condition, box and papers &mdash; what decides the offer.</p></a>
+  <a class="guide-card" href="sell-gold-coins-bullion.html"><h3>Selling gold coins &amp; bullion</h3><p>Eagles, Krugerrands, Maple Leafs, pre-1933 US gold, and bars &mdash; with live melt values.</p></a>
+  <a class="guide-card" href="sell-platinum-palladium.html"><h3>Selling platinum &amp; palladium</h3><p>PT950, PLAT, and PD950 stamps explained, with live value per gram.</p></a>
   <a class="guide-card" href="dental-gold-value.html"><h3>Is dental gold worth anything?</h3><p>What crowns and bridges are made of and how they&rsquo;re valued.</p></a>
   <a class="guide-card" href="testing.html"><h3>How we test your gold</h3><p>XRF analysis, Sigma verification, acid testing, and precision scales.</p></a>
   <a class="guide-card" href="gold-prices.html"><h3>Live gold &amp; silver prices</h3><p>Today&rsquo;s spot prices and a scrap gold calculator.</p></a>
   <a class="guide-card" href="estate-sales.html"><h3>Selling inherited jewelry</h3><p>How to handle an estate or a loved one&rsquo;s collection.</p></a>
+  <a class="guide-card" href="areas-we-serve.html"><h3>Areas we serve</h3><p>Drive times from Tifton, Moultrie, Thomasville, Stockbridge, and more.</p></a>
+</div>
+<h2>En español</h2>
+<div class="guide-cards">
+  <a class="guide-card" href="es-cuanto-vale-mi-oro.html"><h3>¿Cuánto vale mi oro?</h3><p>Valor por gramo de 10k a 24k.</p></a>
+  <a class="guide-card" href="es-vender-o-empenar-oro.html"><h3>¿Vender o empeñar su oro?</h3><p>Cómo funciona cada opción en Georgia.</p></a>
+  <a class="guide-card" href="es-que-traer-para-vender-oro.html"><h3>Qué traer y qué esperar</h3><p>Identificación, horarios y el proceso.</p></a>
 </div>''',
  entity='Georgia Gold Buyers publishes plain-language guides for people selling gold, silver, coins, and jewelry in Georgia. Locations: Valdosta, GA and McDonough, GA.'),
 ]
@@ -508,6 +531,15 @@ dict(slug='dental-gold-value.html', crumb='Selling Dental Gold',
 ]
 
 GUIDES[-1:-1] = NEW
+from guides_batch3 import NEW3, RELATED_ES, spanish, town_pages, areas_hub, LOC
+GUIDES[-1:-1] = NEW3
+for _g in GUIDES:
+    _g['alt'] = {'how-much-is-gold-worth.html':'es-cuanto-vale-mi-oro.html','sell-or-pawn-gold.html':'es-vender-o-empenar-oro.html','selling-gold-what-to-expect.html':'es-que-traer-para-vender-oro.html'}.get(_g['slug'], _g.get('alt'))
+GUIDES += spanish(LIVE_JS)
+_towns = town_pages()
+for _p in _towns:
+    _p['og'] = LOC[_p['town_meta'][3]]['og']
+GUIDES += _towns + [areas_hub()]
 
 if __name__ == '__main__':
     for g in GUIDES:
