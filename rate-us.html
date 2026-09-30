@@ -192,6 +192,7 @@ window.__gads_fire = function(label) {
   var cid    = params.get('cid')  || '';
   var loc    = (params.get('loc') || 'mcdonough').toLowerCase();
   var apptId = params.get('appt') || '';
+  var txId   = params.get('tx')   || '';
   var src    = params.get('src')  || 'rate_us_page';
 
   if (loc !== 'valdosta') loc = 'mcdonough';
@@ -209,6 +210,7 @@ window.__gads_fire = function(label) {
       var payload = {
         customer_id: cid ? Number(cid) : null,
         appointment_id: apptId ? Number(apptId) : null,
+        transaction_id: txId ? Number(txId) : null,
         rating: rating,
         location: loc,
         source: src,
@@ -236,6 +238,7 @@ window.__gads_fire = function(label) {
     var qs = [];
     if (cid) qs.push('cid=' + encodeURIComponent(cid));
     if (apptId) qs.push('appt=' + encodeURIComponent(apptId));
+    if (txId) qs.push('tx=' + encodeURIComponent(txId));
     qs.push('rating=' + rating);
     qs.push('src=' + encodeURIComponent(src));
     var query = qs.length ? ('?' + qs.join('&')) : '';
