@@ -514,8 +514,8 @@ window.__gads_fire = function(label) {
           <label for="w-details">Cuéntanos sobre tus artículos <span class="optional">(opcional)</span></label>
           <textarea id="w-details" placeholder="ej: cadena de oro 14k, anillo de graduación, Rolex, cubiertos de plata..." rows="3"></textarea>
         </div>
-        <label for="w-sms-consent" class="sms-consent" style="display:flex;gap:10px;align-items:flex-start;margin:4px 0 14px;font-size:12.5px;line-height:1.45;color:#5a5a5a;text-align:left;cursor:pointer;font-weight:400"><input type="checkbox" id="w-sms-consent" name="sms_consent" value="yes" style="flex:0 0 auto;width:20px;height:20px;min-width:20px;margin:1px 0 0;padding:0;border:0;border-radius:4px;box-shadow:none;-webkit-appearance:checkbox;appearance:auto;accent-color:#b8860b;cursor:pointer"><span>Acepto recibir mensajes de texto de Georgia Gold Buyers sobre mi cotización y cita. La frecuencia de los mensajes varía. Pueden aplicarse tarifas de mensajes y datos. Responda HELP para ayuda o STOP para cancelar. El consentimiento no es condición de compra. <a href="privacy-policy.html" target="_blank" style="text-decoration:underline">Política de Privacidad</a> y <a href="terms-of-service.html" target="_blank" style="text-decoration:underline">Términos</a>.</span></label>
-        <button class="widget-submit" id="w-submit">Obtener Mi Cotización Gratis</button>
+<button class="widget-submit" id="w-submit">Envíenme Mi Cotización Gratis</button>
+        <p class="sms-consent-note" style="margin:10px 0 0;font-size:11.5px;line-height:1.45;color:#6b6b6b;text-align:center;font-weight:400">Al tocar “Envíenme Mi Cotización Gratis”, acepta recibir mensajes de texto de Georgia Gold Buyers sobre su cotización y cita. La frecuencia de los mensajes varía. Pueden aplicarse tarifas de mensajes y datos. Responda HELP para ayuda o STOP para cancelar. <a href="privacy-policy.html" target="_blank" style="text-decoration:underline;color:inherit">Política de Privacidad</a> y <a href="terms-of-service.html" target="_blank" style="text-decoration:underline;color:inherit">Términos</a>.</p>
       </div>
     </div>
 
@@ -978,7 +978,7 @@ if (wSubmit) {
       location: widgetData.location,
       details: widgetData.details || '',
       shop: 'ggb',
-      sms_consent: (document.getElementById('w-sms-consent') && document.getElementById('w-sms-consent').checked) ? 'yes' : 'no'
+      sms_consent: 'yes'
     };
     ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'].forEach(function(p) {
       var v = urlParams.get(p);
