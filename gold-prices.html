@@ -1173,6 +1173,15 @@ window.__gads_fire = function(label) {
   return true; // always allow default link behavior
 };
 </script>
+<style id="ipad-nav-fit">
+/* iPad/tablet: keep sub-nav on one line without horizontal overflow */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .price-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .header-nav-inner { gap: 10px; padding: 0 16px; justify-content: space-between; }
+  .header-nav-sep { display: none; }
+  .header-nav a { font-size: 13px; white-space: nowrap; }
+}
+</style>
 </head>
 <body>
 
@@ -1263,9 +1272,9 @@ window.__gads_fire = function(label) {
     <div class="price-cards-grid">
       <div class="price-card">
         <div class="price-card-name">Gold</div>
-        <div class="price-card-price" id="gold-price">$4,678.00</div>
+        <div class="price-card-price" id="gold-price">$4,178.00</div>
         <div class="price-card-unit">per troy ounce</div>
-        <div class="price-card-change negative" id="gold-change">&#9660; -$12.50 (-0.27%)</div>
+        <div class="price-card-change negative" id="gold-change"></div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
@@ -1279,9 +1288,9 @@ window.__gads_fire = function(label) {
       </div>
       <div class="price-card">
         <div class="price-card-name">Silver</div>
-        <div class="price-card-price" id="silver-price">$73.15</div>
+        <div class="price-card-price" id="silver-price">$61.15</div>
         <div class="price-card-unit">per troy ounce</div>
-        <div class="price-card-change positive" id="silver-change">&#9650; +$0.85 (+1.17%)</div>
+        <div class="price-card-change positive" id="silver-change"></div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
@@ -1295,9 +1304,9 @@ window.__gads_fire = function(label) {
       </div>
       <div class="price-card">
         <div class="price-card-name">Platinum</div>
-        <div class="price-card-price" id="platinum-price">$1,990.00</div>
+        <div class="price-card-price" id="platinum-price">$1,709.00</div>
         <div class="price-card-unit">per troy ounce</div>
-        <div class="price-card-change positive" id="platinum-change">&#9650; +$15.00 (+0.76%)</div>
+        <div class="price-card-change positive" id="platinum-change"></div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
@@ -1311,9 +1320,9 @@ window.__gads_fire = function(label) {
       </div>
       <div class="price-card">
         <div class="price-card-name">Palladium</div>
-        <div class="price-card-price" id="palladium-price">$1,530.00</div>
+        <div class="price-card-price" id="palladium-price">$1,245.00</div>
         <div class="price-card-unit">per troy ounce</div>
-        <div class="price-card-change negative" id="palladium-change">&#9660; -$8.50 (-0.55%)</div>
+        <div class="price-card-change negative" id="palladium-change"></div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
@@ -1481,7 +1490,7 @@ window.__gads_fire = function(label) {
         </div>
         <div class="form-trust-item">
           <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          5.0 · 84+ Google Reviews
+          4.9 · 140+ Google Reviews
         </div>
       </div>
 
@@ -1541,7 +1550,7 @@ window.__gads_fire = function(label) {
         <p class="form-security">&#128274; Your information is secure and will never be shared.</p>
         <div class="form-review-badge">
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          5.0 ★ · 84+ Google Reviews
+          4.9 ★ · 140+ Google Reviews
         </div>
       </div>
     </div>
@@ -1550,7 +1559,7 @@ window.__gads_fire = function(label) {
 
 <!-- ===== ENTITY SUMMARY (AI Semantic Block) ===== -->
 <aside class="entity-summary" style="max-width:800px; margin:0 auto; padding:24px; text-align:center; font-size:13px; color:#999; line-height:1.6;">
-  Georgia Gold Buyers is a family-owned precious metals dealer in Georgia, established in 2012. We buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods at two locations: McDonough, GA and Valdosta, GA. Rated 5.0 stars on Google. This page provides current gold, silver, platinum, and palladium prices along with a free scrap gold calculator to estimate the melt value of your precious metal items.
+  Georgia Gold Buyers is a family-owned precious metals dealer in Georgia, established in 2012. We buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods at two locations: McDonough, GA and Valdosta, GA. Rated 4.9 stars on Google. This page provides current gold, silver, platinum, and palladium prices along with a free scrap gold calculator to estimate the melt value of your precious metal items.
 </aside>
 
 <footer class="footer">
@@ -1882,10 +1891,10 @@ revealElements.forEach(el => revealObserver.observe(el));
   var TROY_OZ_TO_DWT = 20;
 
   var FALLBACK = {
-    gold: { price: 4678.00, change: -12.50, changePercent: -0.27 },
-    silver: { price: 73.15, change: 0.85, changePercent: 1.17 },
-    platinum: { price: 1990.00, change: 15.00, changePercent: 0.76 },
-    palladium: { price: 1530.00, change: -8.50, changePercent: -0.55 }
+    gold: { price: 4178.00, change: 0, changePercent: 0 },
+    silver: { price: 61.15, change: 0, changePercent: 0 },
+    platinum: { price: 1709.00, change: 0, changePercent: 0 },
+    palladium: { price: 1245.00, change: 0, changePercent: 0 }
   };
 
   var currentPrices = JSON.parse(JSON.stringify(FALLBACK));
@@ -1933,7 +1942,9 @@ revealElements.forEach(el => revealObserver.observe(el));
       var sign = ch >= 0 ? '+' : '';
       var arrow = ch >= 0 ? '\u25B2' : '\u25BC';
       var changeEl = document.getElementById(m + '-change');
-      if (changeEl) {
+      if (changeEl && !ch) { changeEl.textContent = ''; changeEl.style.display = 'none'; }
+      else if (changeEl) {
+        changeEl.style.display = '';
         changeEl.textContent = arrow + ' ' + sign + '$' + fmt(Math.abs(ch)) + ' (' + sign + pct.toFixed(2) + '%)';
         changeEl.className = 'price-card-change ' + (ch >= 0 ? 'positive' : 'negative');
       }
@@ -2032,6 +2043,8 @@ var metalSelect = document.getElementById('calc-metal'); // removed element
   }
 
   function calculateEstimate() {
+    // Calculator UI was removed from this page — skip safely so live prices still render.
+    if (!resultEl || typeof metal === 'undefined') return;
     // var metal = metalSelect.value; // REMOVED - calculator element no longer exists
     // var purity = parseFloat(puritySelect.value) || 0; // REMOVED - calculator element no longer exists
     // var weight = parseFloat(weightInput.value) || 0; // REMOVED - calculator element no longer exists
@@ -2094,14 +2107,14 @@ async function fetchPrices() {
     // Strategy 2: Try a CORS proxy
     try {
       var proxyBase = 'https://api.allorigins.win/raw?url=';
-      var r = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XAU'));
+      var r = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XAU'), { signal: AbortSignal.timeout(4000) });
       if (r.ok) {
         var goldData = await r.json();
-        var rs = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XAG'));
+        var rs = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XAG'), { signal: AbortSignal.timeout(4000) });
         var silverData = rs.ok ? await rs.json() : null;
-        var rp = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XPT'));
+        var rp = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XPT'), { signal: AbortSignal.timeout(4000) });
         var platData = rp.ok ? await rp.json() : null;
-        var rd = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XPD'));
+        var rd = await fetch(proxyBase + encodeURIComponent('https://api.gold-api.com/price/XPD'), { signal: AbortSignal.timeout(4000) });
         var palData = rd.ok ? await rd.json() : null;
         if (goldData && goldData.price) {
           var live2 = {

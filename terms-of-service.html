@@ -653,6 +653,14 @@ window.__gads_fire = function(label) {
   return true; // always allow default link behavior
 };
 </script>
+<style id="ipad-nav-fit">
+/* iPad/tablet: keep sub-nav on one line without horizontal overflow */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .header-nav-inner { gap: 10px; padding: 0 16px; justify-content: space-between; }
+  .header-nav-sep { display: none; }
+  .header-nav a { font-size: 13px; white-space: nowrap; }
+}
+</style>
 </head>
 
 <body>
