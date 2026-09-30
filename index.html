@@ -2268,22 +2268,22 @@ window.__gads_fire = function(label) {
     <div class="ticker-grid">
       <div class="ticker-card">
         <span class="ticker-label">Gold</span>
-        <span class="ticker-price" id="ticker-gold-price">$4,178.00</span>
+        <span class="ticker-price" id="ticker-gold-price">&mdash;</span>
         <span class="ticker-change negative" id="ticker-gold-change"></span>
       </div>
       <div class="ticker-card">
         <span class="ticker-label">Silver</span>
-        <span class="ticker-price" id="ticker-silver-price">$61.15</span>
+        <span class="ticker-price" id="ticker-silver-price">&mdash;</span>
         <span class="ticker-change positive" id="ticker-silver-change"></span>
       </div>
       <div class="ticker-card">
         <span class="ticker-label">Platinum</span>
-        <span class="ticker-price" id="ticker-platinum-price">$1,709.00</span>
+        <span class="ticker-price" id="ticker-platinum-price">&mdash;</span>
         <span class="ticker-change positive" id="ticker-platinum-change"></span>
       </div>
       <div class="ticker-card">
         <span class="ticker-label">Palladium</span>
-        <span class="ticker-price" id="ticker-palladium-price">$1,245.00</span>
+        <span class="ticker-price" id="ticker-palladium-price">&mdash;</span>
         <span class="ticker-change negative" id="ticker-palladium-change"></span>
       </div>
     </div>
@@ -2975,7 +2975,9 @@ revealElements.forEach(el => revealObserver.observe(el));
     return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
+  var hadLive = false;
   function updateTicker(data, isLive) {
+    if (isLive) hadLive = true;
     const metals = ['gold','silver','platinum','palladium'];
     metals.forEach(function(m) {
       var priceEl = document.getElementById('ticker-' + m + '-price');
@@ -3047,10 +3049,21 @@ revealElements.forEach(el => revealObserver.observe(el));
     } catch(e) { console.log('CORS proxy failed, using fallback prices'); }
 
     // Strategy 3: Hardcoded fallback (April 2026 market prices)
-    updateTicker(FALLBACK, false);
+    // No live price: keep the last live values if we have them; never show stale hardcoded prices.
+    if (hadLive) return;
+    showUnavailable();
+  }
+
+  function showUnavailable() {
+    document.querySelectorAll('.ticker-price, .price-card-price').forEach(function(el) { el.textContent = 'Call'; });
+    document.querySelectorAll('.ticker-change, .price-card-change').forEach(function(el) { el.textContent = ''; });
+    document.querySelectorAll('[data-live-cell]').forEach(function(el) { el.textContent = '\u2014'; });
+    var s = document.getElementById('price-status');
+    if (s) { s.innerHTML = 'Live price unavailable &middot; call for today&rsquo;s rate'; s.className = 'status-badge estimated'; }
   }
 
   fetchPrices();
+  setInterval(function() { if (!document.hidden) fetchPrices(); }, 60000);
 })();
 
 // Locations dropdown - click handler for mobile

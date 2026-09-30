@@ -1221,8 +1221,11 @@ window.__gads_fire = function(label) {
 (function(){
   function go(sym,cb){ fetch('https://api.gold-api.com/price/'+sym,{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined}).then(function(r){return r.json()}).then(function(d){ if(d&&d.price) cb(d.price); }).catch(function(){}); }
   function set(id,v){var e=document.getElementById(id); if(e) e.textContent='$'+v.toFixed(2);}
+  function load(){
   go('XPT',function(s){ var g=s/31.1035; var e=document.getElementById('pt-spot'); if(e) e.textContent='$'+s.toLocaleString(undefined,{maximumFractionDigits:0})+' per troy ounce'; set('pt-950',g*0.95); set('pt-900',g*0.90); set('pt-850',g*0.85); });
   go('XPD',function(s){ var g=s/31.1035; var e=document.getElementById('pd-spot'); if(e) e.textContent='$'+s.toLocaleString(undefined,{maximumFractionDigits:0})+' per troy ounce'; set('pd-950',g*0.95); set('pd-500',g*0.50); });
+  }
+  load(); setInterval(function(){ if(!document.hidden) load(); }, 60000);
 })();
 </script>
 <div class="related">

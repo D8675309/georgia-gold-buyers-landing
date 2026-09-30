@@ -1254,8 +1254,11 @@ window.__gads_fire = function(label) {
     var s=document.getElementById('spot-live'); if(s) s.textContent='$'+spot.toLocaleString(undefined,{maximumFractionDigits:0})+' per troy ounce';
     var ex=document.getElementById('example-live'); if(ex) ex.textContent='$'+(10*0.585*g).toFixed(2);
   }
+  function load(){
   fetch('https://api.gold-api.com/price/XAU',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined})
     .then(function(r){return r.json()}).then(function(d){ if(d&&d.price) fill(d.price); }).catch(function(){});
+  }
+  load(); setInterval(function(){ if(!document.hidden) load(); }, 60000);
 })();
 </script>
 <div class="related">

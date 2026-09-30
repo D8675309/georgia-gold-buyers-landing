@@ -1281,65 +1281,65 @@ window.__gads_fire = function(label) {
     <div class="price-cards-grid">
       <div class="price-card">
         <div class="price-card-name">Gold</div>
-        <div class="price-card-price" id="gold-price">$4,178.00</div>
+        <div class="price-card-price" id="gold-price">&mdash;</div>
         <div class="price-card-unit">per troy ounce</div>
         <div class="price-card-change negative" id="gold-change"></div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
-            <span class="price-card-sub-value" id="gold-gram">$150.40</span>
+            <span class="price-card-sub-value" id="gold-gram">&mdash;</span>
           </div>
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per DWT</span>
-            <span class="price-card-sub-value" id="gold-dwt">$233.90</span>
+            <span class="price-card-sub-value" id="gold-dwt">&mdash;</span>
           </div>
         </div>
       </div>
       <div class="price-card">
         <div class="price-card-name">Silver</div>
-        <div class="price-card-price" id="silver-price">$61.15</div>
+        <div class="price-card-price" id="silver-price">&mdash;</div>
         <div class="price-card-unit">per troy ounce</div>
         <div class="price-card-change positive" id="silver-change"></div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
-            <span class="price-card-sub-value" id="silver-gram">$2.35</span>
+            <span class="price-card-sub-value" id="silver-gram">&mdash;</span>
           </div>
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per DWT</span>
-            <span class="price-card-sub-value" id="silver-dwt">$3.66</span>
+            <span class="price-card-sub-value" id="silver-dwt">&mdash;</span>
           </div>
         </div>
       </div>
       <div class="price-card">
         <div class="price-card-name">Platinum</div>
-        <div class="price-card-price" id="platinum-price">$1,709.00</div>
+        <div class="price-card-price" id="platinum-price">&mdash;</div>
         <div class="price-card-unit">per troy ounce</div>
         <div class="price-card-change positive" id="platinum-change"></div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
-            <span class="price-card-sub-value" id="platinum-gram">$63.98</span>
+            <span class="price-card-sub-value" id="platinum-gram">&mdash;</span>
           </div>
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per DWT</span>
-            <span class="price-card-sub-value" id="platinum-dwt">$99.50</span>
+            <span class="price-card-sub-value" id="platinum-dwt">&mdash;</span>
           </div>
         </div>
       </div>
       <div class="price-card">
         <div class="price-card-name">Palladium</div>
-        <div class="price-card-price" id="palladium-price">$1,245.00</div>
+        <div class="price-card-price" id="palladium-price">&mdash;</div>
         <div class="price-card-unit">per troy ounce</div>
         <div class="price-card-change negative" id="palladium-change"></div>
         <div class="price-card-sub">
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per Gram</span>
-            <span class="price-card-sub-value" id="palladium-gram">$49.18</span>
+            <span class="price-card-sub-value" id="palladium-gram">&mdash;</span>
           </div>
           <div class="price-card-sub-item">
             <span class="price-card-sub-label">Per DWT</span>
-            <span class="price-card-sub-value" id="palladium-dwt">$76.50</span>
+            <span class="price-card-sub-value" id="palladium-dwt">&mdash;</span>
           </div>
         </div>
       </div>
@@ -1970,7 +1970,9 @@ revealElements.forEach(el => revealObserver.observe(el));
     if (el) el.textContent = val;
   }
 
+  var hadLive = false;
   function updateAllPrices(data, isLive) {
+    if (isLive) hadLive = true;
     currentPrices = data;
 
     // Update main price cards
@@ -2172,10 +2174,21 @@ async function fetchPrices() {
     } catch(e) { console.log('CORS proxy failed, using fallback prices'); }
 
     // Strategy 3: Hardcoded fallback (April 2026 market prices)
-    updateAllPrices(FALLBACK, false);
+    // No live price: keep the last live values if we have them; never show stale hardcoded prices.
+    if (hadLive) return;
+    showUnavailable();
+  }
+
+  function showUnavailable() {
+    document.querySelectorAll('.ticker-price, .price-card-price').forEach(function(el) { el.textContent = 'Call'; });
+    document.querySelectorAll('.ticker-change, .price-card-change').forEach(function(el) { el.textContent = ''; });
+    document.querySelectorAll('[id^="gk-"],[id^="sk-"],[id^="pk-"],[id$="-gram"],[id$="-dwt"],[id$="-oz"]').forEach(function(el) { el.textContent = '\u2014'; });
+    var s = document.getElementById('price-status');
+    if (s) { s.innerHTML = 'Live price unavailable &middot; call for today&rsquo;s rate'; s.className = 'status-badge estimated'; }
   }
 
   fetchPrices();
+  setInterval(function() { if (!document.hidden) fetchPrices(); }, 60000);
 })();
 
 // Locations dropdown - click handler for mobile

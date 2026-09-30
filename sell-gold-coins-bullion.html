@@ -1239,8 +1239,11 @@ window.__gads_fire = function(label) {
     set('gc-1oz',1); set('gc-half',0.5); set('gc-quarter',0.25); set('gc-tenth',0.1);
     set('gc-20',0.9675); set('gc-10',0.48375); set('gc-5',0.24187); set('gc-250',0.12094);
   }
+  function load(){
   fetch('https://api.gold-api.com/price/XAU',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined})
     .then(function(r){return r.json()}).then(function(d){ if(d&&d.price) fill(d.price); }).catch(function(){});
+  }
+  load(); setInterval(function(){ if(!document.hidden) load(); }, 60000);
 })();
 </script>
 <div class="related">

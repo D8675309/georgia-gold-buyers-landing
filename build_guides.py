@@ -192,8 +192,11 @@ LIVE_JS = '''<script>
     var s=document.getElementById('spot-live'); if(s) s.textContent='$'+spot.toLocaleString(undefined,{maximumFractionDigits:0})+' per troy ounce';
     var ex=document.getElementById('example-live'); if(ex) ex.textContent='$'+(10*0.585*g).toFixed(2);
   }
+  function load(){
   fetch('https://api.gold-api.com/price/XAU',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined})
     .then(function(r){return r.json()}).then(function(d){ if(d&&d.price) fill(d.price); }).catch(function(){});
+  }
+  load(); setInterval(function(){ if(!document.hidden) load(); }, 60000);
 })();
 </script>'''
 
@@ -371,11 +374,23 @@ dict(slug='guides.html', crumb='Seller Guides',
   <a class="guide-card" href="estate-sales.html"><h3>Selling inherited jewelry</h3><p>How to handle an estate or a loved one&rsquo;s collection.</p></a>
   <a class="guide-card" href="areas-we-serve.html"><h3>Areas we serve</h3><p>Drive times from Tifton, Moultrie, Thomasville, Stockbridge, and more.</p></a>
 </div>
+<h2>What&rsquo;s my item worth?</h2>
+<div class="guide-cards">
+  <a class="guide-card" href="class-ring-value.html"><h3>Class rings</h3><p>10k vs. 14k, non-gold alloys, and live values.</p></a>
+  <a class="guide-card" href="gold-chain-value.html"><h3>Gold chains</h3><p>Solid vs. hollow, clasp stamps, and live values.</p></a>
+  <a class="guide-card" href="wedding-band-value.html"><h3>Wedding bands</h3><p>Gold, platinum, or tungsten &mdash; and what each is worth.</p></a>
+  <a class="guide-card" href="charm-bracelet-value.html"><h3>Charm bracelets</h3><p>Mixed-karat charms, tested one by one.</p></a>
+  <a class="guide-card" href="how-to-choose-a-gold-buyer.html"><h3>How to choose a gold buyer</h3><p>Seven questions and the red flags to watch for.</p></a>
+</div>
 <h2>En español</h2>
 <div class="guide-cards">
   <a class="guide-card" href="es-cuanto-vale-mi-oro.html"><h3>¿Cuánto vale mi oro?</h3><p>Valor por gramo de 10k a 24k.</p></a>
   <a class="guide-card" href="es-vender-o-empenar-oro.html"><h3>¿Vender o empeñar su oro?</h3><p>Cómo funciona cada opción en Georgia.</p></a>
   <a class="guide-card" href="es-que-traer-para-vender-oro.html"><h3>Qué traer y qué esperar</h3><p>Identificación, horarios y el proceso.</p></a>
+  <a class="guide-card" href="es-vender-oro-stockbridge-ga.html"><h3>Vender oro cerca de Stockbridge</h3><p>A unos 20 minutos de McDonough.</p></a>
+  <a class="guide-card" href="es-vender-oro-jonesboro-ga.html"><h3>Vender oro cerca de Jonesboro</h3><p>A unos 25 minutos de McDonough.</p></a>
+  <a class="guide-card" href="es-vender-oro-tifton-ga.html"><h3>Vender oro cerca de Tifton</h3><p>A unos 50 minutos de Valdosta.</p></a>
+  <a class="guide-card" href="es-vender-oro-moultrie-ga.html"><h3>Vender oro cerca de Moultrie</h3><p>A unos 55 minutos de Valdosta.</p></a>
 </div>''',
  entity='Georgia Gold Buyers publishes plain-language guides for people selling gold, silver, coins, and jewelry in Georgia. Locations: Valdosta, GA and McDonough, GA.'),
 ]
@@ -388,8 +403,11 @@ SILVER_JS = '''<script>
     set('ag-sterling-g', g*0.925); set('ag-coin-g', g*0.90);
     set('ag-face', s*0.715); set('ag-morgan', s*0.7734); set('ag-k64', s*0.3617); set('ag-k65', s*0.1479);
   }
+  function load(){
   fetch('https://api.gold-api.com/price/XAG',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined})
     .then(function(r){return r.json()}).then(function(d){ if(d&&d.price) fill(d.price); }).catch(function(){});
+  }
+  load(); setInterval(function(){ if(!document.hidden) load(); }, 60000);
 })();
 </script>'''
 
@@ -540,7 +558,20 @@ _towns = town_pages()
 for _p in _towns:
     _p['og'] = LOC[_p['town_meta'][3]]['og']
 GUIDES += _towns + [areas_hub()]
+from guides_batch4 import ITEMS, es_shell, es_towns
+from guides_batch3 import TOWNS, town_slug, rmin
+GUIDES[-1:-1] = []
+_hub = [g for g in GUIDES if g['slug'] == 'guides.html'][0]
+_i = GUIDES.index(_hub)
+GUIDES[_i:_i] = ITEMS
+_es_t = es_towns(TOWNS, LOC, town_slug, rmin)
+for _p in _towns:
+    for _e in _es_t:
+        if _e['alt'] == _p['slug']: _p['alt'] = _e['slug']
+GUIDES += _es_t
 
 if __name__ == '__main__':
     for g in GUIDES:
         build(g)
+        if g.get('lang') == 'es':
+            p = g['slug']; s = open(p).read(); open(p, 'w').write(es_shell(s))

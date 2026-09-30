@@ -10,8 +10,11 @@ GOLD_COIN_JS = '''<script>
     set('gc-1oz',1); set('gc-half',0.5); set('gc-quarter',0.25); set('gc-tenth',0.1);
     set('gc-20',0.9675); set('gc-10',0.48375); set('gc-5',0.24187); set('gc-250',0.12094);
   }
+  function load(){
   fetch('https://api.gold-api.com/price/XAU',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined})
     .then(function(r){return r.json()}).then(function(d){ if(d&&d.price) fill(d.price); }).catch(function(){});
+  }
+  load(); setInterval(function(){ if(!document.hidden) load(); }, 60000);
 })();
 </script>'''
 
@@ -19,8 +22,11 @@ PT_JS = '''<script>
 (function(){
   function go(sym,cb){ fetch('https://api.gold-api.com/price/'+sym,{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined}).then(function(r){return r.json()}).then(function(d){ if(d&&d.price) cb(d.price); }).catch(function(){}); }
   function set(id,v){var e=document.getElementById(id); if(e) e.textContent='$'+v.toFixed(2);}
+  function load(){
   go('XPT',function(s){ var g=s/31.1035; var e=document.getElementById('pt-spot'); if(e) e.textContent='$'+s.toLocaleString(undefined,{maximumFractionDigits:0})+' per troy ounce'; set('pt-950',g*0.95); set('pt-900',g*0.90); set('pt-850',g*0.85); });
   go('XPD',function(s){ var g=s/31.1035; var e=document.getElementById('pd-spot'); if(e) e.textContent='$'+s.toLocaleString(undefined,{maximumFractionDigits:0})+' per troy ounce'; set('pd-950',g*0.95); set('pd-500',g*0.50); });
+  }
+  load(); setInterval(function(){ if(!document.hidden) load(); }, 60000);
 })();
 </script>'''
 

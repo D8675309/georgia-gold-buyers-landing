@@ -1251,8 +1251,11 @@ window.__gads_fire = function(label) {
     set('ag-sterling-g', g*0.925); set('ag-coin-g', g*0.90);
     set('ag-face', s*0.715); set('ag-morgan', s*0.7734); set('ag-k64', s*0.3617); set('ag-k65', s*0.1479);
   }
+  function load(){
   fetch('https://api.gold-api.com/price/XAG',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined})
     .then(function(r){return r.json()}).then(function(d){ if(d&&d.price) fill(d.price); }).catch(function(){});
+  }
+  load(); setInterval(function(){ if(!document.hidden) load(); }, 60000);
 })();
 </script>
 <div class="related">
