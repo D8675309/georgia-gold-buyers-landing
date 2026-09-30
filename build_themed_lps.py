@@ -151,11 +151,11 @@ def transform(src_html: str, city: str, theme: str) -> str:
     )
 
     # ===== META DESCRIPTION =====
-    # Original Valdosta: 'Sell gold, silver, jewelry &amp; coins in Valdosta, GA. Free appraisals, instant cash. Family-owned since 2012.'
+    # Original Valdosta: 'Sell gold, silver, jewelry &amp; coins in Valdosta, GA. Free appraisals, instant cash. Family-owned since 2011.'
     # Original McDonough: 'Sell gold, silver, jewelry &amp; coins in McDonough, GA...'
     html = re.sub(
         r'<meta name="description" content="Sell gold, silver, jewelry &amp; coins in [^"]*">',
-        f'<meta name="description" content="Sell {t["meta_desc_topic"]} in {city_pretty}, GA. Free appraisals, instant cash. Family-owned since 2012.">',
+        f'<meta name="description" content="Sell {t["meta_desc_topic"]} in {city_pretty}, GA. Free appraisals, instant cash. Family-owned since 2011.">',
         html
     )
 
