@@ -24,6 +24,14 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sell Gold in Valdosta, GA | Georgia Gold Buyers | South Georgia">
+<meta property="og:image" content="https://georgiagoldbuying.com/og-valdosta.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Georgia Gold Buyers — sell gold, silver, coins and jewelry">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sell Gold in Valdosta, GA | Georgia Gold Buyers | South Georgia">
+<meta name="twitter:description" content="Sell gold, silver, jewelry & coins in McDonough, GA. Serving Henry County, Stockbridge, Hampton & South Metro Atlanta. Free appraisals, instant cash since 2012.">
+<meta name="twitter:image" content="https://georgiagoldbuying.com/og-valdosta.jpg">
 <meta property="og:description" content="Sell your gold, silver, jewelry, and coins for top dollar in Valdosta, GA. Free appraisal, instant cash. Family-owned since 2012. Rated 4.9 stars with 140+ Google reviews. Serving Valdosta, Tifton, Moultrie, and all of South Georgia.">
 <meta property="og:url" content="https://georgiagoldbuying.com/valdosta.html">
 <meta property="og:site_name" content="Georgia Gold Buyers">
@@ -516,7 +524,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   .services-grid { grid-template-columns: 1fr; }
   .reviews-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding-bottom: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .reviews-grid::-webkit-scrollbar { display: none; }
-  .review-card { min-width: 85vw; scroll-snap-align: start; flex-shrink: 0; }
+  .review-card { flex: 0 0 85vw; width: 85vw; max-width: 85vw; min-width: 0; scroll-snap-align: start; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .mobile-bar { display: block; }
   body { padding-bottom: 72px; }
@@ -573,12 +581,26 @@ textarea.form-control { resize: vertical; min-height: 100px; }
     "latitude": 30.8967673,
     "longitude": -83.3243801
   },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "09:00",
-    "closes": "18:00"
-  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "10:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "10:00",
+      "closes": "18:00"
+    }
+  ],
   "priceRange": "$$",
   "description": "Top-rated gold buyer in Valdosta, GA. 4.9 stars, 115+ reviews. Sell gold, silver, jewelry & coins for instant cash. Serving South Georgia & North Florida.",
   "aggregateRating": {
@@ -586,26 +608,99 @@ textarea.form-control { resize: vertical; min-height: 100px; }
     "ratingValue": "4.9",
     "reviewCount": "116"
   },
-  "areaServed": ["Valdosta","Tifton","Moultrie","Thomasville","Lake Park","South Georgia","North Florida"],
+  "areaServed": [
+    "Valdosta",
+    "Tifton",
+    "Moultrie",
+    "Thomasville",
+    "Lake Park",
+    "South Georgia",
+    "North Florida"
+  ],
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61576541493879",
     "https://www.youtube.com/channel/UCHZ5I4F7IfOZWofu5eBmUZQ",
     "https://www.instagram.com/georgiagoldbuyers/"
   ],
-  "knowsAbout": ["gold buying", "silver buying", "platinum buying", "precious metals appraisal", "jewelry appraisal", "coin appraisal", "luxury watch appraisal", "designer handbag authentication", "estate jewelry", "XRF analysis", "precious metals testing"],
+  "knowsAbout": [
+    "gold buying",
+    "silver buying",
+    "platinum buying",
+    "precious metals appraisal",
+    "jewelry appraisal",
+    "coin appraisal",
+    "luxury watch appraisal",
+    "designer handbag authentication",
+    "estate jewelry",
+    "XRF analysis",
+    "precious metals testing"
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Precious Metals & Luxury Buying Services",
     "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Gold", "description": "We buy gold jewelry, coins, bullion, and scrap gold in all karats for instant cash."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Silver", "description": "We buy sterling silver jewelry, flatware, coins, bullion at competitive rates."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Platinum", "description": "We buy platinum jewelry, bullion, and dental platinum."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Luxury Watch Buying", "description": "We buy Rolex, Omega, Cartier, Breitling, and other luxury watches."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Designer Goods Buying", "description": "We buy Chanel, Louis Vuitton, Gucci, Hermès handbags and accessories."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Designer Jewelry Buying", "description": "We buy David Yurman, Tiffany & Co., Cartier, and other designer jewelry."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Estate Sale Services", "description": "We buy jewelry, coins, and valuables from estate sales and inheritances."}}
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Gold",
+          "description": "We buy gold jewelry, coins, bullion, and scrap gold in all karats for instant cash."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Silver",
+          "description": "We buy sterling silver jewelry, flatware, coins, bullion at competitive rates."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Platinum",
+          "description": "We buy platinum jewelry, bullion, and dental platinum."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Luxury Watch Buying",
+          "description": "We buy Rolex, Omega, Cartier, Breitling, and other luxury watches."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Designer Goods Buying",
+          "description": "We buy Chanel, Louis Vuitton, Gucci, Hermès handbags and accessories."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Designer Jewelry Buying",
+          "description": "We buy David Yurman, Tiffany & Co., Cartier, and other designer jewelry."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Estate Sale Services",
+          "description": "We buy jewelry, coins, and valuables from estate sales and inheritances."
+        }
+      }
     ]
-  }
+  },
+  "parentOrganization": {
+    "@id": "https://georgiagoldbuying.com/#business"
+  },
+  "hasMap": "https://maps.app.goo.gl/MDE1pakZBBCEd5v56"
 }
 </script>
 
@@ -637,7 +732,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
       "name": "What are your hours in Valdosta?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We're open by appointment 7 days a week. Call us at (229) 375-0015 or fill out our quote form to schedule your free appraisal at a time that works for you."
+        "text": "We're open Monday–Friday 10am–5pm and Saturday 10am–6pm (closed Sunday). Walk-ins are welcome, or call (229) 375-0015 or fill out our quote form to book a time."
       }
     },
     {
@@ -653,7 +748,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
       "name": "Do I need an appointment at the Valdosta location?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, we operate by appointment to ensure you get our full attention. Call (229) 375-0015 or submit a quote request. We're available 7 days a week and can often accommodate same-day appointments."
+        "text": "Walk-ins are welcome during business hours (Monday–Friday 10am–5pm and Saturday 10am–6pm (closed Sunday)). Booking ahead is recommended so we can give you our full attention — call (229) 375-0015 or submit a quote request. Same-day appointments are usually available."
       }
     },
     {
@@ -876,7 +971,7 @@ window.__gads_fire = function(label) {
         </div>
         <div class="about-detail">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Open by Appointment &middot; 7 Days a Week
+          Mon–Fri 10am–5pm &middot; Sat 10am–6pm &middot; Closed Sun
         </div>
         <p class="about-text">Our Valdosta location is the top-rated gold buyer in South Georgia. Led by founder Gadson Woodall and General Manager Glenn Paschal, our team specializes in evaluating gold, silver, platinum, jewelry, coins, and designer goods. Customers regularly drive over an hour to visit us because of our reputation for fair pricing and honest service.</p>
         <a href="https://maps.app.goo.gl/MDE1pakZBBCEd5v56" target="_blank" rel="noopener noreferrer" class="btn-directions" onclick="window.__gads_fire('AW-16941991771/dHuGCN-Sxc8aENuOyY4_')">
@@ -1034,105 +1129,105 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"I had the best experience selling my old jewelry. The process was super smooth and I felt really comfortable the whole time. Gadson and Glenn were so honest and gave me a fantastic price."</p>
+        <p class="review-text">&ldquo;Glenn was very nice and very honest with me. He made the day for me cause I didn&#x27;t go home empty handed. I highly recommend this place.&rdquo;</p>
+        <div class="review-author">
+          <span class="review-author-name">Jennifer C.</span>
+          <span class="review-date">Sep 2026</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+        </div>
+        <p class="review-text">&ldquo;Professional and educated staff. A pleasure to do business with. They use XRF to check purity of metal, so no questioning. Prices are also very competitive. I will be back.&rdquo;</p>
+        <div class="review-author">
+          <span class="review-author-name">JMC Retrofitting</span>
+          <span class="review-date">Jul 2026</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+        </div>
+        <p class="review-text">&ldquo;Service was great. He handled everything fast and efficiently. Will be returning.&rdquo;</p>
+        <div class="review-author">
+          <span class="review-author-name">Leroy G.</span>
+          <span class="review-date">Sep 2026</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+        </div>
+        <p class="review-text">&ldquo;Great experience!! No one in South Ga comes close.&rdquo;</p>
+        <div class="review-author">
+          <span class="review-author-name">Dewayne H.</span>
+          <span class="review-date">Jul 2026</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+        </div>
+        <p class="review-text">&ldquo;Great, honest people. Easy to work with. Highly recommend!&rdquo;</p>
+        <div class="review-author">
+          <span class="review-author-name">Carl K.</span>
+          <span class="review-date">Jul 2026</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-card-header">
+          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span>Google Review</span>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
+        </div>
+        <p class="review-text">&ldquo;I had the best experience selling my old jewelry. The process was super smooth and I felt really comfortable the whole time. Gadson and Glenn were so honest and gave me a fantastic price for my pieces.&rdquo;</p>
         <div class="review-author">
           <span class="review-author-name">Samantha Y.</span>
-          <span class="review-date">2 weeks ago</span>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-card-header">
-          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          <span>Google Review</span>
-        </div>
-        <div class="review-stars">
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <p class="review-text">"Wonderful experience! Easy transaction and highest payout compared to three other places I visited. They explained everything clearly and made the whole process simple. Highly recommend!"</p>
-        <div class="review-author">
-          <span class="review-author-name">M Pratt</span>
-          <span class="review-date">1 month ago</span>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-card-header">
-          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          <span>Google Review</span>
-        </div>
-        <div class="review-stars">
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <p class="review-text">"The nicest guys! All testing and calculations done right in front of you. No guessing, no hidden fees, just honest business. I drove from Tifton and it was absolutely worth the trip."</p>
-        <div class="review-author">
-          <span class="review-author-name">Brandi B.</span>
-          <span class="review-date">3 weeks ago</span>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-card-header">
-          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          <span>Google Review</span>
-        </div>
-        <div class="review-stars">
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <p class="review-text">"Excellent place to sell your silver and gold! I've been to all the other places in Valdosta and South Georgia. Nobody comes close to what Georgia Gold Buyers pays. They're the real deal."</p>
-        <div class="review-author">
-          <span class="review-author-name">Mitchell Ray II</span>
-          <span class="review-date">1 month ago</span>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-card-header">
-          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          <span>Google Review</span>
-        </div>
-        <div class="review-stars">
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <p class="review-text">"Went other places didn't come close to what they offered. These guys are the best in the area, hands down. Fair, honest, and professional. Will be back with more items to sell."</p>
-        <div class="review-author">
-          <span class="review-author-name">WILLIAM S.</span>
-          <span class="review-date">2 months ago</span>
-        </div>
-      </div>
-
-      <div class="review-card reveal">
-        <div class="review-card-header">
-          <svg class="google-g" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          <span>Google Review</span>
-        </div>
-        <div class="review-stars">
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-          <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        </div>
-        <p class="review-text">"VERY INFORMATIVE, PROFESSIONAL, AND KNOWLEDGEABLE. ACTUALLY PAID ME MORE THAN I EXPECTED. Glenn took his time explaining everything about my gold pieces. Outstanding service!"</p>
-        <div class="review-author">
-          <span class="review-author-name">robert skinner</span>
-          <span class="review-date">3 months ago</span>
+          <span class="review-date">Feb 2026</span>
         </div>
       </div>
     </div>
@@ -1350,7 +1445,7 @@ window.__gads_fire = function(label) {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">We're open by appointment 7 days a week. Call us at (229) 375-0015 or fill out our quote form to schedule your free appraisal at a time that works for you.</div>
+          <div class="faq-answer-inner">We're open Monday–Friday 10am–5pm and Saturday 10am–6pm (closed Sunday). Walk-ins are welcome, or call (229) 375-0015 or fill out our quote form to book a time.</div>
         </div>
       </div>
 
@@ -1370,7 +1465,7 @@ window.__gads_fire = function(label) {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Yes, we operate by appointment to ensure you get our full attention and a thorough evaluation. Call (229) 375-0015 or submit a quote request. We're available 7 days a week and can often accommodate same-day appointments.</div>
+          <div class="faq-answer-inner">Walk-ins are welcome during business hours (Monday–Friday 10am–5pm and Saturday 10am–6pm (closed Sunday)). Booking ahead is recommended so we can give you our full attention — call (229) 375-0015 or submit a quote request. Same-day appointments are usually available.</div>
         </div>
       </div>
 
@@ -1400,7 +1495,7 @@ window.__gads_fire = function(label) {
 
 <!-- ===== ENTITY SUMMARY ===== -->
 <aside class="entity-summary" style="max-width:800px; margin:0 auto; padding:24px; text-align:center; font-size:13px; color:#999; line-height:1.6;">
-  Georgia Gold &amp; Silver Buyers in Valdosta, Georgia is a family-owned precious metals dealer established in 2012. Located at 3996 N Valdosta Rd, Valdosta, GA 31602, we buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods. Rated 4.9 stars on Google with 140+ reviews. Serving Lowndes County, Tifton, Moultrie, Thomasville, South Georgia, and North Florida. Open 7 days a week by appointment. Call (229) 375-0015.
+  Georgia Gold &amp; Silver Buyers in Valdosta, Georgia is a family-owned precious metals dealer established in 2012. Located at 3996 N Valdosta Rd, Valdosta, GA 31602, we buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods. Rated 4.9 stars on Google with 140+ reviews. Serving Lowndes County, Tifton, Moultrie, Thomasville, South Georgia, and North Florida. Open Monday–Friday 10am–5pm and Saturday 10am–6pm (closed Sunday). Call (229) 375-0015.
 </aside>
 
 <!-- ===== FOOTER ===== -->

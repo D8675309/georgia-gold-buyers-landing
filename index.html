@@ -24,6 +24,14 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sell Gold for Cash | Georgia Gold Buyers | McDonough & Valdosta">
+<meta property="og:image" content="https://georgiagoldbuying.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Georgia Gold Buyers — sell gold, silver, coins and jewelry">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sell Gold for Cash | Georgia Gold Buyers | McDonough & Valdosta">
+<meta name="twitter:description" content="Sell gold, silver, jewelry & coins for top dollar. Free appraisals, instant cash. Family-owned since 2012. McDonough & Valdosta, GA.">
+<meta name="twitter:image" content="https://georgiagoldbuying.com/og-image.jpg">
 <meta property="og:description" content="Get top dollar for your gold, silver, jewelry, and coins at Georgia Gold Buyers. Free appraisal, instant cash payment. Family-owned since 2012.">
 <meta property="og:url" content="https://georgiagoldbuyers.com">
 <meta property="og:site_name" content="Georgia Gold Buyers">
@@ -1251,9 +1259,11 @@ textarea.form-control {
   }
   .reviews-grid::-webkit-scrollbar { display: none; }
   .review-card {
-    min-width: 85vw;
+    flex: 0 0 85vw;
+    width: 85vw;
+    max-width: 85vw;
+    min-width: 0;
     scroll-snap-align: start;
-    flex-shrink: 0;
   }
   .pillars-grid { grid-template-columns: 1fr; gap: 28px; }
   /* FIX 8: Consistent CTA buttons on mobile */
@@ -1805,16 +1815,29 @@ textarea.form-control {
   "@type": "LocalBusiness",
   "@id": "https://georgiagoldbuying.com/#business",
   "name": "Georgia Gold Buyers",
-  "alternateName": ["Georgia Gold & Silver Buyers", "GGB"],
+  "alternateName": [
+    "Georgia Gold & Silver Buyers",
+    "GGB"
+  ],
   "description": "Family-owned precious metals buying business specializing in gold, silver, platinum, jewelry, coins, watches, and designer goods. Free appraisals with instant cash payment. Serving McDonough and Valdosta, Georgia since 2012.",
   "url": "https://georgiagoldbuying.com",
-  "telephone": ["(678) 919-9265", "(229) 375-0015"],
+  "telephone": [
+    "(678) 919-9265",
+    "(229) 375-0015"
+  ],
   "email": "sell@georgiagoldbuying.com",
   "foundingDate": "2012",
   "priceRange": "$$",
-  "paymentAccepted": ["Cash", "Check"],
+  "paymentAccepted": [
+    "Cash",
+    "Check"
+  ],
   "currenciesAccepted": "USD",
-  "numberOfEmployees": {"@type": "QuantitativeValue", "minValue": 4, "maxValue": 10},
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "minValue": 4,
+    "maxValue": 10
+  },
   "address": [
     {
       "@type": "PostalAddress",
@@ -1834,8 +1857,16 @@ textarea.form-control {
     }
   ],
   "geo": [
-    {"@type": "GeoCoordinates", "latitude": 33.423772, "longitude": -84.188368},
-    {"@type": "GeoCoordinates", "latitude": 30.896767, "longitude": -83.321805}
+    {
+      "@type": "GeoCoordinates",
+      "latitude": 33.423772,
+      "longitude": -84.188368
+    },
+    {
+      "@type": "GeoCoordinates",
+      "latitude": 30.896767,
+      "longitude": -83.321805
+    }
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -1845,27 +1876,103 @@ textarea.form-control {
     "worstRating": "1"
   },
   "areaServed": [
-    {"@type": "City", "name": "McDonough, Georgia"},
-    {"@type": "City", "name": "Valdosta, Georgia"},
-    {"@type": "City", "name": "Stockbridge, Georgia"},
-    {"@type": "City", "name": "Hampton, Georgia"},
-    {"@type": "City", "name": "Locust Grove, Georgia"},
-    {"@type": "City", "name": "Tifton, Georgia"},
-    {"@type": "City", "name": "Moultrie, Georgia"},
-    {"@type": "City", "name": "Thomasville, Georgia"},
-    {"@type": "State", "name": "Georgia"}
+    {
+      "@type": "City",
+      "name": "McDonough, Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Valdosta, Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Stockbridge, Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Hampton, Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Locust Grove, Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Tifton, Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Moultrie, Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Thomasville, Georgia"
+    },
+    {
+      "@type": "State",
+      "name": "Georgia"
+    }
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Precious Metals & Luxury Buying Services",
     "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Gold", "description": "We buy gold jewelry, coins, bullion, and scrap gold in all karats from 8K to 24K for instant cash."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Silver", "description": "We buy sterling silver jewelry, flatware, coins, bullion, and silver scrap at competitive market rates."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Platinum", "description": "We buy platinum jewelry, bullion, and dental platinum with specialized testing equipment."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Luxury Watch Buying", "description": "We buy Rolex, Omega, Cartier, Breitling, and other luxury watches in any condition."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Designer Handbag Buying", "description": "We buy Chanel, Louis Vuitton, Gucci, Hermès, and other designer handbags and accessories."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Designer Jewelry Buying", "description": "We buy David Yurman, Tiffany & Co., Cartier, Bvlgari, and other fine jewelry brands."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Estate Sale Services", "description": "We buy gold, silver, jewelry, coins, and valuables from estate sales and inheritances with patient, private service."}}
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Gold",
+          "description": "We buy gold jewelry, coins, bullion, and scrap gold in all karats from 8K to 24K for instant cash."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Silver",
+          "description": "We buy sterling silver jewelry, flatware, coins, bullion, and silver scrap at competitive market rates."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Platinum",
+          "description": "We buy platinum jewelry, bullion, and dental platinum with specialized testing equipment."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Luxury Watch Buying",
+          "description": "We buy Rolex, Omega, Cartier, Breitling, and other luxury watches in any condition."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Designer Handbag Buying",
+          "description": "We buy Chanel, Louis Vuitton, Gucci, Hermès, and other designer handbags and accessories."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Designer Jewelry Buying",
+          "description": "We buy David Yurman, Tiffany & Co., Cartier, Bvlgari, and other fine jewelry brands."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Estate Sale Services",
+          "description": "We buy gold, silver, jewelry, coins, and valuables from estate sales and inheritances with patient, private service."
+        }
+      }
     ]
   },
   "sameAs": [
@@ -1881,7 +1988,102 @@ textarea.form-control {
     "jobTitle": "Owner & Precious Metals Specialist",
     "sameAs": "https://www.linkedin.com/in/gadson-woodall-02925541"
   },
-  "knowsAbout": ["gold buying", "silver buying", "platinum buying", "precious metals appraisal", "jewelry appraisal", "coin appraisal", "luxury watch appraisal", "designer handbag authentication", "estate jewelry", "scrap gold", "gold coins", "silver coins", "bullion"]
+  "knowsAbout": [
+    "gold buying",
+    "silver buying",
+    "platinum buying",
+    "precious metals appraisal",
+    "jewelry appraisal",
+    "coin appraisal",
+    "luxury watch appraisal",
+    "designer handbag authentication",
+    "estate jewelry",
+    "scrap gold",
+    "gold coins",
+    "silver coins",
+    "bullion"
+  ],
+  "department": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://georgiagoldbuying.com/valdosta.html#business",
+      "name": "Georgia Gold & Silver Buyers — Valdosta",
+      "url": "https://georgiagoldbuying.com/valdosta.html",
+      "telephone": "(229) 375-0015",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3996 N Valdosta Rd",
+        "addressLocality": "Valdosta",
+        "addressRegion": "GA",
+        "postalCode": "31602",
+        "addressCountry": "US"
+      },
+      "hasMap": "https://maps.app.goo.gl/MDE1pakZBBCEd5v56",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "10:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "10:00",
+          "closes": "18:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "116",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://georgiagoldbuying.com/mcdonough.html#business",
+      "name": "Georgia Gold Buyers — McDonough",
+      "url": "https://georgiagoldbuying.com/mcdonough.html",
+      "telephone": "(678) 919-9265",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "120 S Point Blvd",
+        "addressLocality": "McDonough",
+        "addressRegion": "GA",
+        "postalCode": "30253",
+        "addressCountry": "US"
+      },
+      "hasMap": "https://maps.app.goo.gl/vQGRfVUG9vskyoNFA",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "10:00",
+          "closes": "18:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "27",
+        "bestRating": "5"
+      }
+    }
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -1910,7 +2112,7 @@ textarea.form-control {
       "name": "Do I need an appointment?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, we operate by appointment to ensure you get our full attention. We're available 7 days a week — just call ahead or fill out our online form to schedule a time that works for you."
+        "text": "No — walk-ins are welcome during business hours. McDonough is open Monday–Saturday 10am–6pm; Valdosta is open Monday–Friday 10am–5pm and Saturday 10am–6pm (both closed Sunday). Booking ahead is recommended so we can give you our full attention — call or fill out our online form."
       }
     },
     {
@@ -2188,7 +2390,7 @@ window.__gads_fire = function(label) {
       <div class="step reveal">
         <div class="step-number">1</div>
         <h3>Book Your Appointment</h3>
-        <p>Call or fill out our form to schedule your free appraisal. We're available 7 days a week. No minimum amount.</p>
+        <p>Call or fill out our form to schedule your free appraisal. Open Monday–Saturday at both locations. No minimum amount.</p>
       </div>
       <div class="step reveal">
         <div class="step-number">2</div>
@@ -2232,12 +2434,13 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"I had the best experience selling my old jewelry. The process was super smooth and I felt really comfortable the whole time. Gadson and Glenn were so honest and gave me a fantastic price for my pieces. Definitely recommend them if you're looking to sell any gold, silver or jewelry."</p>
+        <p class="review-text">&ldquo;Glenn was very nice and very honest with me. He made the day for me cause I didn&#x27;t go home empty handed. I highly recommend this place.&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">Samantha Y.</span>
-          <span class="review-date">3 weeks ago</span>
+          <span class="review-author-name">Jennifer C.</span>
+          <span class="review-date">Sep 2026</span>
         </div>
       </div>
+
 
       <div class="review-card reveal">
         <div class="review-card-header">
@@ -2251,12 +2454,13 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"Wonderful experience! Easy transaction and highest payout for gold in the area. We drove over an hour and it was absolutely worth it. Highly recommend!"</p>
+        <p class="review-text">&ldquo;Great place with amazing customer service. Aaron specifically was amazing, love their level of attention and efficiency. I would definitely recommend this place. 10/10&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">M Pratt</span>
-          <span class="review-date">6 months ago</span>
+          <span class="review-author-name">Daniel T.</span>
+          <span class="review-date">Aug 2026</span>
         </div>
       </div>
+
 
       <div class="review-card reveal">
         <div class="review-card-header">
@@ -2270,10 +2474,10 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"All testing and calculations are done right in front of you. They explained the whole process and I felt confident I was getting a fair deal. Honest, transparent, and the best price around."</p>
+        <p class="review-text">&ldquo;Professional and educated staff. A pleasure to do business with. They use XRF to check purity of metal, so no questioning. Prices are also very competitive. I will be back.&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">Brandi B.</span>
-          <span class="review-date">2 months ago</span>
+          <span class="review-author-name">JMC Retrofitting</span>
+          <span class="review-date">Jul 2026</span>
         </div>
       </div>
 
@@ -2381,7 +2585,7 @@ window.__gads_fire = function(label) {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Yes, we operate by appointment to ensure you get our full attention. We're available 7 days a week — just call ahead or fill out our online form to schedule a time that works for you.</div>
+          <div class="faq-answer-inner">No — walk-ins are welcome during business hours. McDonough is open Monday–Saturday 10am–6pm; Valdosta is open Monday–Friday 10am–5pm and Saturday 10am–6pm (both closed Sunday). Booking ahead is recommended so we can give you our full attention — call or fill out our online form.</div>
         </div>
       </div>
 

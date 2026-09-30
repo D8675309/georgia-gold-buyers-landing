@@ -24,6 +24,14 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sell Gold in McDonough, GA | Georgia Gold Buyers | Henry County">
+<meta property="og:image" content="https://georgiagoldbuying.com/og-mcdonough.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Georgia Gold Buyers — sell gold, silver, coins and jewelry">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sell Gold in McDonough, GA | Georgia Gold Buyers | Henry County">
+<meta name="twitter:description" content="Sell gold, silver, jewelry & coins in McDonough, GA. Serving Henry County, Stockbridge, Hampton & South Metro Atlanta. Free appraisals, instant cash since 2012.">
+<meta name="twitter:image" content="https://georgiagoldbuying.com/og-mcdonough.jpg">
 <meta property="og:description" content="Sell your gold, silver, jewelry, and coins for top dollar in McDonough, GA. Free appraisal, instant cash payment. Family-owned since 2012. Serving McDonough, Stockbridge, Hampton, and all of Henry County.">
 <meta property="og:url" content="https://georgiagoldbuying.com/mcdonough.html">
 <meta property="og:site_name" content="Georgia Gold Buyers">
@@ -516,7 +524,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   .services-grid { grid-template-columns: 1fr; }
   .reviews-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding-bottom: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .reviews-grid::-webkit-scrollbar { display: none; }
-  .review-card { min-width: 85vw; scroll-snap-align: start; flex-shrink: 0; }
+  .review-card { flex: 0 0 85vw; width: 85vw; max-width: 85vw; min-width: 0; scroll-snap-align: start; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .mobile-bar { display: block; }
   body { padding-bottom: 72px; }
@@ -575,8 +583,15 @@ textarea.form-control { resize: vertical; min-height: 100px; }
   },
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "09:00",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "10:00",
     "closes": "18:00"
   },
   "priceRange": "$$",
@@ -586,26 +601,98 @@ textarea.form-control { resize: vertical; min-height: 100px; }
     "ratingValue": "4.7",
     "reviewCount": "27"
   },
-  "areaServed": ["McDonough","Stockbridge","Hampton","Locust Grove","Henry County","South Metro Atlanta"],
+  "areaServed": [
+    "McDonough",
+    "Stockbridge",
+    "Hampton",
+    "Locust Grove",
+    "Henry County",
+    "South Metro Atlanta"
+  ],
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61576541493879",
     "https://www.youtube.com/channel/UCHZ5I4F7IfOZWofu5eBmUZQ",
     "https://www.instagram.com/georgiagoldbuyers/"
   ],
-  "knowsAbout": ["gold buying", "silver buying", "platinum buying", "precious metals appraisal", "jewelry appraisal", "coin appraisal", "luxury watch appraisal", "designer handbag authentication", "estate jewelry", "XRF analysis", "precious metals testing"],
+  "knowsAbout": [
+    "gold buying",
+    "silver buying",
+    "platinum buying",
+    "precious metals appraisal",
+    "jewelry appraisal",
+    "coin appraisal",
+    "luxury watch appraisal",
+    "designer handbag authentication",
+    "estate jewelry",
+    "XRF analysis",
+    "precious metals testing"
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Precious Metals & Luxury Buying Services",
     "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Gold", "description": "We buy gold jewelry, coins, bullion, and scrap gold in all karats for instant cash."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Silver", "description": "We buy sterling silver jewelry, flatware, coins, bullion at competitive rates."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cash for Platinum", "description": "We buy platinum jewelry, bullion, and dental platinum."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Luxury Watch Buying", "description": "We buy Rolex, Omega, Cartier, Breitling, and other luxury watches."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Designer Goods Buying", "description": "We buy Chanel, Louis Vuitton, Gucci, Hermès handbags and accessories."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Designer Jewelry Buying", "description": "We buy David Yurman, Tiffany & Co., Cartier, and other designer jewelry."}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Estate Sale Services", "description": "We buy jewelry, coins, and valuables from estate sales and inheritances."}}
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Gold",
+          "description": "We buy gold jewelry, coins, bullion, and scrap gold in all karats for instant cash."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Silver",
+          "description": "We buy sterling silver jewelry, flatware, coins, bullion at competitive rates."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cash for Platinum",
+          "description": "We buy platinum jewelry, bullion, and dental platinum."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Luxury Watch Buying",
+          "description": "We buy Rolex, Omega, Cartier, Breitling, and other luxury watches."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Designer Goods Buying",
+          "description": "We buy Chanel, Louis Vuitton, Gucci, Hermès handbags and accessories."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Designer Jewelry Buying",
+          "description": "We buy David Yurman, Tiffany & Co., Cartier, and other designer jewelry."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Estate Sale Services",
+          "description": "We buy jewelry, coins, and valuables from estate sales and inheritances."
+        }
+      }
     ]
-  }
+  },
+  "parentOrganization": {
+    "@id": "https://georgiagoldbuying.com/#business"
+  },
+  "hasMap": "https://maps.app.goo.gl/vQGRfVUG9vskyoNFA"
 }
 </script>
 
@@ -639,7 +726,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
       "name": "What are your hours in McDonough?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We're open by appointment 7 days a week. Call us at (678) 919-9265 or fill out our quote form to schedule your free appraisal at a time that works for you."
+        "text": "We're open Monday–Saturday 10am–6pm (closed Sunday). Walk-ins are welcome, or call (678) 919-9265 or fill out our quote form to book a time."
       }
     },
     {
@@ -655,7 +742,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
       "name": "Do I need an appointment at the McDonough location?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, we operate by appointment to ensure you get our full attention and a thorough evaluation. Call (678) 919-9265 or submit a quote request to book your free appraisal. We're available 7 days a week."
+        "text": "Walk-ins are welcome during business hours (Monday–Saturday 10am–6pm (closed Sunday)). Booking ahead is recommended so we can give you our full attention — call (678) 919-9265 or submit a quote request. Same-day appointments are usually available."
       }
     },
     {
@@ -850,7 +937,7 @@ window.__gads_fire = function(label) {
     <div class="trust-bar">
       <span class="trust-item">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
-        4.9 Google Rating
+        4.7 Google Rating
       </span>
       <span class="trust-sep"></span>
       <span class="trust-item">Family Owned Since 2012</span>
@@ -878,7 +965,7 @@ window.__gads_fire = function(label) {
         </div>
         <div class="about-detail">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Open by Appointment &middot; 7 Days a Week
+          Mon–Sat 10am–6pm &middot; Closed Sun
         </div>
         <p class="about-text">Our McDonough location serves the entire South Metro Atlanta area. Conveniently located just off I-75, we're easy to find whether you're coming from Stockbridge, Hampton, Locust Grove, or anywhere in Henry County. Owner Gad Woodall leads the McDonough team with years of hands-on experience in precious metals evaluation.</p>
         <a href="https://maps.app.goo.gl/vQGRfVUG9vskyoNFA" target="_blank" rel="noopener noreferrer" class="btn-directions" onclick="window.__gads_fire('AW-16941991771/dHuGCN-Sxc8aENuOyY4_')">
@@ -1020,7 +1107,7 @@ window.__gads_fire = function(label) {
         <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
       </div>
       <h2 class="section-title">What Our McDonough Customers Say</h2>
-      <p class="reviews-rating">Rated 4.9 stars on Google</p>
+      <p class="reviews-rating">Rated 4.7 stars on Google in McDonough</p>
     </div>
 
     <div class="reviews-grid">
@@ -1036,10 +1123,10 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"Drove down from Stockbridge and was blown away by how professional and fair these guys are. Got a much better price than the pawn shop in McDonough offered me. Will definitely be back."</p>
+        <p class="review-text">&ldquo;Great place with amazing customer service. Aaron specifically was amazing, love their level of attention and efficiency. I would definitely recommend this place. 10/10&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">James T.</span>
-          <span class="review-date">2 weeks ago</span>
+          <span class="review-author-name">Daniel T.</span>
+          <span class="review-date">Aug 2026</span>
         </div>
       </div>
 
@@ -1055,10 +1142,10 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"Best gold buyer in Henry County, hands down. They tested everything right in front of me and explained exactly how they calculated the price. So transparent and honest. Highly recommend to anyone in the McDonough area."</p>
+        <p class="review-text">&ldquo;Aaron was incredibly knowledgeable and helpful in providing a fair price for my jewelry. I will definitely work with them again!&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">Lisa M.</span>
-          <span class="review-date">1 month ago</span>
+          <span class="review-author-name">Kelly D.</span>
+          <span class="review-date">Aug 2026</span>
         </div>
       </div>
 
@@ -1074,10 +1161,10 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"I inherited some old jewelry from my grandmother and wasn't sure what it was worth. The team at Georgia Gold Buyers in McDonough was so patient and kind. They gave me a really fair price and I walked out with cash. Great experience!"</p>
+        <p class="review-text">&ldquo;Easy process and all testing of your metals are tested right in front of you. Very thorough service and friendly. Definitely recommend if you have loose or broken jewelry just laying around.&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">Andrea W.</span>
-          <span class="review-date">3 weeks ago</span>
+          <span class="review-author-name">Rebecca</span>
+          <span class="review-date">Aug 2026</span>
         </div>
       </div>
 
@@ -1093,10 +1180,10 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"Came from Hampton with a bag full of old silver and a couple gold chains. They weighed everything, tested it all, and gave me way more than I expected. Fast, fair, and friendly. Best experience I've had selling valuables."</p>
+        <p class="review-text">&ldquo;Aaron was an absolute joy to deal with. Compassion, honesty and a sense of humor tied together made my emotional visit memorable. Fair prices all the way around. Outstanding service.&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">Marcus D.</span>
-          <span class="review-date">2 months ago</span>
+          <span class="review-author-name">Catherine H.</span>
+          <span class="review-date">Jul 2026</span>
         </div>
       </div>
 
@@ -1112,10 +1199,10 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"Very honest people. I went to three other places in the Metro Atlanta area before finding Georgia Gold Buyers. They offered me significantly more for my gold wedding band and class ring. Wish I had come here first!"</p>
+        <p class="review-text">&ldquo;My visit was fast and smooth. Aaron was able to tell me if my gold was authentic and offered me a fair price. Great service.&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">Deborah K.</span>
-          <span class="review-date">1 month ago</span>
+          <span class="review-author-name">Dee R.</span>
+          <span class="review-date">Jul 2026</span>
         </div>
       </div>
 
@@ -1131,10 +1218,10 @@ window.__gads_fire = function(label) {
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           <svg viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
         </div>
-        <p class="review-text">"My mom sold her late husband's coin collection here and they were incredibly respectful and patient. They explained the value of each piece and gave her a very fair offer. The McDonough location is truly a gem in the community."</p>
+        <p class="review-text">&ldquo;Aaron was very professional and nice. He answered all my questions and I received a fair price for all of my pieces.&rdquo;</p>
         <div class="review-author">
-          <span class="review-author-name">Taylor R.</span>
-          <span class="review-date">3 months ago</span>
+          <span class="review-author-name">Dianne C.</span>
+          <span class="review-date">Jul 2026</span>
         </div>
       </div>
     </div>
@@ -1256,8 +1343,8 @@ window.__gads_fire = function(label) {
   <div class="container">
     <div class="form-layout">
       <div class="form-testimonial reveal">
-        <blockquote>"Best gold buyer in Henry County, hands down. They tested everything right in front of me and explained exactly how they calculated the price. So transparent and honest."</blockquote>
-        <cite>&mdash; Lisa M. &#9733;&#9733;&#9733;&#9733;&#9733;</cite>
+        <blockquote>&ldquo;Aaron was very professional and nice. He answered all my questions and I received a fair price for all of my pieces.&rdquo;</blockquote>
+        <cite>&mdash; Dianne C. &#9733;&#9733;&#9733;&#9733;&#9733;</cite>
         <div class="review-badge">
           <svg width="14" height="14" viewBox="0 0 20 20" fill="#C5961A"><path d="M10 1l2.39 4.84L18 6.71l-4 3.9.94 5.49L10 13.48l-4.94 2.62L6 10.61l-4-3.9 5.61-.87z"/></svg>
           4.9 &middot; 140+ Google Reviews
@@ -1350,7 +1437,7 @@ window.__gads_fire = function(label) {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">We're open by appointment 7 days a week. Call us at (678) 919-9265 or fill out our quote form to schedule your free appraisal at a time that works for you.</div>
+          <div class="faq-answer-inner">We're open Monday–Saturday 10am–6pm (closed Sunday). Walk-ins are welcome, or call (678) 919-9265 or fill out our quote form to book a time.</div>
         </div>
       </div>
 
@@ -1370,7 +1457,7 @@ window.__gads_fire = function(label) {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Yes, we operate by appointment to ensure you get our full attention and a thorough evaluation. Call (678) 919-9265 or submit a quote request to book your free appraisal. We're available 7 days a week and can often accommodate same-day appointments.</div>
+          <div class="faq-answer-inner">Walk-ins are welcome during business hours (Monday–Saturday 10am–6pm (closed Sunday)). Booking ahead is recommended so we can give you our full attention — call (678) 919-9265 or submit a quote request. Same-day appointments are usually available.</div>
         </div>
       </div>
 
@@ -1400,7 +1487,7 @@ window.__gads_fire = function(label) {
 
 <!-- ===== ENTITY SUMMARY ===== -->
 <aside class="entity-summary" style="max-width:800px; margin:0 auto; padding:24px; text-align:center; font-size:13px; color:#999; line-height:1.6;">
-  Georgia Gold Buyers in McDonough, Georgia is a family-owned precious metals dealer established in 2012. Located at 120 S Point Blvd, McDonough, GA 30253, we buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods. Serving Henry County, Stockbridge, Hampton, Locust Grove, and all of South Metro Atlanta. Open 7 days a week by appointment. Call (678) 919-9265.
+  Georgia Gold Buyers in McDonough, Georgia is a family-owned precious metals dealer established in 2012. Located at 120 S Point Blvd, McDonough, GA 30253, we buy gold, silver, platinum, diamonds, coins, luxury watches, and designer goods. Serving Henry County, Stockbridge, Hampton, Locust Grove, and all of South Metro Atlanta. Open Monday–Saturday 10am–6pm (closed Sunday). Call (678) 919-9265.
 </aside>
 
 <!-- ===== FOOTER ===== -->
