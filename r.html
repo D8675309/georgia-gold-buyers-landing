@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>How was your visit? | Georgia Gold Buyers</title>
+<meta property="og:title" content="How was your visit? | Georgia Gold Buyers">
+<meta property="og:image" content="https://georgiagoldbuying.com/og-image.jpg">
+<style>html,body{margin:0;height:100%;background:#0b0b0b;color:#e8e2d4;font:16px -apple-system,system-ui,sans-serif}main{display:flex;height:100%;align-items:center;justify-content:center;text-align:center;padding:24px}a{color:#D4A84B}</style>
+</head>
+<body>
+<main><p id="m">Opening…</p></main>
+<script>
+(function () {
+  var code = (location.search || "").replace(/^\?/, "").split("&")[0];
+  var fallback = "/rate-us.html";
+  function go(u) { location.replace(u); }
+  if (!/^[A-Za-z0-9_-]{6,20}$/.test(code)) return go(fallback);
+  var done = false;
+  setTimeout(function () { if (!done) { done = true; go(fallback); } }, 6000);
+  fetch("https://web-production-56765.up.railway.app/api/r/" + code, { cache: "no-store" })
+    .then(function (r) { return r.json(); })
+    .then(function (j) { if (done) return; done = true; go(j && j.url && /^https:\/\/georgiagoldbuying\.com\//.test(j.url) ? j.url : fallback); })
+    .catch(function () { if (!done) { done = true; go(fallback); } });
+})();
+</script>
+</body>
+</html>
