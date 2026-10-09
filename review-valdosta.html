@@ -448,7 +448,10 @@ window.__gads_fire = function(label) {
     } else {
       // Redirect to private feedback form
       setTimeout(function() {
-        window.location.href = FEEDBACK_URL;
+        // Keep the visit (customer + ticket) so the note lands on their profile.
+        var q = new URLSearchParams(location.search), keep = [];
+        ['cid', 'tx', 'appt', 'src'].forEach(function (k) { if (q.get(k)) keep.push(k + '=' + encodeURIComponent(q.get(k))); });
+        window.location.href = FEEDBACK_URL + (keep.length ? '?' + keep.join('&') : '');
       }, 300);
     }
   }
