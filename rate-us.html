@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>How was your visit? | Georgia Gold Buyers</title>
+<meta name="description" content="Tell us how your visit went. Your feedback goes straight to the owner.">
 <meta property="og:title" content="Georgia Gold Buyers">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://georgiagoldbuying.com/og-image.jpg">
@@ -13,15 +14,12 @@
 <meta property="og:image:alt" content="Georgia Gold Buyers — sell gold, silver, coins and jewelry">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Georgia Gold Buyers">
-<meta name="twitter:description" content="Tell us how your visit went. Your feedback helps us improve.">
+<meta name="twitter:description" content="Tell us how your visit went. Your feedback goes straight to the owner.">
 <meta name="twitter:image" content="https://georgiagoldbuying.com/og-image.jpg">
-<meta name="description" content="Tell us how your visit went. Your feedback helps us improve.">
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#1a1a1a">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#fafaf7">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
@@ -39,211 +37,453 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --gold: #C5961A;
-    --gold-hover: #b3870f;
+    --gold-light: #D4A84B;
+    --gold-tint: #FBF5E6;
     --dark: #1a1a1a;
     --bg: #fafaf7;
     --text: #2a2a2a;
-    --muted: #8a8a8a;
-    --border: #e0ddd6;
+    --muted: #7d7a74;
+    --border: #e6e2d9;
+    --excellent: #3DAA57;
+    --happy: #8BC34A;
+    --average: #F5B800;
+    --fair: #F28C1E;
+    --poor: #E5473A;
   }
   html, body { -webkit-text-size-adjust: 100%; }
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: var(--bg);
+    background-image:
+      radial-gradient(900px 420px at 50% -10%, rgba(212,168,75,0.16), rgba(212,168,75,0) 70%);
     color: var(--text);
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
+    justify-content: center;
+    padding: max(28px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
     -webkit-font-smoothing: antialiased;
   }
-  .logo {
+
+  .wrap { width: 100%; max-width: 560px; text-align: center; }
+
+  /* Brand */
+  .brand { display: flex; flex-direction: column; align-items: center; margin-bottom: 26px; }
+  .brand svg { width: 52px; height: 52px; filter: drop-shadow(0 4px 10px rgba(197,150,26,0.28)); }
+  .brand-name {
+    margin-top: 10px;
+    font-size: 15px;
     font-weight: 700;
-    font-size: 18px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--dark);
-    margin-bottom: 32px;
-    letter-spacing: 0.02em;
   }
-  .logo span { color: var(--gold); }
+  .brand-name span { color: var(--gold); }
+
+  /* Card */
   .card {
     background: #fff;
     border: 1px solid var(--border);
-    border-radius: 18px;
-    width: 100%;
-    max-width: 520px;
-    padding: 40px 28px 32px;
-    text-align: center;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+    border-radius: 24px;
+    padding: 34px 24px 28px;
+    box-shadow: 0 1px 2px rgba(26,26,26,0.04), 0 18px 48px -18px rgba(26,26,26,0.14);
+    position: relative;
+    overflow: hidden;
   }
+  .card::before {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 0; height: 4px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  }
+
+  .store-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+    color: #8a6a12;
+    background: var(--gold-tint);
+    border: 1px solid #efe1bd;
+    border-radius: 999px;
+    padding: 6px 12px 6px 10px;
+    margin-bottom: 18px;
+  }
+  .store-chip svg { width: 14px; height: 14px; }
+
   h1 {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
+    letter-spacing: -0.015em;
     color: var(--dark);
-    margin-bottom: 8px;
-    line-height: 1.25;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    text-wrap: balance;
   }
   .sub {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--muted);
-    margin-bottom: 28px;
     line-height: 1.5;
+    max-width: 380px;
+    margin: 0 auto 30px;
+    text-wrap: balance;
   }
-  .emoji-row {
+
+  /* Faces */
+  .faces {
     display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    margin: 24px auto 4px;
-    max-width: 440px;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 auto 6px;
   }
-  .emoji-btn {
-    flex: 1;
-    background: #fff;
-    border: 2px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 6px 14px;
-    font-size: 38px;
-    line-height: 1;
+  .face {
+    flex: 1 1 0;
+    max-width: 92px;
+    min-width: 0;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: 18px;
+    padding: 10px 2px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
     cursor: pointer;
-    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    font: inherit;
+    color: var(--muted);
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    touch-action: manipulation;
+    transition: transform .18s cubic-bezier(.2,.8,.3,1.2), opacity .25s ease, color .18s ease;
   }
-  .emoji-btn:hover, .emoji-btn:focus {
-    border-color: var(--gold);
-    transform: translateY(-2px);
-    background: #fffaf0;
-    outline: none;
-    box-shadow: 0 4px 12px rgba(197,150,26,0.15);
+  .face .circle {
+    position: relative;
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgba(26,26,26,0.10), inset 0 -3px 0 rgba(0,0,0,0.08);
+    transition: box-shadow .2s ease, transform .2s ease;
   }
-  .emoji-btn:active { transform: scale(0.97); }
-  .emoji-label {
-    display: block;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--muted);
-    margin-top: 6px;
-    line-height: 1.2;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .footer-note {
+  .face .circle svg { width: 100%; height: 100%; display: block; }
+  .face .label {
     font-size: 13px;
-    color: var(--muted);
-    margin-top: 24px;
-    line-height: 1.5;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.005em;
   }
-  .footer-note a { color: var(--gold); text-decoration: none; }
-  .footer-note a:hover { text-decoration: underline; }
-  .redirect-msg {
-    display: none;
-    margin-top: 20px;
-    padding: 14px;
-    background: #fffaf0;
-    border: 1px solid var(--gold);
-    border-radius: 10px;
-    color: var(--dark);
-    font-size: 14px;
-    font-weight: 500;
+  @media (hover: hover) {
+    .face:hover { transform: translateY(-4px) scale(1.06); color: var(--dark); }
+    .face:hover .circle { box-shadow: 0 10px 22px rgba(26,26,26,0.16), inset 0 -3px 0 rgba(0,0,0,0.08); }
   }
-  .redirect-msg.show { display: block; animation: fadeIn 0.3s ease; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .face:active { transform: scale(0.94); }
+  .face:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
-  @media (max-width: 480px) {
-    .card { padding: 32px 18px 24px; border-radius: 14px; }
-    h1 { font-size: 22px; }
-    .emoji-btn { font-size: 32px; padding: 14px 4px 12px; }
-    .emoji-label { font-size: 10px; }
+  /* Ring + check that appear on selection */
+  .face .ring {
+    position: absolute; inset: -7px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    opacity: 0; transform: scale(0.8);
+  }
+  .face .check {
+    position: absolute; right: -4px; bottom: -4px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0);
+  }
+  .face .check svg { width: 14px; height: 14px; }
+
+  .faces.picked .face { pointer-events: none; }
+  .faces.picked .face:not(.selected) { opacity: 0.28; transform: scale(0.88); color: var(--muted); }
+  .face.selected { color: var(--dark); transform: scale(1.1); }
+  .face.selected .circle { animation: pop .45s cubic-bezier(.2,.9,.3,1.3) both; box-shadow: 0 12px 26px rgba(26,26,26,0.18), inset 0 -3px 0 rgba(0,0,0,0.08); }
+  .face.selected .ring  { animation: ring .5s ease-out both; }
+  .face.selected .check { animation: check .35s .12s cubic-bezier(.2,.9,.3,1.4) both; }
+
+  @keyframes pop  { 0% { transform: scale(1); } 45% { transform: scale(1.18); } 100% { transform: scale(1.06); } }
+  @keyframes ring { 0% { opacity: 0; transform: scale(0.8); } 35% { opacity: 1; } 100% { opacity: 0.9; transform: scale(1); } }
+  @keyframes check{ 0% { opacity: 0; transform: scale(0); } 100% { opacity: 1; transform: scale(1); } }
+
+  /* Status line under faces */
+  .status {
+    min-height: 20px;
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .status.show { opacity: 1; transform: none; }
+
+  /* Owner note */
+  .owner {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 14px; padding-top: 18px;
+    border-top: 1px dashed var(--border);
+    font-size: 14px; color: var(--muted); line-height: 1.4;
+    text-align: left;
+  }
+  .owner .seal {
+    flex: 0 0 auto;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--gold-tint); border: 1px solid #efe1bd;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .owner .seal svg { width: 18px; height: 18px; }
+  .owner strong { color: var(--text); font-weight: 600; }
+
+  /* Store picker */
+  .store-pick { display: none; }
+  .store-pick.show { display: block; }
+  .store-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+  .store-btn {
+    appearance: none; font: inherit; cursor: pointer;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 12px 16px;
+    text-align: center;
+    color: var(--dark);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: border-color .15s ease, background .15s ease, transform .15s ease;
+    min-height: 92px;
+  }
+  .store-btn:hover, .store-btn:focus-visible { border-color: var(--gold); background: var(--gold-tint); outline: none; }
+  .store-btn:active { transform: scale(0.97); }
+  .store-btn .city { display: block; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+  .store-btn .addr { display: block; margin-top: 5px; font-size: 13px; color: var(--muted); }
+
+  .hidden { display: none !important; }
+
+  /* Footer */
+  .foot {
+    margin-top: 22px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .foot a { color: var(--gold); font-weight: 600; text-decoration: none; padding: 6px 2px; }
+  .foot a:hover { text-decoration: underline; }
+
+  @media (max-width: 420px) {
+    body { padding-left: 14px; padding-right: 14px; }
+    .card { padding: 30px 14px 24px; border-radius: 20px; }
+    h1 { font-size: 26px; }
+    .sub { font-size: 15px; margin-bottom: 26px; }
+    .faces { gap: 2px; }
+    .face { padding: 10px 0 8px; border-radius: 14px; }
+    .face .circle { width: 58px; height: 58px; }
+    .face .label { font-size: 12px; }
+  }
+  @media (min-width: 700px) {
+    .card { padding: 44px 40px 36px; }
+    h1 { font-size: 32px; }
+    .faces { gap: 14px; }
+    .face .circle { width: 76px; height: 76px; }
+    .face .label { font-size: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<!-- Conversion tracking helpers (added by axon-ads) -->
 <script>
 window.__gads_fire = function(label) {
-  if (typeof gtag === 'function') {
-    try { gtag('event', 'conversion', { 'send_to': label }); } catch(e) {}
-  }
-  return true; // always allow default link behavior
+  if (typeof gtag === 'function') { try { gtag('event', 'conversion', { 'send_to': label }); } catch(e) {} }
+  return true;
 };
 </script>
 </head>
 <body>
-  <div class="logo">GEORGIA <span>GOLD</span> BUYERS</div>
+<main class="wrap">
+  <header class="brand" aria-label="Georgia Gold Buyers">
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M14 2L7 10H21L14 2Z" fill="#C5961A"/>
+      <path d="M14 26L3 10H25L14 26Z" fill="#C5961A" opacity="0.7"/>
+      <path d="M14 2L7 10L14 26L21 10L14 2Z" fill="#C5961A" opacity="0.9"/>
+    </svg>
+    <div class="brand-name">Georgia <span>Gold</span> Buyers</div>
+  </header>
 
-  <div class="card">
+  <section class="card">
+    <div class="store-chip" id="storeChip">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 1 1 13 0c0 5.4-6.5 11-6.5 11Z" stroke="#8a6a12" stroke-width="2"/><circle cx="12" cy="10" r="2.3" fill="#8a6a12"/></svg>
+      <span id="storeChipText">Georgia Gold Buyers</span>
+    </div>
+
     <h1 id="heading">How was your visit?</h1>
-    <p class="sub" id="sub">Tap the face that best describes your experience. Your feedback goes straight to the owner.</p>
+    <p class="sub" id="sub">Tap the face that fits. One tap is all it takes.</p>
 
-    <div id="storePick" style="display:none">
-      <p class="sub" style="margin-top:0">Which store did you visit?</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
-        <button type="button" class="emoji-btn store-btn" data-loc="valdosta" style="font-family:inherit;font-size:16px;font-weight:600;padding:16px 8px">Valdosta</button>
-        <button type="button" class="emoji-btn store-btn" data-loc="mcdonough" style="font-family:inherit;font-size:16px;font-weight:600;padding:16px 8px">McDonough</button>
+    <!-- Store picker (only when ?loc= is missing) -->
+    <div class="store-pick" id="storePick">
+      <div class="store-grid">
+        <button type="button" class="store-btn" data-loc="valdosta">
+          <span class="city">Valdosta</span>
+          <span class="addr">(229) 375-0015</span>
+        </button>
+        <button type="button" class="store-btn" data-loc="mcdonough">
+          <span class="city">McDonough</span>
+          <span class="addr">(678) 919-9265</span>
+        </button>
       </div>
     </div>
 
-    <div class="emoji-row" id="faces" role="radiogroup" aria-label="Rate your experience">
-      <button class="emoji-btn" data-rating="1" aria-label="Terrible">😡<span class="emoji-label">Terrible</span></button>
-      <button class="emoji-btn" data-rating="2" aria-label="Bad">😕<span class="emoji-label">Bad</span></button>
-      <button class="emoji-btn" data-rating="3" aria-label="Okay">😐<span class="emoji-label">Okay</span></button>
-      <button class="emoji-btn" data-rating="4" aria-label="Good">🙂<span class="emoji-label">Good</span></button>
-      <button class="emoji-btn" data-rating="5" aria-label="Excellent">🤩<span class="emoji-label">Excellent</span></button>
+    <!-- Faces: best to worst -->
+    <div class="faces" id="faces" role="group" aria-label="How was your visit? Choose one">
+      <button type="button" class="face" data-rating="5" aria-label="Excellent">
+        <span class="circle" aria-hidden="true">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="g5" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="36" cy="36" r="36" fill="#3DAA57"/><circle cx="36" cy="36" r="36" fill="url(#g5)"/>
+            <path d="M18 29 C21 24, 27 24, 30 29" stroke="#fff" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+            <path d="M42 29 C45 24, 51 24, 54 29" stroke="#fff" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+            <path d="M21 41 C25 53, 47 53, 51 41 Z" fill="#fff"/>
+            <path d="M26 48.5 C30 52.5, 42 52.5, 46 48.5 C42 45.5, 30 45.5, 26 48.5 Z" fill="#E5473A" opacity=".85"/>
+          </svg>
+          <span class="ring"></span>
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        <span class="label">Excellent</span>
+      </button>
+
+      <button type="button" class="face" data-rating="4" aria-label="Good">
+        <span class="circle" aria-hidden="true">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="g4" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="36" cy="36" r="36" fill="#8BC34A"/><circle cx="36" cy="36" r="36" fill="url(#g4)"/>
+            <circle cx="25" cy="29" r="4" fill="#fff"/><circle cx="47" cy="29" r="4" fill="#fff"/>
+            <path d="M23 43 C27 50.5, 45 50.5, 49 43" stroke="#fff" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+          </svg>
+          <span class="ring"></span>
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        <span class="label">Good</span>
+      </button>
+
+      <button type="button" class="face" data-rating="3" aria-label="Okay">
+        <span class="circle" aria-hidden="true">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="g3" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="36" cy="36" r="36" fill="#F5B800"/><circle cx="36" cy="36" r="36" fill="url(#g3)"/>
+            <circle cx="25" cy="30" r="4" fill="#fff"/><circle cx="47" cy="30" r="4" fill="#fff"/>
+            <line x1="25" y1="46" x2="47" y2="46" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/>
+          </svg>
+          <span class="ring"></span>
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        <span class="label">Okay</span>
+      </button>
+
+      <button type="button" class="face" data-rating="2" aria-label="Not great">
+        <span class="circle" aria-hidden="true">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="g2" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="36" cy="36" r="36" fill="#F28C1E"/><circle cx="36" cy="36" r="36" fill="url(#g2)"/>
+            <circle cx="25" cy="31" r="4" fill="#fff"/><circle cx="47" cy="31" r="4" fill="#fff"/>
+            <path d="M24 48 C28 42.5, 44 42.5, 48 48" stroke="#fff" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+            <line x1="19" y1="23" x2="29" y2="25.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+            <line x1="53" y1="23" x2="43" y2="25.5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+          <span class="ring"></span>
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        <span class="label">Not great</span>
+      </button>
+
+      <button type="button" class="face" data-rating="1" aria-label="Poor">
+        <span class="circle" aria-hidden="true">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="g1" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="36" cy="36" r="36" fill="#E5473A"/><circle cx="36" cy="36" r="36" fill="url(#g1)"/>
+            <circle cx="25" cy="32" r="4" fill="#fff"/><circle cx="47" cy="32" r="4" fill="#fff"/>
+            <path d="M24 50 C28 42, 44 42, 48 50" stroke="#fff" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+            <line x1="18" y1="21" x2="30" y2="26" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="54" y1="21" x2="42" y2="26" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span class="ring"></span>
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+        <span class="label">Poor</span>
+      </button>
     </div>
 
-    <div class="redirect-msg" id="redirectMsg">
-      Thanks — taking you there now…
-    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
 
-    <p class="footer-note">
-      Need to call us instead?
-      <a href="tel:6789199265" id="phoneLink">(678) 919-9265</a>
-    </p>
-  </div>
+    <div class="owner">
+      <span class="seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="#C5961A" stroke-width="1.8"/><path d="M4.5 8l7.5 5.5L19.5 8" stroke="#C5961A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span><strong>Your feedback goes straight to the owner.</strong><br>The owner and store manager read every one.</span>
+    </div>
+  </section>
+
+  <p class="foot" id="foot">
+    Rather talk to someone? Valdosta <a href="tel:2293750015">(229) 375-0015</a> · McDonough <a href="tel:6789199265">(678) 919-9265</a>
+  </p>
+</main>
 
 <script>
-(function() {
-  // ── Parse URL params ────────────────────────────────────────────
-  // Accepted params:
-  //   cid  — customer_id from POS (preserved through the flow)
-  //   loc  — "mcdonough" | "valdosta" (defaults to mcdonough if absent)
-  //   appt — appointment_id (optional, helps the POS attribute the rating)
-  //   src  — where the link came from ("post_visit_sms", "qr", etc.)
+(function () {
+  // ── URL params ──────────────────────────────────────────────────
+  //   cid  — customer_id        tx   — transaction_id
+  //   appt — appointment_id     loc  — "valdosta" | "mcdonough"
+  //   src  — link origin        name — customer name (first name used)
   var params = new URLSearchParams(window.location.search);
   var cid    = params.get('cid')  || '';
   var loc    = (params.get('loc') || '').toLowerCase();
   var apptId = params.get('appt') || '';
   var txId   = params.get('tx')   || '';
   var src    = params.get('src')  || 'rate_us_page';
+  var name   = (params.get('name') || '').trim();
+  var first  = name ? name.split(/\s+/)[0] : '';
+  if (first) first = first.charAt(0).toUpperCase() + first.slice(1);
 
-  // Each store's own Google review page.
-  var GOOGLE = {
-    valdosta: 'https://search.google.com/local/writereview?placeid=ChIJ08YzzPdn7ogRYm5_TAy9OUk',
-    mcdonough: 'https://search.google.com/local/writereview?placeid=ChIJZwbKrEFZ9IgRyPYV6yuJULQ'
+  var STORES = {
+    valdosta:  { label: 'Valdosta',  tel: '2293750015', pretty: '(229) 375-0015',
+                 google: 'https://search.google.com/local/writereview?placeid=ChIJ08YzzPdn7ogRYm5_TAy9OUk' },
+    mcdonough: { label: 'McDonough', tel: '6789199265', pretty: '(678) 919-9265',
+                 google: 'https://search.google.com/local/writereview?placeid=ChIJZwbKrEFZ9IgRyPYV6yuJULQ' }
   };
-  var phoneEl = document.getElementById('phoneLink');
+
+  var $ = function (id) { return document.getElementById(id); };
+  var facesEl = $('faces'), pickEl = $('storePick'), statusEl = $('status');
+
+  // ── Personalize heading ─────────────────────────────────────────
+  $('heading').textContent = first ? (first + ', how was your visit?') : 'How was your visit?';
+
+  // ── Store handling ──────────────────────────────────────────────
   function setStore(l) {
     loc = l;
-    phoneEl.href = loc === 'valdosta' ? 'tel:2293750015' : 'tel:6789199265';
-    phoneEl.textContent = loc === 'valdosta' ? '(229) 375-0015' : '(678) 919-9265';
-    document.getElementById('storePick').style.display = 'none';
-    document.getElementById('faces').style.display = '';
+    var s = STORES[loc];
+    $('foot').innerHTML = 'Rather talk to someone? Call the ' + s.label + ' store at ' +
+      '<a href="tel:' + s.tel + '" id="phoneLink">' + s.pretty + '</a>';
+    $('storeChipText').textContent = s.label + ' store';
+    $('sub').textContent = 'Tap the face that fits. One tap is all it takes.';
+    pickEl.classList.remove('show');
+    facesEl.classList.remove('hidden');
   }
-  if (loc === 'valdosta' || loc === 'mcdonough') {
+  if (STORES[loc]) {
     setStore(loc);
   } else {
-    // No store in the link (old or broken link): ask instead of guessing.
-    document.getElementById('faces').style.display = 'none';
-    document.getElementById('storePick').style.display = 'block';
-    document.querySelectorAll('.store-btn').forEach(function (b) {
+    // Old or broken link: ask which store instead of guessing.
+    $('storeChipText').textContent = 'Two Georgia locations';
+    $('sub').textContent = 'First, which store did you visit?';
+    facesEl.classList.add('hidden');
+    pickEl.classList.add('show');
+    Array.prototype.forEach.call(document.querySelectorAll('.store-btn'), function (b) {
       b.addEventListener('click', function () { setStore(b.getAttribute('data-loc')); });
     });
   }
 
-  // ── Log the rating to POS (fire-and-forget — never blocks redirect) ──
+  // ── Log to POS (fire-and-forget, never blocks the redirect) ─────
   function logRatingToPOS(rating, next) {
     try {
       var payload = {
-        customer_id: cid ? Number(cid) : null,
+        customer_id:    cid    ? Number(cid)    : null,
         appointment_id: apptId ? Number(apptId) : null,
-        transaction_id: txId ? Number(txId) : null,
+        transaction_id: txId   ? Number(txId)   : null,
         rating: rating,
         location: loc,
         source: src,
@@ -252,81 +492,50 @@ window.__gads_fire = function(label) {
         clicked_at: new Date().toISOString(),
         shop: 'ggb'
       };
-      // Public ratings endpoint on the POS — failures are silent so we never
-      // block the user's redirect to the review or feedback page.
       fetch('https://web-production-56765.up.railway.app/api/ratings/click', {
         method: 'POST',
-        body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' },
-        // keepalive so the request still flies if the page unloads
+        body: JSON.stringify(payload),
         keepalive: true
-      }).catch(function(){});
+      }).catch(function () {});
     } catch (e) { /* noop */ }
   }
 
-  // ── Routing rules (matches what user described) ─────────────────
-  // 1, 2 → negative feedback form (with tracking params preserved)
-  // 3    → negative feedback form, but with a "tell us how to do better" tone
-  // 4, 5 → review page (which routes to Google Business Profile)
+  // ── Routing: 4-5 → store's Google review page (same tab); 1-3 → feedback form
   function destinationFor(rating) {
+    if (rating >= 4) return STORES[loc].google;
     var qs = [];
-    if (cid) qs.push('cid=' + encodeURIComponent(cid));
+    if (cid)    qs.push('cid='  + encodeURIComponent(cid));
+    if (txId)   qs.push('tx='   + encodeURIComponent(txId));
     if (apptId) qs.push('appt=' + encodeURIComponent(apptId));
-    if (txId) qs.push('tx=' + encodeURIComponent(txId));
     qs.push('rating=' + rating);
     qs.push('src=' + encodeURIComponent(src));
-    var query = qs.length ? ('?' + qs.join('&')) : '';
-
-    // 1-3: tell the owner what happened. 4-5: straight to this store's
-    // Google review page, same tab (new tabs get blocked on iPhone).
-    if (rating <= 3) {
-      return 'feedback-' + loc + '.html' + query;
-    }
-    return GOOGLE[loc];
+    return 'feedback-' + loc + '.html?' + qs.join('&');
   }
 
-  // ── Click handlers ──────────────────────────────────────────────
-  var buttons = document.querySelectorAll('.emoji-btn');
+  // ── One tap only ────────────────────────────────────────────────
   var picked = false;
-  buttons.forEach(function(btn) {
-    if (!btn.hasAttribute('data-rating')) return;
-    btn.addEventListener('click', function() {
-      if (picked) return;
+  Array.prototype.forEach.call(facesEl.querySelectorAll('.face'), function (btn) {
+    btn.addEventListener('click', function () {
+      if (picked || !STORES[loc]) return;
       picked = true;
       var rating = Number(btn.getAttribute('data-rating'));
+      var next = rating >= 4 ? 'google' : 'feedback';
 
-      // Visual feedback
-      buttons.forEach(function(b) { if (b.hasAttribute('data-rating')) b.style.opacity = '0.4'; });
-      btn.style.opacity = '1';
-      btn.style.borderColor = 'var(--gold)';
-      btn.style.background = '#fffaf0';
+      // Confirmation animation (≈600ms total before redirect)
+      facesEl.classList.add('picked');
+      btn.classList.add('selected');
+      btn.setAttribute('aria-pressed', 'true');
+      statusEl.textContent = (first ? 'Thanks, ' + first : 'Thanks') +
+        (next === 'google' ? ' — one more second…' : ' — tell us what happened…');
+      statusEl.classList.add('show');
 
-      document.getElementById('redirectMsg').classList.add('show');
+      try { gtag('event', 'rating_submitted', { event_category: 'rate_us', rating: rating, location: loc }); } catch (e) {}
+      logRatingToPOS(rating, next);
 
-      // Track in Google Ads
-      try {
-        gtag('event', 'rating_submitted', {
-          event_category: 'rate_us',
-          rating: rating,
-          location: loc
-        });
-      } catch (e) {}
-
-      logRatingToPOS(rating, rating >= 4 ? 'google' : 'feedback');
-
-      // Brief delay so the user sees the confirmation, then redirect
-      setTimeout(function() {
-        window.location.href = destinationFor(rating);
-      }, 600);
+      setTimeout(function () { window.location.href = destinationFor(rating); }, 620);
     });
   });
-
-  // ── Personalize heading if customer name passed via ?name= ──────
-  var name = params.get('name');
-  if (name) {
-    var first = name.split(/\s+/)[0];
-    document.getElementById('heading').textContent = 'Hey ' + first + ' — how was your visit?';
-  }
 })();
 </script>
 </body>
