@@ -19,7 +19,7 @@
   if (!/^[A-Za-z0-9_-]{6,20}$/.test(code)) return go(fallback);
   var done = false;
   setTimeout(function () { if (!done) { done = true; go(fallback); } }, 6000);
-  fetch("https://web-production-56765.up.railway.app/api/r/" + code, { cache: "no-store" })
+  fetch("https://app.meltos.ai/api/r/" + code, { cache: "no-store" })
     .then(function (r) { return r.json(); })
     .then(function (j) { if (done) return; done = true; go(j && j.url && /^https:\/\/georgiagoldbuying\.com\//.test(j.url) ? j.url : fallback); })
     .catch(function () { if (!done) { done = true; go(fallback); } });
