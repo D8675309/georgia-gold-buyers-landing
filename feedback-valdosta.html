@@ -436,7 +436,7 @@ window.__gads_fire = function(label) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
 
-    var pos = fetch('https://web-production-56765.up.railway.app/api/feedback/comment', {
+    var pos = fetch('https://app.meltos.ai/api/feedback/comment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -457,7 +457,7 @@ window.__gads_fire = function(label) {
         phone: data.phone || '', email: data.email || '',
         rating: visit.rating || '', customer_id: visit.cid || '', ticket: visit.tx || '',
         feedback: data.feedback || '',
-        pos_link: visit.cid ? 'https://web-production-56765.up.railway.app/customer/' + visit.cid : ''
+        pos_link: visit.cid ? 'https://app.meltos.ai/customer/' + visit.cid : ''
       })
     }).then(function (r) { return r.ok; }).catch(function () { return false; });
 

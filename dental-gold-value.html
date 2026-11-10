@@ -1634,7 +1634,7 @@ if (form) {
     posPayload.sms_consent = 'yes';
 
       // Send to POS Lead Inbox (primary)
-      fetch('https://web-production-56765.up.railway.app/api/leads/submit', {
+      fetch('https://app.meltos.ai/api/leads/submit', {
         method: 'POST',
         body: JSON.stringify(posPayload),
         headers: { 'Content-Type': 'application/json' }

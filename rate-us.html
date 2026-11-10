@@ -521,7 +521,7 @@ window.__gads_fire = function(label) {
         clicked_at: new Date().toISOString(),
         shop: 'ggb'
       };
-      return fetch('https://web-production-56765.up.railway.app/api/ratings/click', {
+      return fetch('https://app.meltos.ai/api/ratings/click', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
